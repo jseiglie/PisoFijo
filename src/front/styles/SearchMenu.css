@@ -1,6 +1,14 @@
 .container.SearchMenu{
-    background-color: rgb(199, 218, 218);
+    background-color: #34343470;
 }
 .containerButton{
     background-color: rgb(154, 187, 187);
+}
+
+.rowContainer{
+    background-color: #DFDFDF80;
+}
+.inputTransparent{
+    background : inherit ;
+    border: none ;
 }
