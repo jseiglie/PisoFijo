@@ -30,13 +30,13 @@ const SearchMenu = () => (
         </div>
         <div className="container SearchMenu p-3">
             <Row xs={12} md={6} lg={2} className="containerButton m-3">  
-                <div class="button buttonSelect">
+                <div className="button buttonSelect">
                     <input type="radio" id="a25" name="check-substitution-2" />
-                    <label class="btn btn-default " for="a25">Buy</label>
+                    <label className="btn btn-default " htmlFor="a25">Buy</label>
                 </div>
-                <div class="button buttonSelect">
+                <div className="button buttonSelect">
                     <input type="radio" id="a50" name="check-substitution-2" />
-                    <label class="btn btn-default" for="a50">Sell</label>
+                    <label className="btn btn-default" htmlFor="a50">Sell</label>
                 </div>
             </Row>
             <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">

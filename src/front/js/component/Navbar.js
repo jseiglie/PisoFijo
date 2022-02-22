@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Navbar.css";
+import Button from "./Button";
 
 export const Navbar = () => {
   return (
@@ -25,8 +26,8 @@ export const Navbar = () => {
               <span className="navItem">Contact us</span>
             </Link>
           </div>
-		  <div className="ml-auto">
-			<button className="myBtn">Log In</button>
+          <div className="ml-auto">
+            <Button title="Log In"></Button>
           </div>
         </div>
       </nav>
