@@ -1,16 +1,15 @@
 .container.header{
    width: 80vw;
    height: 10vh;
+
+   
 }
 .text-header-search-menu{
-    font-size: 12vw;
+    font-size: 10vh;
     color: #FB9504;
-    vertical-align: text-bottom;
-    line-height: 4vh;  /* (19.2px = 16 x 1.2) */
-}
-
-.search-menu-header{
     height: 100%;
+    vertical-align: bottom;
+    line-height: 11vh;
 }
 
 .container.SearchMenu{

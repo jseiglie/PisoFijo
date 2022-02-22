@@ -22,15 +22,11 @@ import "../../styles/SearchMenu.css"
 const SearchMenu = () => (
 
 	<div>
-        <div className="container header" style={{backgroundImage: `url(${image}`,
+        <div className="container header justify-content-center" style={{backgroundImage: `url(${image}`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat' }}>
-            <Row  className="justify-content-center search-menu-header text-header-search-menu" >
-                <Col>
-                    <p> Piso Fijo</p>
-                </Col>
-            </Row>
+            <div className="justify-content-center text-header-search-menu">Piso Fijo</div>
         </div>
         <div className="container SearchMenu p-3">
             <Row xs={12} md={6} lg={2} className="containerButton m-3">  
