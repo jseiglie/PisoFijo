@@ -4,6 +4,8 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import ButtonOwn from "../component/Button.js";
 import SearchMenu from "../component/SearchMenu.js"
+import DetailsCard from "../component/DetailsCard.js"
+import image from "../../img/Vector.png";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -11,10 +13,9 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
       <ButtonOwn/>
-      <SearchMenu />
-      <p>
-        <img src={rigoImageUrl} />
-      </p>
+      <SearchMenu/>
+	  <DetailsCard urlImg={image}
+    value="400.000" area ="300" numRooms="3" floor="3"/> 
       <div className="alert alert-info">
         {store.message ||
           "Loading message from the backend (make sure your python backend is running)..."}
