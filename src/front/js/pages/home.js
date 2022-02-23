@@ -105,7 +105,7 @@ export const Home = () => {
         </Row>
         <Row>
           <Col md={1}></Col>
-          <Col md={5}>
+          <Col md={6}>
             <div className="container moreDetailHead">
               <div
                 style={{
@@ -145,7 +145,7 @@ export const Home = () => {
               </p>
             </div>
           </Col>
-          <Col md={1}> </Col>
+         
         </Row>
       </div>
       </div>
