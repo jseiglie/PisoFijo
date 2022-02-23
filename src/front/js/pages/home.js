@@ -10,6 +10,7 @@ import servAR from "../../img/servAR.png";
 import servRoom from "../../img/servRoom.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Login from "./login.js"
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -147,6 +148,7 @@ export const Home = () => {
           </Col>
          
         </Row>
+        
       </div>
       </div>
     </>
