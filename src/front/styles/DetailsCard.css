@@ -1,9 +1,35 @@
-.container.DetailsCard{
-    background-color: aqua;
-    width: 100%;
-    height: 500px;
-}
 .view{
     height: 500px;
     background-color: red;
+}
+.details{
+    background-color: aqua;
+    width: 100%;
+    height: auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
+}
+.CloseButton{
+    color:red;
+    background-color: inherit;
+    border: none;
+}
+.CloseButton:hover{
+    color:red;
+    background-color: inherit;
+    border: none;
+
+}
+.CloseButton:active{
+    color:red;
+    background-color: inherit;
+    border: none;
+    scale: 1.5;
+}
+.CloseButton:focus{
+    color:red;
+    background-color: inherit;
+    border: none;
+    size: 1.5;
 }
