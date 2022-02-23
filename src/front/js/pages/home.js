@@ -10,6 +10,7 @@ import servAR from "../../img/servAR.png";
 import servRoom from "../../img/servRoom.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Register from "./register.js";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -149,6 +150,8 @@ export const Home = () => {
         </Row>
       </div>
       </div>
+
+      <Register/>
     </>
   );
 };
