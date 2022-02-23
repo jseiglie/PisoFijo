@@ -7,9 +7,9 @@ import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import {faEnvelope} from '@fortawesome/free-regular-svg-icons'
-import {faHeart} from '@fortawesome/free-regular-svg-icons'
+import {faMapLocationDot, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faHeart} from '@fortawesome/free-regular-svg-icons'
+
 
 
 import * as PropTypes from "prop-types";
@@ -24,29 +24,33 @@ import "../../styles/DetailsCard.css"
 
 const DetailsCard = (props) => (
 
-	<div className="container DetailsCard">
-        <Row className="row DetailsCard view"style={{backgroundImage: `url(${props.urlImg}`,
-                    backgroundPosition: 'center',
-                    backgroundSize: 'cover',
-                    backgroundRepeat: 'no-repeat' }}>
+	<div className="DetailsCard-container">
+       <div className="DetailsCard-view"style={{backgroundImage: `url(${props.urlImg}`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat' }}>
+            <Row className="DetailsCard-icons-menu">  
+                <Col>
 
-                       <div> Hola </div>
-        </Row>
-        <div className="details header-details-row">
-                <Row className="header-details-row">
+                </Col>
+                <Col xs={12} md={3} lg={4}className="DetailsCard-view-button-container">
+                    <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></button>
+                    <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faMapLocationDot} className="icon-DetailsCard"/></button>
+                    <button className="DetailsCard-view-button"><p className="icon-DetailsCard">360º</p></button>
+                </Col>
+            </Row>
+        </div>  
+        
+        <div className="DetailsCard-details">
+                <Row>
+                    
                     <Col>
-                        <Button><FontAwesomeIcon className="heart-icon" icon={faHeart}/></Button>
-                    </Col>
-                    <Col xs={8} md={8} lg={10}>
                         <h1>Casa de campo en Madrid</h1>
-                    </Col>
-                    <Col>
-                        <Button className="CloseButton">X</Button>
                     </Col>
                 </Row>
                 <Row className="location-row">
                     <Col>
-                        <h2> Alcala de Henares, Madrid</h2>
+                        <h3> Alcala de Henares, Madrid</h3>
                     </Col>
                 </Row>
                 <Row className="resume-row pb-4">
@@ -62,16 +66,21 @@ const DetailsCard = (props) => (
                     </Col>
                 </Row>
                 <Row className="visit-buttons">
-                    <Col>
-                        <Button>Program visit</Button>
+                    <Col xs={12} md={3}>
+                        <Button className="DetailsCard-button">Program visit</Button>
+                    </Col >
+                    <Col xs={12} md={3}>
+                        <Button className="DetailsCard-button">Visit tour</Button>
+                    </Col>
+                    <Col xs={12} md={3}>
+                        <Button className="DetailsCard-button">Contact <FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></Button>
                     </Col>
                     <Col>
-                        <Button>Visit tour</Button>
+                        <button className="DetailsCard-heart-button">
+                            <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="icon-DetailsCard"/></button>
                     </Col>
-                    <Col>
-                        <Button>Contact<FontAwesomeIcon icon={faEnvelope} className="icon"/></Button>
-                    </Col>
-                </Row>                 
+                </Row>         
+                
         </div>    
 	</div>
 );

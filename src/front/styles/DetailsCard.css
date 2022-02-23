@@ -1,8 +1,13 @@
-.view{
+.DetailsCard-container{
+    margin-top: 2em;
+}
+
+.DetailsCard-view{
     height: 500px;
+    width: auto;
     background-color: red;
 }
-.details{
+.DetailsCard-details{
     background-color: aqua;
     width: 100%;
     height: auto;
@@ -19,17 +24,30 @@
     color:red;
     background-color: inherit;
     border: none;
+    transform: scale(1.5);
 
 }
 .CloseButton:active{
-    color:red;
+    color:rgb(50, 75, 158);
     background-color: inherit;
     border: none;
-    scale: 1.5;
 }
-.CloseButton:focus{
-    color:red;
+.DetailsCard-view-button,.DetailsCard-heart-button{
     background-color: inherit;
+    width: 100%;
     border: none;
-    size: 1.5;
+    margin-bottom: 0.5em;
+    margin-left: 1em;
+    font-size: 2em;
+    color: #FFB21D;
 }
+
+    
+.DetailsCard-view-button-container{
+    display: inline-block;
+
+}
+
+.icon-DetailsCard:hover {
+    color:black;
+  }

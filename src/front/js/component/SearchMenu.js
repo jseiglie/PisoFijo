@@ -51,7 +51,7 @@ const SearchMenu = () => (
                 <Col xs={12} md="auto" lg={8} className="mt-2 mb-2">
                     <InputGroup >
                         <InputGroup.Text className="inputTransparent" id="basic-addon1">
-                            <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon"/>
+                            <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon-SearchMenu"/>
                         </InputGroup.Text>
                         <FormControl className="inputTransparent"
                         placeholder="Search by location"
