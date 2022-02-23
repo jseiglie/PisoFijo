@@ -71,10 +71,15 @@ const DetailsCard = (props) => (
     </Row>
 );
 
-// DetailsCard.propTypes = {
-// 	title: PropTypes.string,
-// 	uid: PropTypes.string,
-// 	link: PropTypes.string,
-// };
+DetailsCard.propTypes = {
+ 	type: PropTypes.string,
+ 	location: PropTypes.string,
+ 	value: PropTypes.number,
+    area: PropTypes.number,
+    numRooms: PropTypes.number,
+    floor: PropTypes.number,
+    fav: PropTypes.bool
+
+};
 
 export default DetailsCard;
