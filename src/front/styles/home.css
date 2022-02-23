@@ -8,3 +8,13 @@
 body {
     background: #080709;
 }
+
+.smDetails {
+    text-align: center;
+    color: #DFDFDF;
+}
+
+.section-margin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
