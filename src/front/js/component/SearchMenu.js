@@ -32,17 +32,17 @@ const SearchMenu = () => (
             <Row xs={12} md={6} lg={2} className="containerButton m-3">  
                 <div className="button buttonSelect">
                     <input type="radio" id="a25" name="check-substitution-2" />
-                    <label className="btn btn-default " for="a25">Buy</label>
+                    <label className="btn btn-default " htmlFor="a25">Buy</label>
                 </div>
                 <div className="button buttonSelect">
                     <input type="radio" id="a50" name="check-substitution-2" />
-                    <label className="btn btn-default" for="a50">Sell</label>
+                    <label className="btn btn-default" htmlFor="a50">Sell</label>
                 </div>
             </Row>
             <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                 <Col xs={12} md={5} lg={2} className="mt-2">
                     <Form.Select aria-label="Default select example" className="styleSelect">
-                        <option>Properties Type</option>
+                        <option>Property Type</option>
                         <option value="1">Flat</option>
                         <option value="2">Detached</option>
                     </Form.Select>

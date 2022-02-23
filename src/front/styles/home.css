@@ -5,3 +5,62 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+body {
+    background: #080709;
+    scrollbar-gutter: 0;
+}
+
+.searchSection {
+    margin-top: 20vw !important;
+}
+
+.bgInfo {
+    border-radius: 1rem;
+}
+
+.smDetails {
+    text-align: justify;
+    color: #DFDFDF;
+    font-size: 1vw;
+    justify-content: center;
+}
+.smDetailsV {
+    text-align: justify;
+    color: #DFDFDF;
+    font-size: 1vw;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+
+}
+
+.section-margin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.servSection {
+    margin-top: 5vw;
+    background-color: #080709;
+    padding-top: 1vw;
+}
+
+.imgMap {
+    height: 15vw;
+}
+.imgAR {
+    width: 23vw;   
+}
+
+.pTextDetails {
+    padding: 10vw;
+}
+
+.moreDetailHead {
+    margin-top: 1rem;
+}
+
+.infoCard{
+    border: solid 2px #F7BE53;
+    padding: 1vw;
+}
