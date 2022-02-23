@@ -42,7 +42,7 @@ const SearchMenu = () => (
             <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                 <Col xs={12} md={5} lg={2} className="mt-2">
                     <Form.Select aria-label="Default select example" className="styleSelect">
-                        <option>Properties Type</option>
+                        <option>Property Type</option>
                         <option value="1">Flat</option>
                         <option value="2">Detached</option>
                     </Form.Select>
