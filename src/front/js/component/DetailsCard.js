@@ -53,16 +53,16 @@ const DetailsCard = (props) => (
                             <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} baths</h6>
                         </Col>
                     </Row>
-                    <Row className="visit-buttons p-2">
-                        <Col xs={5} md={4}>
+                    <Row className="visit-buttons p-2 d-flex align-items-center">
+                        <Col xs={5} md={5}>
                             <Button className="DetailsCard-button">Visit tour</Button>
                         </Col>
-                        <Col xs={5} md={4}>
+                        <Col xs={5} md={5}>
                             <Button className="DetailsCard-button">Contact <FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></Button>
                         </Col>
-                        <Col xs={2} md={4}>
-                            <button className="DetailsCard-heart-button mx-auto">
-                                <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="icon-DetailsCard"/></button>
+                        <Col xs={2} md={2}>
+                            <button className="DetailsCard-heart-button ">
+                                <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-DetailsCard"/></button>
                         </Col >
                     </Row>         
                     

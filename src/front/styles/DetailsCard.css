@@ -1,7 +1,8 @@
 .DetailsCard-container{
-    background-color: #000000;
+    background-color: #00000090;
     color: #DFDFDF;
     height: auto;
+    margin:auto;
     margin-top: 2em;
     margin-bottom: 1em;
 }
@@ -16,21 +17,34 @@
     /* background-color: aqua; */
     width: 100%;
     height: auto;
-    padding-top: 1em; 
+    padding-top: 1em;
 }
 
 .DetailsCard-view-button,.DetailsCard-heart-button{
     background-color: inherit;
     border: none;
-    margin-left: 1em;
-    font-size: 2em;
-    color: #FFB21D;
+    font-size: 1em;
 }
+    @media (max-width: 600px) {
+        .DetailsCard-view-button,.DetailsCard-heart-button {
+            font-size: 2em;
+        }
+    }
+.DetailsCard-view-button{
+    color: #DFA32E;
+}
+.DetailsCard-heart-button{
+    color: #DFA32E;
+}
+
 .DetailsCard-button{
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    border-radius: 0;
+    color: #000000;
+    background-color: #C4C4C4;
+    font-size: medium;
 }
-    
+
 .DetailsCard-view-button-container{
     display: inline-block;
 

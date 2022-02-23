@@ -5,7 +5,7 @@ import "../../styles/home.css";
 import ButtonOwn from "../component/Button.js";
 import SearchMenu from "../component/SearchMenu.js"
 import DetailsCard from "../component/DetailsCard.js"
-import image from "../../img/Vector.png";
+import image from "../../img/mansion-entrance.jpg";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
