@@ -24,65 +24,51 @@ import "../../styles/DetailsCard.css"
 
 const DetailsCard = (props) => (
 
-	<div className="DetailsCard-container">
-       <div className="DetailsCard-view"style={{backgroundImage: `url(${props.urlImg}`,
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat' }}>
-            <Row className="DetailsCard-icons-menu">  
-                <Col>
+    <Row xs={12} md={6} lg={4}>
+        <div className="container DetailsCard-container float-left">
+            <div className="DetailsCard-view "style={{backgroundImage: `url(${props.urlImg}`,
+                            backgroundPosition: 'center',
+                            backgroundSize: 'cover',
+                            backgroundRepeat: 'no-repeat' }}>
+                <Row className="DetailsCard-icons-menu">  
+                    <Col>
 
-                </Col>
-                <Col xs={12} md={3} lg={4}className="DetailsCard-view-button-container">
-                    <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></button>
-                    <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faMapLocationDot} className="icon-DetailsCard"/></button>
-                    <button className="DetailsCard-view-button"><p className="icon-DetailsCard">360º</p></button>
-                </Col>
-            </Row>
-        </div>  
-        
-        <div className="DetailsCard-details">
-                <Row>
+                    </Col>
+                    <Col xs={12} md={12} lg={12}className="DetailsCard-view-button-container">
+                        <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></button>
+                        <button className="DetailsCard-view-button"><FontAwesomeIcon icon={faMapLocationDot} className="icon-DetailsCard"/></button>
+                        <button className="DetailsCard-view-button"><p className="icon-DetailsCard">360º</p></button>
+                    </Col>
+                </Row>
+            </div>  
+            
+            <div className="DetailsCard-details">
+                    <Row>               
+                        <Col>
+                            <h5>{props.type} en {props.location}</h5>
+                        </Col>
+                    </Row>
+                    <Row className="resume-row pb-2">
+                        <Col>
+                            <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} baths</h6>
+                        </Col>
+                    </Row>
+                    <Row className="visit-buttons p-2">
+                        <Col xs={5} md={4}>
+                            <Button className="DetailsCard-button">Visit tour</Button>
+                        </Col>
+                        <Col xs={5} md={4}>
+                            <Button className="DetailsCard-button">Contact <FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></Button>
+                        </Col>
+                        <Col xs={2} md={4}>
+                            <button className="DetailsCard-heart-button mx-auto">
+                                <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="icon-DetailsCard"/></button>
+                        </Col >
+                    </Row>         
                     
-                    <Col>
-                        <h1>Casa de campo en Madrid</h1>
-                    </Col>
-                </Row>
-                <Row className="location-row">
-                    <Col>
-                        <h3> Alcala de Henares, Madrid</h3>
-                    </Col>
-                </Row>
-                <Row className="resume-row pb-4">
-                    <Col>
-                        <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} baths</h6>
-                    </Col>
-                </Row>
-                <Row className="description-row pb-4">
-                    <Col>
-                        <h5>Este moderno y renovado piso consta de 93 m2 muy útiles, con una habitación
-                            doble con armarios donde podrá guardar y ordenar su ropa, un espacioso baño
-                            con bañera. </h5>
-                    </Col>
-                </Row>
-                <Row className="visit-buttons">
-                    <Col xs={12} md={3}>
-                        <Button className="DetailsCard-button">Program visit</Button>
-                    </Col >
-                    <Col xs={12} md={3}>
-                        <Button className="DetailsCard-button">Visit tour</Button>
-                    </Col>
-                    <Col xs={12} md={3}>
-                        <Button className="DetailsCard-button">Contact <FontAwesomeIcon icon={faEnvelope} className="icon-DetailsCard"/></Button>
-                    </Col>
-                    <Col>
-                        <button className="DetailsCard-heart-button">
-                            <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="icon-DetailsCard"/></button>
-                    </Col>
-                </Row>         
-                
-        </div>    
-	</div>
+            </div>    
+        </div>
+    </Row>
 );
 
 // DetailsCard.propTypes = {

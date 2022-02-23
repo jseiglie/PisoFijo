@@ -1,47 +1,35 @@
 .DetailsCard-container{
+    background-color: #000000;
+    color: #DFDFDF;
+    height: auto;
     margin-top: 2em;
+    margin-bottom: 1em;
 }
 
 .DetailsCard-view{
-    height: 500px;
+    height: 30vh;
     width: auto;
-    background-color: red;
+    margin-top: 1em;
+    background-color: rgb(126, 73, 73);
 }
 .DetailsCard-details{
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
     height: auto;
-    padding-top: 2em;
-    padding-bottom: 2em;
-    margin-bottom: 2em;
+    padding-top: 1em; 
 }
-.CloseButton{
-    color:red;
-    background-color: inherit;
-    border: none;
-}
-.CloseButton:hover{
-    color:red;
-    background-color: inherit;
-    border: none;
-    transform: scale(1.5);
 
-}
-.CloseButton:active{
-    color:rgb(50, 75, 158);
-    background-color: inherit;
-    border: none;
-}
 .DetailsCard-view-button,.DetailsCard-heart-button{
     background-color: inherit;
-    width: 100%;
     border: none;
-    margin-bottom: 0.5em;
     margin-left: 1em;
     font-size: 2em;
     color: #FFB21D;
 }
-
+.DetailsCard-button{
+    width: 90%;
+    margin: auto;
+}
     
 .DetailsCard-view-button-container{
     display: inline-block;
