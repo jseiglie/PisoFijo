@@ -1,0 +1,55 @@
+.DetailsCard-container{
+    background-color: #00000090;
+    color: #DFDFDF;
+    height: auto;
+    margin:auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.DetailsCard-view{
+    height: 30vh;
+    width: auto;
+    margin-top: 1em;
+    background-color: rgb(126, 73, 73);
+}
+.DetailsCard-details{
+    /* background-color: aqua; */
+    width: 100%;
+    height: auto;
+    padding-top: 1em;
+}
+
+.DetailsCard-view-button,.DetailsCard-heart-button{
+    background-color: inherit;
+    border: none;
+    font-size: 1em;
+}
+    @media (max-width: 600px) {
+        .DetailsCard-view-button,.DetailsCard-heart-button {
+            font-size: 2em;
+        }
+    }
+.DetailsCard-view-button{
+    color: #DFA32E;
+}
+.DetailsCard-heart-button{
+    color: #DFA32E;
+}
+
+.DetailsCard-button{
+    width: 100%;
+    border-radius: 0;
+    color: #000000;
+    background-color: #C4C4C4;
+    font-size: medium;
+}
+
+.DetailsCard-view-button-container{
+    display: inline-block;
+
+}
+
+.icon-DetailsCard:hover {
+    color:black;
+  }
