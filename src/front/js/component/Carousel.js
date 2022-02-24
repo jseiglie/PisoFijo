@@ -5,6 +5,7 @@ import Carousel from "react-bootstrap/Carousel";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMapLocationDot, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import {faEnvelope, faClone} from '@fortawesome/free-regular-svg-icons'
+import {faHeart} from '@fortawesome/free-regular-svg-icons'
 
 import * as PropTypes from "prop-types";
 import "../../styles/Carousel.css"
@@ -46,10 +47,13 @@ const OwnCarousel = (props) => (
                 </Carousel.Item>
             </Carousel>
         </div>
+        <button className="heart-button-details">
+            <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-DetailsCard"/>
+        </button>
         <div className="view-button-container-Carousel">
-            <button className="view-button-Carousel"><FontAwesomeIcon icon={faClone} className="icon-DetailsCard"/></button>
-            <button className="view-button-Carousel"><FontAwesomeIcon icon={faMapLocationDot} className="icon-DetailsCard"/></button>
-            <button className="view-button-Carousel"><p className="icon-DetailsCard">360º</p></button>
+            <button className="view-button-Carousel"><FontAwesomeIcon icon={faClone} className="icon-Carousel"/></button>
+            <button className="view-button-Carousel"><FontAwesomeIcon icon={faMapLocationDot} className="icon-Carousel"/></button>
+            <button className="view-button-Carousel"><p className="icon-Carousel">360º</p></button>
         </div>
     </div>
 );

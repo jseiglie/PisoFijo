@@ -1,6 +1,7 @@
 .container-details{
-    background-color: rosybrown;
+    background-color: #08070990;
     font-size: large;
+    color: #DFDFDF;
 }
 
 .DetailsCard-container{
@@ -12,39 +13,42 @@
     margin-bottom: 1em;
 }
 
-.DetailsCard-view{
-    margin-top: 1em;
-    background-color: rgb(126, 73, 73);
-}
 .DetailsCard-details{
     /* background-color: aqua; */
     width: 100%;
     padding-top: 1em;
 }
 
-.DetailsCard-view-button,.DetailsCard-heart-button{
+.DetailsCard-view-button,.heart-button-details{
     background-color: inherit;
     border: none;
     font-size: 1em;
 }
     @media (max-width: 600px) {
-        .DetailsCard-view-button,.DetailsCard-heart-button {
+        .DetailsCard-view-button,.heart-button-details {
             font-size: 2em;
         }
     }
 .DetailsCard-view-button{
     color: #DFA32E;
 }
-.DetailsCard-heart-button{
+.heart-button-details{
     color: #DFA32E;
 }
 
-.DetailsCard-button{
+.button-details{
     width: 100%;
     border-radius: 0;
-    color: #000000;
-    background-color: #C4C4C4;
+    color: #DFDFDF;
+    background-color: #DFA32E;
     font-size: medium;
+}
+.button-details:hover{
+    color: black;
+}
+
+.container-buttons-details{
+    background-color: #f3f2f050;
 }
 
 .DetailsCard-view-button-container{
@@ -52,6 +56,6 @@
 
 }
 
-.icon-DetailsCard:hover {
+.icon-details:hover {
     color:black;
   }
