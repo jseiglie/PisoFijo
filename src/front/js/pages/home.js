@@ -4,7 +4,6 @@ import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import ButtonOwn from "../component/Button.js";
 import SearchMenu from "../component/SearchMenu.js"
-import FilterMenu from "../component/FilterMenu.js"
 import banner from "../../img/banner.png";
 import servMap from "../../img/servMap.png";
 import servAR from "../../img/servAR.png";
@@ -19,7 +18,6 @@ export const Home = () => {
     <>
       <div className="searchSection text-center mt-5">
         <SearchMenu />
-        <FilterMenu /> 
       </div>
       <div className="container">
         <div
