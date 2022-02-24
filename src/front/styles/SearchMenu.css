@@ -1,17 +1,11 @@
+
 .pfLogo {
   font-family: 'Snippet', sans-serif;
-}
-
-.container.header{
-   width: 80vw;
-   height: 10vh;  
-}
-.text-header-search-menu{
-    font-size: 10vh;
+    font-size: 7rem;
     color: #FB9504;
     height: 100%;
     vertical-align: bottom;
-    line-height: 11vh;
+    line-height: 14vh;
 }
 
 .container.SearchMenu{

@@ -26,7 +26,7 @@ const SearchMenu = () => (
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat' }}>
-            <div className="justify-content-center text-header-search-menu pfLogo">Piso Fijo</div>
+            <div className="justify-content-center  pfLogo">Piso Fijo</div>
         </div>
         <div className="container SearchMenu p-3">
             <Row xs={12} md={6} lg={2} className="containerButton m-3">  
