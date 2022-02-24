@@ -10,7 +10,9 @@ const Login = () => {
   return (
     <Row className='text-center'>
       <div className="container loginWrap">
+       
         <form className="form-control loginForm">
+        <p className="logInP">Log In</p>
           <input
             className="form-control loginInput"
             id="email"

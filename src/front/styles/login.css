@@ -7,8 +7,15 @@
     background:#4F4A4B;
 }
 
+.logInP{
+    font-size: 3vw;
+    color:#DFA32E !important;
+    text-align: center;
+}
+
+
 #email {
-    margin-top: 3vw;
+    margin-top: 1vw;
 }
 
 .loginInput {
