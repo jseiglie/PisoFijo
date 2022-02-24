@@ -5,10 +5,14 @@
 
 .signInForm{
     background:#4F4A4B;
+    padding-top: 1vw;
+    
 }
 
-#email {
-    margin-top: 3vw;
+.signInText{
+    font-size: 3vw;
+    color:#DFA32E !important;
+    text-align: center;
 }
 
 .signInInput {

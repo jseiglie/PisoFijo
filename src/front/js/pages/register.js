@@ -8,11 +8,12 @@ import "../../styles/register.css";
 
 const Register = () => {
   return (
-    <Row className="text-center">
-      
-        <div className="container signInWrap">
-          <form className="form-control signInForm">
-            <Col md={5}>
+    <div className="container signInWrap">
+      <form className="form-control signInForm">
+        <p className="signInText">Sign In</p> 
+        <Row md={5}>
+          <Col md={1}></Col>
+          <Col md={5}>
             <input
               className="form-control signInInput"
               id="email"
@@ -34,8 +35,8 @@ const Register = () => {
               placeholder={"Password"}
               required
             ></input>
-            </Col>
-            <Col md={5}>
+          </Col>
+          <Col md={5}>
             <input
               className="form-control signInInput"
               id="name"
@@ -51,12 +52,10 @@ const Register = () => {
               required
             ></input>
             <ButtonOwn className="signInBtn" title="Sign In"></ButtonOwn>
-            </Col> 
-            
-          </form>
-        </div>
-      
-    </Row>
+          </Col>
+        </Row>
+      </form>
+    </div>
   );
 };
 
