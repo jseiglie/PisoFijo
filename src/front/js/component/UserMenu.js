@@ -5,9 +5,9 @@ const UserMenu = () => {
 	return (
         <div className="container userMenu">
             <ul className="ulUM text-center"> 
-            <li><button className="btnUM">Account</button></li>
-            <li><button className="btnUM">Messages</button></li>
-            <li><button className="btnUM">Sign Out</button></li>
+            <li className="liUM"><button className="btnUM">Account</button></li>
+            <li className="liUM"><button className="btnUM">Messages</button></li>
+            <li className="liUM"><button className="btnUM">Sign Out</button></li>
             </ul>
         </div>
         )        

@@ -35,7 +35,8 @@ footer {
 }
 
 i:hover {
-    box-shadow: #dfdfdf 1px 1px 10px;
+    /* box-shadow: #dfdfdf 1px 1px 10px; */
+    color: white;
 }
 
 .ftList {
@@ -44,8 +45,9 @@ i:hover {
     justify-content: center;
 }
 
-ul {
+.ftList ul {
     list-style-type: none;
+    text-decoration: none;
     color: #dfdfdf;
     font-size: 1vw;    
 }
@@ -55,6 +57,6 @@ li {
 }
 
 li:hover{
-    text-decoration: underline;
+    color: #FC9700;
     cursor: pointer;
 }

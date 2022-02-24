@@ -22,7 +22,7 @@ import "../../styles/SearchMenu.css"
 const SearchMenu = () => (
 
 	<div>
-        <div className="container header justify-content-center" style={{backgroundImage: `url(${image}`,
+        <div className="container d-flex header justify-content-center " style={{backgroundImage: `url(${image}`,
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat' }}>

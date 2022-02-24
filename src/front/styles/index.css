@@ -2,3 +2,7 @@
     General Styles used on every website (Don't Repeat Yourself)
 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Snippet&display=swap');
+
+body{
+    overflow-x:hidden ;
+}
