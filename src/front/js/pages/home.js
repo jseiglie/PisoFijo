@@ -150,7 +150,7 @@ export const Home = () => {
         </Row>
       </div>
       </div>
-      <Login></Login>
+    
     </>
   );
 };
