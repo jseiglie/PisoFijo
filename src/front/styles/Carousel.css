@@ -1,0 +1,17 @@
+
+.img-container-Carousel{
+    height: 300px;
+    background-color: aqua;
+    object-fit: cover;
+}
+.view-button-container-Carousel{
+    text-align: center;
+}
+.view-button-Carousel{
+    background-color: inherit; 
+    border: none;
+    color: #DFA32E;
+    font-size: 1.5em;
+}
+
+
