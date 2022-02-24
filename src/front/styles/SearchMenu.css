@@ -1,8 +1,10 @@
+.pfLogo {
+  font-family: 'Snippet', sans-serif;
+}
+
 .container.header{
    width: 80vw;
-   height: 10vh;
-
-   
+   height: 10vh;  
 }
 .text-header-search-menu{
     font-size: 10vh;
