@@ -6,7 +6,8 @@ import Button from "./Button";
 export const Navbar = () => {
   return (
     <div className="row">
-      <nav className="navbar navbar-light bg-light">
+      <div className="container">
+      <nav className="navbar">
         <div className="container">
           <Link to="/">
             <span className="navbar-brand logo mb-0 h1">Piso Fijo</span>
@@ -31,6 +32,6 @@ export const Navbar = () => {
           </div>
         </div>
       </nav>
-    </div>
+    </div></div>
   );
 };

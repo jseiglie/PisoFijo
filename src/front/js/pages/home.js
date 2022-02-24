@@ -10,12 +10,14 @@ import servAR from "../../img/servAR.png";
 import servRoom from "../../img/servRoom.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import UserMenu from "../component/UserMenu";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <>
+    <UserMenu></UserMenu>
       <div className="searchSection text-center mt-5">
         <SearchMenu />
       </div>
