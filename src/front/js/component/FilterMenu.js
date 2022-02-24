@@ -19,7 +19,7 @@ import "../../styles/FilterMenu.css"
 
 const FilterMenu = () => (
         <Col xs={12} md={8} lg={4}>
-        <div className="container-fluid FilterMenu-container">  
+        <div className="container-fluid container-FilterMenu">  
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>
@@ -30,95 +30,168 @@ const FilterMenu = () => (
                             </Form.Select>
                         </Form.Label>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formPrize">Prize:
+                    <Form.Group className="mb-3" controlId="formPrize">      
                         <Row>
-                                <InputGroup >
-                                    <Col>
-                                        <InputGroup.Text className="" id="formPrize">
-                                            Min.
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number"/>
-                                        </Form.Label>
-                                    </Col>
-                                    <Col>
-                                        <InputGroup.Text className="" id="formPrize">
-                                            Max.
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number" min={0} />
-                                        </Form.Label>
-                                    </Col>
-                                </InputGroup>
-                           
+                            <Col>
+                                <h5 className="text-left-FilterMenu">Prize</h5>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <InputGroup.Text  id="formPrize">
+                                    Min.
+                                </InputGroup.Text>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
+                        </Row>
+                        <Row>
+                            <Col>
+                                <InputGroup.Text  id="formPrize">
+                                    Max.
+                                </InputGroup.Text>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
                         </Row>
                     </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="formBasicNumRooms">
+                    <Form.Group className="mb-3" controlId="formPrize">      
                         <Row>
-                                <InputGroup >
-                                    <Col>
-                                        <InputGroup.Text className="" id="basic-addon1">
-                                            Nº. rooms:
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number"/>
-                                        </Form.Label>
-                                    </Col>
-                                </InputGroup>             
+                            <Col>
+                                <h5 className="text-left-FilterMenu">Size:</h5>
+                            </Col>
                         </Row>
                         <Row>
-                                <InputGroup >
-                                    <Col>
-                                        <InputGroup.Text className="" id="basic-addon1">
-                                            Nº. baths:
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number"/>
-                                        </Form.Label>
-                                    </Col>
-                                </InputGroup>             
+                            <Col>
+                                <InputGroup.Text  id="formPrize">
+                                    Min.
+                                </InputGroup.Text>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
                         </Row>
                         <Row>
-                                <InputGroup >
-                                    <Col>
-                                        <InputGroup.Text className="" id="basic-addon1">
-                                            Floor:
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number" min={0}/>
-                                        </Form.Label>
-                                    </Col>
-                                </InputGroup>             
+                            <Col>
+                                <InputGroup.Text  id="formPrize">
+                                    Max.
+                                </InputGroup.Text>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
                         </Row>
-                        <InputGroup>
-                            Condition:
-                                    <Col>
-                                        <InputGroup.Text className="" id="basic-addon1">
-                                            Floor:
-                                        </InputGroup.Text>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>
-                                            <Form.Control type="number" min={0}/>
-                                        </Form.Label>
-                                    </Col>
-                        </InputGroup>     
+                    </Form.Group>
+                    <Form.Group controlId="formPrize">      
+                        <Row>
+                            <Col>
+                                <h5 className="text-left-FilterMenu">Nº rooms:</h5>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
+                        </Row>
+                    </Form.Group>
+                    <Form.Group controlId="formPrize">      
+                        <Row>
+                            <Col>
+                                <h5 className="text-left-FilterMenu">Nº baths:</h5>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
+                        </Row>
+                    </Form.Group>
+                    <Form.Group className="mb-2" controlId="formPrize">      
+                        <Row>
+                            <Col>
+                                <h5 className="text-left-FilterMenu">Floor:</h5>
+                            </Col>
+                            <Col>
+                                <Form.Label>
+                                    <Form.Control type="number"/>
+                                </Form.Label>
+                            </Col>                  
+                        </Row>
+                    </Form.Group>
                         
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
+                        <Row>
+                            <h5 className="text-left-FilterMenu underlined">Condition:</h5>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Good condition"/>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center mb-2">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="To reform"/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <h5 className="text-left-FilterMenu underlined">Date of publication:</h5>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last 24 hours"/>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last week"/>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last month"/>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center mb-2">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Indiferent"/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <h5 className="text-left-FilterMenu underlined">Type of commercial:</h5>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Of bank/agency"/>
+                            </Col>
+                        </Row>
+                        <Row className="justify-content-md-center mb-4">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Virtual"/>
+                            </Col>
+                        </Row>
+    
+                    <Row>
+                        <Col>
+                            <button className="button-FilterMenu" variant="primary" type="reset">
+                                Reset
+                            </button>
+                        </Col>
+                        <Col>
+                            <button className="button-FilterMenu" variant="primary" type="submit">
+                                Submit
+                            </button>
+                        </Col>
+                    </Row>
+                    
                 </Form>
      
         </div>
