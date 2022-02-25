@@ -5,12 +5,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import image from "../../img/Vector.png";
 
-import * as PropTypes from "prop-types";
 import "../../styles/SearchMenu.css"
 
 //Install npm install react-bootstrap bootstrap@5.1.3

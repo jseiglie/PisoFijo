@@ -4,11 +4,13 @@
     padding: 0;
     background-image: linear-gradient(180deg, rgba(251, 149, 4, 0) 0%, rgba(252, 151, 0, 0.5) 100%);
     margin-bottom: 0;
-   
 }
 footer {
     background: #080709;
     padding: 0;
+}
+.container-footer{
+    height: 20vh;
 }
 .myfooter{
     position: absolute;
