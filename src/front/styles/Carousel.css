@@ -16,5 +16,11 @@
 .icon-Carousel:hover {
     color:black;
   }
+.heart-button-Carousel{
+    font-size: 1.5em;
+    color: #DFA32E;
+    background-color: inherit;
+    border:none;
+}
 
 

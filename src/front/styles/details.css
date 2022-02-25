@@ -24,6 +24,9 @@
     border: none;
     font-size: 1em;
 }
+.heart-icon-details{
+    font-size: 0.8em;
+}
     @media (max-width: 600px) {
         .DetailsCard-view-button,.heart-button-details {
             font-size: 2em;
@@ -34,6 +37,7 @@
 }
 .heart-button-details{
     color: #DFA32E;
+    font-size: 2em;
 }
 
 .button-details{
@@ -49,6 +53,11 @@
 
 .container-buttons-details{
     background-color: #f3f2f050;
+    align-items: center;
+    position: relative;
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 20px;
 }
 
 .DetailsCard-view-button-container{

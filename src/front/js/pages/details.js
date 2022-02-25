@@ -17,14 +17,21 @@ export const Details = (props) => {
     <>
       <div className="container container-details mt-2 mb-2 pt-2">
         <Row xs={12} md={12} lg={12} className="img-container-details">
-          <Col xs={12} md={7} lg={7}>
+          <Col xs={12} md={12} lg={7}>
             <Row>
               <OwnCarousel fav={true}/>
             </Row>
             <Row>
               <div className="DetailsCard-details">
-                <Row>               
-                  <h4 className="text-center">{props.name}</h4>
+                <Row className="d-flex justify-content-center align-items-center">
+                  <Col xs={12} md={10} lg={10} xl={10}>
+                    <h4 className="text-center">{props.name}</h4>
+                  </Col>
+                  <Col md={2} lg={2} xl={2} className="d-none d-lg-block">
+                    <button className="heart-button-details">
+                      <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-details"/>
+                    </button>
+                  </Col>
                 </Row>
                 <Row>               
                   <h5>{props.type} en {props.location}</h5>
@@ -35,7 +42,7 @@ export const Details = (props) => {
                 <Row className="resume-row pb-2">
                   <p className="text-desciption-details">{props.description}</p>
                 </Row>
-                  <div className="d-md-none fixed-bottom container-buttons-details">
+                  <div className="d-lg-none d-xl-none container-buttons-details">
                     <Row className="visit-buttons p-2 d-flex align-items-center">
                       <Col xs={5} md={5}>
                         <button className="button-details">Visit tour</button>
@@ -45,16 +52,16 @@ export const Details = (props) => {
                       </Col>
                       <Col xs={2} md={2}>
                         <button className="heart-button-details">
-                          <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-DetailsCard"/>
+                          <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-details"/>
                         </button>
                       </Col>
-                  </Row> 
+                    </Row> 
                 </div>                          
               </div> 
             </Row>
           </Col>
           <Col className="d-flex justify-content-center">
-            <div className="d-none d-md-block position-fixed mt-3">          
+            <div className="d-none d-lg-block d-xl-block position-fixed mt-3">          
                 <ContactForm />
             </div>
           </Col>

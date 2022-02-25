@@ -47,9 +47,6 @@ const OwnCarousel = (props) => (
                 </Carousel.Item>
             </Carousel>
         </div>
-        <button className="heart-button-details">
-            <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-DetailsCard"/>
-        </button>
         <div className="view-button-container-Carousel">
             <button className="view-button-Carousel"><FontAwesomeIcon icon={faClone} className="icon-Carousel"/></button>
             <button className="view-button-Carousel"><FontAwesomeIcon icon={faMapLocationDot} className="icon-Carousel"/></button>

@@ -22,7 +22,7 @@ const ContactForm = () => (
           <Form.Control as="textarea" rows={3} />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Consent to the treatment of the personal data " />
+          <Form.Check type="checkbox" label="Accept treatment of the personal data " />
         </Form.Group>
           <button type="submit" className="button-details p-2">
             Send Message <FontAwesomeIcon icon={faEnvelope} className="icon-details"/>
