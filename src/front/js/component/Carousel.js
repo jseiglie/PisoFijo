@@ -16,7 +16,8 @@ import "../../styles/Carousel.css"
 // npm install --save @fortawesome/react-fontawesome
 // npm i --save @fortawesome/pro-solid-svg-icons
 
-const OwnCarousel = (props) => (
+const OwnCarousel = (props) => {
+    return (
     <div >
         <div>
             <Carousel className="bg-light text-center">
@@ -53,6 +54,6 @@ const OwnCarousel = (props) => (
             <button className="view-button-Carousel"><p className="icon-Carousel">360º</p></button>
         </div>
     </div>
-);
+)};
 
 export default OwnCarousel;

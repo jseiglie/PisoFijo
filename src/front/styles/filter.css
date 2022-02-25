@@ -1,0 +1,15 @@
+@media (min-width: 700px) {
+    /* .Map-container-filter{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 110px;
+    } */
+        .container-DetailsCard{
+            position: relative;
+            top: -32vh;
+        }
+}
+
+.Map-container-filter img{
+    height: 66vh;
+}

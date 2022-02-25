@@ -18,8 +18,7 @@ import "../../styles/FilterMenu.css"
 // npm i --save @fortawesome/pro-solid-svg-icons
 
 const FilterMenu = () => (
-        <Col xs={12} md={8} lg={4}>
-        <div className="container-fluid container-FilterMenu">  
+        <div className="container-FilterMenu">  
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>
@@ -192,10 +191,8 @@ const FilterMenu = () => (
                         </Col>
                     </Row>
                     
-                </Form>
-     
+                </Form>     
         </div>
-        </Col>
 );
 
 // FilterMenu.propTypes = {
