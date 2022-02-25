@@ -1,53 +1,58 @@
 import React, { Component, ImageBackground } from "react";
+import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
 
-import * as PropTypes from "prop-types";
-import "../../styles/DetailsCard.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faMapLocationDot, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faClone} from '@fortawesome/free-regular-svg-icons'
+import {faHeart} from '@fortawesome/free-regular-svg-icons'
 
-//Install npm install react-bootstrap bootstrap@5.1.3
+import * as PropTypes from "prop-types";
+import "../../styles/Carousel.css"
+
+//Install npm install react-bootstrap bootstrap@s5.1.3
 // npm i --save @fortawesome/fontawesome-svg-core
 // npm install --save @fortawesome/free-solid-svg-icons
 // npm install --save @fortawesome/react-fontawesome
 // npm i --save @fortawesome/pro-solid-svg-icons
 
 const OwnCarousel = (props) => (
-    <Carousel>
-    <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=First slide&bg=373940"
-        alt="First slide"
-        />
-        <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=Second slide&bg=282c34"
-        alt="Second slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-    </Carousel.Item>
-    <Carousel.Item>
-        <img
-        className="d-block w-100"
-        src="holder.js/800x400?text=Third slide&bg=20232a"
-        alt="Third slide"
-        />
-
-        <Carousel.Caption>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-        </Carousel.Caption>
-    </Carousel.Item>
-    </Carousel>
+    <div >
+        <div>
+            <Carousel className="bg-light text-center">
+                <Carousel.Item className="">
+                    <img
+                    className="img-container-Carousel"
+                    src="https://uploads.candelaestereo.com/1/2017/02/k2_items_src_5591f41814d4d6f47cf954c512de682f.jpg"
+                    alt="First slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="img-container-Carousel"
+                    src="https://as.com/ocio/imagenes/2016/02/20/conectados/1455967524_894772_1455998651_noticia_grande.jpg"
+                    alt="Second slide"
+                    />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="img-container-Carousel"
+                    src="https://i.pinimg.com/236x/2c/1a/10/2c1a10c8d099902a7036dc0f41a245e3.jpg"
+                    alt="Third slide"
+                    />
+                    {/* <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </Carousel.Caption> */}
+                </Carousel.Item>
+            </Carousel>
+        </div>
+        <div className="view-button-container-Carousel">
+            <button className="view-button-Carousel"><FontAwesomeIcon icon={faClone} className="icon-Carousel"/></button>
+            <button className="view-button-Carousel"><FontAwesomeIcon icon={faMapLocationDot} className="icon-Carousel"/></button>
+            <button className="view-button-Carousel"><p className="icon-Carousel">360º</p></button>
+        </div>
+    </div>
 );
 
 export default OwnCarousel;
