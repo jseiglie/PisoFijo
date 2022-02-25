@@ -58,4 +58,7 @@
 
 .icon-details:hover {
     color:black;
-  }
+}
+.text-desciption-details{
+    text-align: justify;
+}

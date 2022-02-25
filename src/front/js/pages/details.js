@@ -1,14 +1,11 @@
-import React, { useContext } from "react";
-import { Context } from "../store/appContext";
+import React from "react";
 import "../../styles/details.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMapLocationDot, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
+import {faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
 import {faEnvelope, faHeart} from '@fortawesome/free-regular-svg-icons'
 
-import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import ContactForm from "../component/ContactForm";
-import Form from "react-bootstrap/Form";
 import OwnCarousel from "../component/Carousel.js";
 import Row from "react-bootstrap/Row";
 
@@ -20,21 +17,24 @@ export const Details = (props) => {
     <>
       <div className="container container-details mt-2 mb-2 pt-2">
         <Row xs={12} md={12} lg={12} className="img-container-details">
-          <Col xs={12} md={8} lg={8}>
+          <Col xs={12} md={7} lg={7}>
             <Row>
               <OwnCarousel fav={true}/>
             </Row>
             <Row>
               <div className="DetailsCard-details">
                 <Row>               
-                    <h5>{props.type} en {props.location}</h5>
-                  </Row>
-                  <Row className="resume-row pb-2">
-                      <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} floor</h6>
-                  </Row>
-                  <Row className="resume-row pb-2">
-                      <p>{props.description}</p>
-                  </Row>
+                  <h4 className="text-center">{props.name}</h4>
+                </Row>
+                <Row>               
+                  <h5>{props.type} en {props.location}</h5>
+                </Row>
+                <Row className="resume-row pb-2">
+                  <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} floor</h6>
+                </Row>
+                <Row className="resume-row pb-2">
+                  <p className="text-desciption-details">{props.description}</p>
+                </Row>
                   <div className="d-md-none fixed-bottom container-buttons-details">
                     <Row className="visit-buttons p-2 d-flex align-items-center">
                       <Col xs={5} md={5}>
@@ -48,13 +48,13 @@ export const Details = (props) => {
                           <FontAwesomeIcon icon={props.fav == true ? faHeartSolid : faHeart} className="heart-icon-DetailsCard"/>
                         </button>
                       </Col>
-                    </Row> 
-                  </div>                          
+                  </Row> 
+                </div>                          
               </div> 
             </Row>
           </Col>
-          <Col className="d-flex justify-content-center text-center">
-            <div className="d-none d-md-block position-fixed mt-3 bg-light">          
+          <Col className="d-flex justify-content-center">
+            <div className="d-none d-md-block position-fixed mt-3">          
                 <ContactForm />
             </div>
           </Col>

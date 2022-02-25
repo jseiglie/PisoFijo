@@ -31,7 +31,7 @@ const Layout = () => {
 							<Demo />
 						</Route>
 						<Route exact path="/details">
-							<Details type="Flat" location="Madrid" value="200.000" area="200" numRooms="2" floor="2" 
+							<Details name="Piso luminoso Alcobendas" type="Flat" location="Madrid" value="200.000" area="200" numRooms="2" floor="2" 
 							description=
 								{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec leo
 							 	rhoncus, sodales nisi et, faucibus nunc. Ut tempor dolor arcu, nec malesuada lorem
