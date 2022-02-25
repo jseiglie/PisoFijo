@@ -82,14 +82,12 @@ export const Home = () => {
       </div>
       <div className="servSection">
         <div className="container ">
-          <Row xs={12} md={12} lg={12} xl={12} className="infoCard">
-            <Col xs={12} md={12} lg={5} xl={5}>
-              <div className="container ">
-                <img className="imgMap" src={`${servMap}`}></img>
-              </div>
+          <Row xs={12} md={12} lg={12} xl={12} className="infoCard g-0">
+            <Col xs={12} md={12} lg={5} xl={5} className="g-0 text-center">
+                <img className="imgMap px-3" src={`${servMap}`}></img>
             </Col>
-            <Col xs={12} md={12} lg={7} xl={7}>
-              <p className="smDetails ">
+            <Col xs={12} md={12} lg={7} xl={7} className="g-0">
+              <p className="smDetails px-3">
                 1- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -100,9 +98,9 @@ export const Home = () => {
               </p>
             </Col>
           </Row>
-          <Row xs={12} md={12} lg={12} xl={12} className="d-flex">
-            <Col xs={12} md={12} lg={8} xl={8} className="g-0">
-              <div className="container moreDetailHead d-flex">
+          <Row xs={12} md={12} lg={12} xl={12} className="g-2">
+            <Col xs={12} md={12} lg={8} xl={8} >
+              <div className="container-fluid moreDetailHead">
                 <div
                   style={{
                     backgroundImage: `url(${servRoom})`,
@@ -125,7 +123,7 @@ export const Home = () => {
                 </div>
               </div>
             </Col>
-            <Col xs={12} md={12} lg={4} xl={4} className="d-flex g-0">
+            <Col xs={12} md={12} lg={4} xl={4} >
               <div className="container smDetailsV moreDetailHead infoCard">
                 <div className="text-center">
                   <img className="imgAR" src={`${servAR}`}></img>
