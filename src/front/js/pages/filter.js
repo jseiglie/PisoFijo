@@ -19,14 +19,22 @@ const Filter = () => {
                     <div className="container-Filter-filter">
                         <FilterMenu />
                     </div>
-                </Col>
+                </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
-                    <div className="Map-container-filter text-center position-fixed">
-                        <img src={MapExample} alt="Girl in a jacket" className="img-fluid" />
+                    <div className="Map-container-filter text-center ">
+                        <img src={MapExample} alt="Map example" />
                         <div className="container-DetailsCard">
-                            <DetailsCard/>
+                            <DetailsCard className="container-DetailsCard" />
                         </div>
                     </div>
+
+
+                    {/* <Col className="d-flex justify-content-center">
+            <div className="d-none d-lg-block d-xl-block position-fixed mt-3">          
+                <ContactForm />
+            </div> */}
+
+
                 </Col>
             </Row>
         </div>
