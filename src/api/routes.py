@@ -1,3 +1,9 @@
+# https://api.idealista.com/3/es/search?
+# locale=es&maxItems=20&numPage=1&operation=sale&order=publicationDate&propertyType=garages
+# &sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&locationId=0-EU-ES-28
+
+#you must specify a center + distance or locationId in each request
+
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
