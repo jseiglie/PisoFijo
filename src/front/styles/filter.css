@@ -1,15 +1,15 @@
 .container-Filter-filter{
-    height: 88vh; /*<---*/
+    height: 80vh; /*<---*/
     overflow-y: scroll;
 }
 
 .Map-container-filter{
-    height: 88vh; /*<---*/
+    height: 90vh; /*<---*/
     position: relative;
     background-color: aqua;
 }
 .Map-container-filter img{
-    height: 88vh;
+    height: 90vh;
     width: 100%;
     object-fit:cover;
 }
