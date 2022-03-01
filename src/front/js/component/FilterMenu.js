@@ -115,16 +115,14 @@ const FilterMenu = () => (
                             </Col>                  
                         </Row>
                     </Form.Group>
-                    <Form.Group className="mb-2" controlId="formPrize">      
+                    <Form.Group className="mb-2">  
                         <Row>
-                            <Col>
-                                <h5 className="text-left-FilterMenu">Floor:</h5>
+                            <h5 className="text-left-FilterMenu underlined">Equipment:</h5>
+                        </Row>    
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="checkbox" id="haveElevator" name="haveElevator" label="Elevator"/>
                             </Col>
-                            <Col>
-                                <Form.Label>
-                                    <Form.Control type="number"/>
-                                </Form.Label>
-                            </Col>                  
                         </Row>
                     </Form.Group>
                         

@@ -33,13 +33,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 							//"0,3", "0,2,4". 4 means "4 or more"
 							bathrooms: "3", //(string) bathroom number 0,1,2,3: , bedroom number separated by commas. examples: "0", "0,3",
 							//"0,2,3". 3 means "3 or more"
-							preservation: "good" //(string) - property preservation - values: good, renew
-						}
+							preservation: "good", //(string) - property preservation - values: good, renew
+							elevator: true //(boolean) 
+						},
+						
 			},
 			actions: {
 
-			// propertiesSearch: (id) => {
-			// 	fetch(getStore().urlAPI.concat("/people/",id)).then(response=>{
+			//https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&order=publicationDate
+			//&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&locationId=0-EU-ES-28
+
+			// map de array de objetos añadiendo /search?&...&...
+
+			// propertiesSearch: (generalFilters, homeFilters) => {
+			//	const search.map
+			// 	fetch(getStore().urlAPI.concat("/{country}/","search")).then(response=>{
 			// 		if(response.ok){
 			// 			return response.json()
 			// 		}
