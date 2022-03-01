@@ -24,7 +24,7 @@ import "../../styles/DetailsCard.css"
 
 const DetailsCard = (props) => (
 
-    <Row xs={12} md={6} lg={4}>
+    <Row xs={12} md={12} lg={12}>
         <div className="container DetailsCard-container float-left">
             <div className="DetailsCard-view "style={{backgroundImage: `url(${props.urlImg}`,
                             backgroundPosition: 'center',
