@@ -1,12 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
+
 	return {
-			store: {
-						country: "es",
+			store: {	
+						country: "es", //(string) - values: es, it, pt (requiered)
 						urlAPI: "https://api.idealista.com/3.5/" /* {country} + "/search"*/,
 						propertiesSearch: [],
 						listFavorites: [],
 						generalFilters: {
-							country: "es", //(string) - values: es, it, pt (requiered)
 							operation: "sale", //(string) - values: sale, rent (requiered)
 							//propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
 							center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
@@ -40,8 +40,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			actions: {
 
-			//https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&order=publicationDate
+				
+
+
+			//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&order=publicationDate
 			//&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&locationId=0-EU-ES-28
+
+			//const generalFiltersObj = getStore().generalFilters;
+			//const homeFiltersObj = getStore().homeFilters;
+
+			//const FilterObject = Object.assign(generalFiltersObj, homeFiltersObj);
+
+			//Object.entries(FilterObject) // [[country, "es"], [operation,"sale"] ]
+
+			//const filterURL =[];
 
 			// map de array de objetos añadiendo /search?&...&...
 
