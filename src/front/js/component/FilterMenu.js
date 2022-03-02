@@ -26,23 +26,24 @@ const FilterMenu = () => {
 	const homeFiltersObj = store.homeFilter
 	
 	const filterObject = Object.assign(generalFiltersObj, homeFiltersObj);
-	console.log(filterObject
+	console.log(filterObject);
 	const filterEntries = filterObject =>Object.entries(filterObject) // [[country, "es"], [operation,"sale"] ]
-	console.log("filterEntries: ",filterEntries(filterObject)
-	const resultFilterEntries = filterEntries(filterObject
+	console.log("filterEntries: ",filterEntries(filterObject));
+	const resultFilterEntries = filterEntries(filterObject);
 	const filteredArrElementsNotEmpty = arr =>{
-	return arr.filter(el => el[1] != '' || el[1] == true) 
-	
-	console.log("filteredArrElementsNotEmpty: ",filteredArrElementsNotEmpty(resultFilterEntries
-	const resultfilteredArrElementsNotEmpty = filteredArrElementsNotEmpty(resultFilterEntries
+	    return arr.filter(el => el[1] != '' || el[1] == true)
+    }
+	console.log("filteredArrElementsNotEmpty: ",filteredArrElementsNotEmpty(resultFilterEntries));
+	const resultfilteredArrElementsNotEmpty = filteredArrElementsNotEmpty(resultFilterEntries);
 	const concatenateArr =(arr)=>{
-	return ((arr.map(el =>el.join("="))).join("&"))
-	
-	console.log("concatenateArr: ",concatenateArr(resultfilteredArrElementsNotEmpty)
+	    return ((arr.map(el =>el.join("="))).join("&"))
+    };
+	console.log("concatenateArr: ",concatenateArr(resultfilteredArrElementsNotEmpty));
 	const UrlFilters = filterObject =>{
-	return (concatenateArr(filteredArrElementsNotEmpty(filterEntries(filterObject))))
+	    return (concatenateArr(filteredArrElementsNotEmpty(filterEntries(filterObject))))
+    };
 	
-	console.log(UrlFilters(filterObject))
+	console.log(UrlFilters(filterObject));
 
     return (
         <div className="container-FilterMenu">  
