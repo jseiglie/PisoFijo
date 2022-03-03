@@ -1,4 +1,9 @@
-import React, { Component, ImageBackground, useContext, useEffect } from "react";
+//1- los inputs modificaran el usestate filtros
+//2- en action de flux se define una solicitud que acepte como parametro la url que hemos calculado
+//3- Cuando el usuario haga click en filtrar se llama a esa función
+
+
+import React, { Component, ImageBackground,useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -20,33 +25,83 @@ import "../../styles/FilterMenu.css"
 
 const FilterMenu = () => {
 
-    const {store,actions} = useContext(Context);
+    // const {store,actions} = useContext(Context);
 
-    const generalFiltersObj = store.generalFilters;
-	const homeFiltersObj = store.homeFilter
-	
-	const filterObject = Object.assign(generalFiltersObj, homeFiltersObj);
-	console.log(filterObject);
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFilters(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+        console.log("filters: ",filters);
+    };
+
+    const handleChangeCheckbox = e => {
+        const {name, checked} = e.target;
+        setFilters(prevState => ({
+            ...prevState,
+            [name]: checked
+        }));
+        console.log("filters: ",filters);
+    };
+
+    const handleChangeRadio = e => {
+        const {name, value} = e.target;
+        if(e.target.checked){
+            setFilters(prevState => ({
+                ...prevState,
+                [name]: value
+            }));
+            console.log("filters: ",filters);
+        }
+    };
+
+
+    const [filters, setFilters] = useState(
+        {//generalFilters: 
+        	operation: "sale", //(string) - values: sale, rent (requiered)
+        	//propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
+        	center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
+        	locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
+        	distance: 3500, //(double) - distance to center, in metres (ratio)
+        	locationId: "", //(string) - idealista location code
+        	maxPrice: 200000, //(double) - maximun price in response
+        	minPrice: 50000, //(double) - minimun price in response
+        	sinceDate: "W", //property age - W:last week, M: last month, T:last day (for rent except rooms), Y: last 2 days (sale and rooms) homeFilters: 
+        // homeFilters: 
+        	minSize: 60, //double min size (from 60 m2 to 1000m2)
+        	maxSize: 200,//double maxSize (from 60 m2 to 1000m2)
+            virtualTour: false,
+        	flat: true, //boolean property is a flat
+        	penthouse: false, //boolean
+        	duplex: false, //boolean
+        	studio: false, //boolean
+        	chalet: false, //boolean
+        	countryHouse: false, //boolean
+        	bedrooms: "3", //(string) bedroom number (multivalued field) 0,1,2,3,4: bedroom number separated by commas. examples: "0", "1,4", "0,3", "0,2,4". 4 means "4 or more"
+        	bathrooms: "3", //(string) bathroom number 0,1,2,3: , bedroom number separated by commas. examples: "0", "0,3", "0,2,3". 3 means "3 or more"
+        	preservation: "good", //(string) - property preservation - values: good, renew
+            bankOffer: false, //owner is a bank - works for sale in spain
+        	elevator: true //(boolean)
+        });
+
+    const filterObject = filters;
 	const filterEntries = filterObject =>Object.entries(filterObject) // [[country, "es"], [operation,"sale"] ]
-	console.log("filterEntries: ",filterEntries(filterObject));
-	const resultFilterEntries = filterEntries(filterObject);
+	    console.log("filterEntries: ",filterEntries(filterObject));
 	const filteredArrElementsNotEmpty = arr =>{
 	    return arr.filter(el => el[1] != '' || el[1] == true)
     }
-	console.log("filteredArrElementsNotEmpty: ",filteredArrElementsNotEmpty(resultFilterEntries));
-	const resultfilteredArrElementsNotEmpty = filteredArrElementsNotEmpty(resultFilterEntries);
 	const concatenateArr =(arr)=>{
 	    return ((arr.map(el =>el.join("="))).join("&"))
     };
-	console.log("concatenateArr: ",concatenateArr(resultfilteredArrElementsNotEmpty));
 	const UrlFilters = filterObject =>{
 	    return (concatenateArr(filteredArrElementsNotEmpty(filterEntries(filterObject))))
     };
-	
-	console.log(UrlFilters(filterObject));
+
+	console.log(UrlFilters(filterObject)); //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
 
     return (
-        <div className="container-FilterMenu">  
+        <div className="container-FilterMenu">
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>
@@ -57,7 +112,7 @@ const FilterMenu = () => {
                             </Form.Select>
                         </Form.Label>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formPrize">      
+                    <Form.Group className="mb-3" controlId="formPrize">
                         <Row>
                             <Col>
                                 <h5 className="text-left-FilterMenu">Prize</h5>
@@ -71,9 +126,9 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number"  onChange={e=>handleChange(e)} name="minPrice"/>
                                 </Form.Label>
-                            </Col>                  
+                            </Col>
                         </Row>
                         <Row>
                             <Col>
@@ -83,12 +138,12 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number" onChange={e=>handleChange(e)} name="maxPrice"/>
                                 </Form.Label>
-                            </Col>                  
+                            </Col>
                         </Row>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formPrize">      
+                    <Form.Group className="mb-3" controlId="formPrize">
                         <Row>
                             <Col>
                                 <h5 className="text-left-FilterMenu">Size:</h5>
@@ -102,9 +157,9 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number" onChange={e=>handleChange(e)} name="minSize"/>
                                 </Form.Label>
-                            </Col>                  
+                            </Col>
                         </Row>
                         <Row>
                             <Col>
@@ -114,57 +169,60 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number" onChange={e=>handleChange(e)} name="maxSize"/>
                                 </Form.Label>
-                            </Col>                  
+                            </Col>
                         </Row>
                     </Form.Group>
-                    <Form.Group controlId="formPrize">      
+                    <Form.Group controlId="formPrize">
                         <Row>
                             <Col>
-                                <h5 className="text-left-FilterMenu">Nº rooms:</h5>
+                                <h5 className="text-left-FilterMenu">Nº bedrooms:</h5>
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number" onChange={e=>handleChange(e)} name="bedrooms"/>
                                 </Form.Label>
-                            </Col>                  
+                            </Col>
                         </Row>
                     </Form.Group>
-                    <Form.Group controlId="formPrize">      
+                    <Form.Group controlId="formPrize">
                         <Row>
                             <Col>
                                 <h5 className="text-left-FilterMenu">Nº baths:</h5>
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"/>
+                                    <Form.Control type="number" onChange={e=>handleChange(e)} name="bathrooms"/>
                                 </Form.Label>
-                            </Col>                  
-                        </Row>
-                    </Form.Group>
-                    <Form.Group className="mb-2">  
-                        <Row>
-                            <h5 className="text-left-FilterMenu underlined">Equipment:</h5>
-                        </Row>    
-                        <Row className="justify-content-md-center">
-                            <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="checkbox" id="haveElevator" name="haveElevator" label="Elevator"/>
                             </Col>
                         </Row>
                     </Form.Group>
-                        
+                    <Form.Group className="mb-2">
+                        <Row>
+                            <h5 className="text-left-FilterMenu underlined">Equipment:</h5>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <Col xs={12} md={8} lg={8}>
+                                <Form.Check type="checkbox" id="haveElevator" label="Elevator" 
+                                    onChange={e=>handleChangeCheckbox(e)} name="elevator"/>
+                            </Col>
+                        </Row>
+                    </Form.Group>
+
                         <Row>
                             <h5 className="text-left-FilterMenu underlined">Condition:</h5>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Good condition"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="preservation" label="Good condition" value="good" onChange={e=>handleChangeRadio(e)}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-2">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="To reform"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="preservation" label="To reform" value="renew" onChange={e=>handleChangeRadio(e)}/>
                             </Col>
                         </Row>
                         <Row>
@@ -172,22 +230,26 @@ const FilterMenu = () => {
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last 24 hours"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="sinceDate" label="Last 24 hours" value="T" onChange={e=>handleChangeRadio(e)}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last week"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="sinceDate" label="Last week" value="W" onChange={e=>handleChangeRadio(e)}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Last month"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="sinceDate" label="Last month" value="M" onChange={e=>handleChangeRadio(e)}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-2">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Indiferent"/>
+                                <Form.Check type="radio" aria-label="option 1" id="condition" 
+                                    name="sinceDate" label="Indiferent" value="" onChange={e=>handleChangeRadio(e)} defaultChecked/>
                             </Col>
                         </Row>
                         <Row>
@@ -195,15 +257,17 @@ const FilterMenu = () => {
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Of bank/agency"/>
+                                <Form.Check type="checkbox" aria-label="option 1" id="condition" 
+                                    name="bankOffer" label="Of bank/agency" onChange={e=>handleChangeCheckbox(e)} />
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-4">
                             <Col xs={12} md={8} lg={8}>
-                                <Form.Check type="radio" aria-label="option 1" id="condition" name="condition-checkbox" label="Virtual"/>
+                                <Form.Check type="checkbox" aria-label="option 1" id="condition"
+                                    name="virtualTour" label="Virtual" onChange={e=>handleChangeCheckbox(e)}/>
                             </Col>
                         </Row>
-    
+
                     <Row>
                         <Col>
                             <button className="button-FilterMenu" variant="primary" type="reset">
@@ -216,8 +280,8 @@ const FilterMenu = () => {
                             </button>
                         </Col>
                     </Row>
-                    
-                </Form>     
+
+                </Form>
         </div>
     )
 };
