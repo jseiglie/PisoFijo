@@ -2,7 +2,6 @@
 //2- en action de flux se define una solicitud que acepte como parametro la url que hemos calculado
 //3- Cuando el usuario haga click en filtrar se llama a esa función
 
-
 import React, { Component, ImageBackground,useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import Row from "react-bootstrap/Row";
@@ -25,7 +24,19 @@ import "../../styles/FilterMenu.css"
 
 const FilterMenu = () => {
 
-    // const {store,actions} = useContext(Context);
+    const {store,actions} = useContext(Context);
+
+    console.log("Access token: ",store.accessToken);
+
+    const RequestToken = () =>{
+        actions.getAccessToken();
+        console.log(store.accessToken)
+    };
+
+    const RequestbyFilters = () =>{
+        actions.getFilterUrl(filters);
+        actions.getDetailsOfProperties();
+    };
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -100,13 +111,16 @@ const FilterMenu = () => {
 
 	console.log(UrlFilters(filterObject)); //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
 
+    
+
+
     return (
         <div className="container-FilterMenu">
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>
                             <Form.Select>
-                                <option selected disabled hidden>Properties type</option>
+                                <option disabled hidden>Properties type</option>
                                 <option>Flat</option>
                                 <option>Detached</option>
                             </Form.Select>
@@ -209,7 +223,6 @@ const FilterMenu = () => {
                             </Col>
                         </Row>
                     </Form.Group>
-
                         <Row>
                             <h5 className="text-left-FilterMenu underlined">Condition:</h5>
                         </Row>
@@ -267,7 +280,6 @@ const FilterMenu = () => {
                                     name="virtualTour" label="Virtual" onChange={e=>handleChangeCheckbox(e)}/>
                             </Col>
                         </Row>
-
                     <Row>
                         <Col>
                             <button className="button-FilterMenu" variant="primary" type="reset">
@@ -275,12 +287,18 @@ const FilterMenu = () => {
                             </button>
                         </Col>
                         <Col>
-                            <button className="button-FilterMenu" variant="primary" type="submit">
+                            <button className="button-FilterMenu" variant="primary" type="submit" onClick={(e) => {e.preventDefault();RequestbyFilters()}}>
                                 Submit
                             </button>
                         </Col>
                     </Row>
-
+                    <Row>
+                        <Col>
+                            <button className="button-FilterMenu" variant="primary" type="submit" onClick={(e) => {e.preventDefault();RequestToken()}}>
+                                Request Token
+                            </button>
+                        </Col>
+                    </Row>
                 </Form>
         </div>
     )
