@@ -6,9 +6,7 @@ const map;
 const infowindow;
 
 const Map = () => {
-   
-
-      const initMap = () => {
+    const initMap = () => {
         var madrid = {lat: 40.4168, lng: 3.7038};
             map = new google.maps.Map(document.getElementById('map'), {
                 center: madrid,
