@@ -2,6 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+Favorites = Table('favorites', Base.metadata,
+        Column('user_id', ForeignKey('user.id')),
+        Column('property_propertyCode', ForeignKey('property.propertyCode'))
+    )
+
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +17,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Number(12), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
+    children = relationship("Property",
+                    secondary=Favorites)
+
 
     def __repr__(self):
         return '<User %r>' % self.userName
@@ -55,6 +64,49 @@ class Property(db.Model):
 
     contact_Name = db.Column(db.String(20), unique=False, nullable=True)
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
+
+    def __repr__(self):
+        return '<User %r>' % self.userName
+
+    def serialize(self):
+        return {
+            "propertyCode": self.propertyCode,
+            "ownerId": self.ownerId,
+            "address": self.address,
+            "agency": self.agency,
+            "bathrooms": self.bathrooms,
+            "condition": self.condition,
+            "description": self.description,
+            "distance": self.distance,
+            "district": self.district,
+            "floor": self.floor,
+            "latitude": self.latitude,
+            "longitude": self.longitude,
+            "municipality": self.municipality,
+            "operation": self.operation,
+            "price": self.price,
+            "propertyType": self.propertyType,
+            "province": self.province,
+            "rooms": self.rooms,
+            "size": self.size,
+            "bathrooms": self.bathrooms,
+            "elevator": self.elevator,
+            "bankOffer": self.bankOffer,
+            "preservation": self.telephone,
+            "contact_Name": self.bankOffer,
+            "contact_Phone": self.telephone
+            # do not serialize the password, its a security breach
+        }
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer, primary_key=True)
+    userName = db.Column(db.String(120), unique=True, nullable=False)
+    firstName = db.Column(db.String(120), unique=False, nullable=False)
+    lastName = db.Column(db.String(120), unique=False, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    telephone = db.Column(db.Number(12), unique=True, nullable=False)
+    password = db.Column(db.String(80), unique=False, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.userName
