@@ -71,7 +71,7 @@ const FilterMenu = () => {
     const [filters, setFilters] = useState(
         {//generalFilters: 
         	operation: "sale", //(string) - values: sale, rent (requiered)
-        	//propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
+        	propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
         	center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
         	locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
         	distance: 3500, //(double) - distance to center, in metres (ratio)
