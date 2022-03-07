@@ -1,83 +1,46 @@
-import * as PropTypes from "prop-types";
-import React, { Component } from "react";
-import "../../styles/Map.css"
+import React from 'react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-const map;
-const infowindow;
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
 
-const Map = () => {
-    const initMap = () => {
-        var madrid = {lat: 40.4168, lng: 3.7038};
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: madrid,
-                zoom: 15
-        });
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
 
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: madrid,
-          radius: 500,
-          type: ['school']
-        }, schoolCallback);
-		
-		service.nearbySearch({
-          location: madrid,
-          radius: 500,
-          type: ['store']
-        }, storeCallback);
+function Map() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyDFE3td5eQXBdOJxSBikBJARyvj4VMc-6Q"
+  })
 
-      }
+  const [map, setMap] = React.useState(null)
 
-      function schoolCallback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createSchoolMarker(results[i]); //results doesn't contain anything related to type (school,store,etc)
-          }
-        }
-      }
-	  
-	  function storeCallback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createStoreMarker(results[i]);
-          }
-        }
-      }
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
 
-      function createSchoolMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-icon:"http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/24/Categories-applications-education-school-icon.png",
-          map: map,
-          position: place.geometry.location
-        });
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
 
-		
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-	  
-	  
-	   function createStoreMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-icon:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/24/shop-icon.png",
-          map: map,
-          position: place.geometry.location
-        });
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+  ) : <></>
+}
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-
-    } 
-    return (
-        <div id="map"></div>
-    )
-    
-    export default Map
+export default React.memo(Map)
