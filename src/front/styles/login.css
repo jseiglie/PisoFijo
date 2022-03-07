@@ -1,0 +1,40 @@
+.loginWrap {
+    width: 40vw;
+    background: #080709;
+}
+
+.loginForm{
+    background:#4F4A4B;
+}
+
+.logInP{
+    font-size: 3vw;
+    color:#DFA32E !important;
+    text-align: center;
+}
+
+
+#email {
+    margin-top: 1vw;
+}
+
+.loginInput {
+    margin-top: 1vw;
+    margin-bottom: 3vw;
+    background-color: #DFDFDF;
+}
+.spSignIn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #DFA32E;
+}
+.loginText{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    color: #DFDFDF;
+}
+
+.eye {
+    margin-left: -30px; 
+    cursor: pointer;
+}

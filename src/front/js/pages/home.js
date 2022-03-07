@@ -12,6 +12,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import UserMenu from "../component/UserMenu";
 import Register from "./register.js";
+import Login from "./login.js";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
@@ -143,8 +144,7 @@ export const Home = () => {
           </Row>
         </div>
       </div>
-
-      <Register/>
+    
     </>
   );
 };

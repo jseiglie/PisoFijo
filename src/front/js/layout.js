@@ -7,6 +7,7 @@ import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import Register from "./pages/register.js";
+import { Login } from "./pages/login";
 import { Navbar } from "./component/Navbar";
 import { Footer } from "./component/Footer";
 import bg from "../img/bg.png"
@@ -27,8 +28,8 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/login">
+							<Login />
 						</Route>
 						<Route exact path="/register">
 							<Register />
