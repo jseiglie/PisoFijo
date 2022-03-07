@@ -1,83 +1,123 @@
-import * as PropTypes from "prop-types";
-import React, { Component } from "react";
-import "../../styles/Map.css"
+// import React from "react";
+// import GoogleMapReact from 'google-map-react';
 
-const map;
-const infowindow;
+// const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const Map = () => {
-    const initMap = () => {
-        var madrid = {lat: 40.4168, lng: 3.7038};
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: madrid,
-                zoom: 15
-        });
+// export default function SimpleMap(){
+//   const defaultProps = {
+//     center: {
+//       lat: 10.99835602,
+//       lng: 77.01502627
+//     },
+//     zoom: 11
+//   };
 
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: madrid,
-          radius: 500,
-          type: ['school']
-        }, schoolCallback);
-		
-		service.nearbySearch({
-          location: madrid,
-          radius: 500,
-          type: ['store']
-        }, storeCallback);
+//   return (
+//     // Important! Always set the container height explicitly
+//     <div style={{ height: '500px', width: '500px' }}>
+//       <GoogleMapReact
+//         bootstrapURLKeys={{ key: "AIzaSyC1728E0aNoOIFanm4pqLEJq4Q9Q8RqRKI" }}
+//         defaultCenter={defaultProps.center}
+//         defaultZoom={defaultProps.zoom}
+//       >
+//         <AnyReactComponent
+//           lat={59.955413}
+//           lng={30.337844}
+//           text="My Marker"
+//         />
+//       </GoogleMapReact>
+//     </div>
+//   );
+// }
 
-      }
 
-      function schoolCallback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createSchoolMarker(results[i]); //results doesn't contain anything related to type (school,store,etc)
-          }
-        }
-      }
-	  
-	  function storeCallback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createStoreMarker(results[i]);
-          }
-        }
-      }
 
-      function createSchoolMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-icon:"http://icons.iconarchive.com/icons/oxygen-icons.org/oxygen/24/Categories-applications-education-school-icon.png",
-          map: map,
-          position: place.geometry.location
-        });
 
-		
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
-	  
-	  
-	   function createStoreMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-icon:"http://icons.iconarchive.com/icons/paomedia/small-n-flat/24/shop-icon.png",
-          map: map,
-          position: place.geometry.location
-        });
+import React from 'react'
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
-      }
+const containerStyle = {
+  width: '400px',
+  height: '400px'
+};
 
-    } 
-    return (
-        <div id="map"></div>
-    )
-    
-    export default Map
+const center = {
+  lat: -3.745,
+  lng: -38.523
+};
+
+function Map() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyDFE3td5eQXBdOJxSBikBJARyvj4VMc-6Q"
+  })
+
+  const [map, setMap] = React.useState(null)
+
+  const onLoad = React.useCallback(function callback(map) {
+    const bounds = new window.google.maps.LatLngBounds();
+    map.fitBounds(bounds);
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+  ) : <></>
+}
+
+export default React.memo(Map)
+
+
+
+
+
+// import * as PropTypes from "prop-types";
+// import React, { Component } from "react";
+// import { GoogleMap, LoadScript } from '@react-google-maps/api';
+// import GoogleMapReact from 'google-map-react'
+// import "../../styles/Map.css"
+
+// const Map = () => {
+
+//   const location = {
+//     address: '1600 Amphitheatre Parkway, Mountain View, california.',
+//     lat: 37.42216,
+//     lng: -122.08427,
+//   }
+  
+//   const zoomLevel = 10;
+
+//   return(
+//   <div className="map">
+//     <h2 className="map-h2">Come Visit Us At Our Campus</h2>
+
+//     <div className="google-map">
+//       <GoogleMapReact
+//         bootstrapURLKeys={{ key: 'AIzaSyC1728E0aNoOIFanm4pqLEJq4Q9Q8RqRKI' }}
+//         defaultCenter={location}
+//         defaultZoom={zoomLevel}
+//       >
+//         <LocationPin
+//           lat={location.lat}
+//           lng={location.lng}
+//           text={location.address}
+//         />
+//       </GoogleMapReact>
+//     </div>
+//   </div>
+// )}
+
+// export default Map;

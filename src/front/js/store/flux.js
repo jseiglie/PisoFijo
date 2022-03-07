@@ -7,7 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			store: {
 				country: "es", //(string) - values: es, it, pt (requiered)
 				filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
-				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyNzMyMywiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiZmQzZmM1NGYtYmFjMy00OThhLTg0NmEtNmU5NzZhM2Y1ZGE0IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.5xgoYhdSRE7AVkoQu93BZTJYdkudftos3qz0QxA4dZE",
+				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjcwMzIzMCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiNTU2ZTEyMjUtNTNhOC00ZmIzLWE0NTYtMDFhODFkNzI3MmM4IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.UNgDMGh2lziPmnznN6rg0Ub4WN3TdXdiT14hBJxe5N8",
 					//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&
 					//order=publicationDate&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&
 					//locationId=0-EU-ES-28
@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyODQwNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiNmZlNWIwNzAtMjRjMi00OTdjLWJhYWMtZWE1NzNkYzlhOTU4IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.sG0bG1suzOjfWxc3986SxCUuR4fLzLGHzqHXHXK_EGo");
+				myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjY5MjY3MywiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiZGQ1NjUyOTUtYTBmMS00NWRjLTkwMDUtNmNlMGRlNWE1NGM4IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.Y70ewnpSzc9jklNdUtzDLcTsBHkFIlPKYvfbbkbnKjU");
 
 				var requestOptions = {
 				method: 'POST',

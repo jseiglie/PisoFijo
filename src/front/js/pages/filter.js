@@ -8,7 +8,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import FilterMenu from "../component/FilterMenu.js"
-import DetailsCard from '../component/DetailsCard';
+import DetailsCard from '../component/DetailsCard.js';
+import Map from "../component/Map.js"
 
 const Filter = () => {
     return (
@@ -22,7 +23,8 @@ const Filter = () => {
                 </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
-                        <img src={MapExample} alt="Map example" />
+                        {/* <img src={MapExample} alt="Map example" /> */}
+                        <Map />
                         <div className="container-DetailsCard">
                             <DetailsCard className="container-DetailsCard" />
                         </div>
