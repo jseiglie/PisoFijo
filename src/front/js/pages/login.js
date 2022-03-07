@@ -6,9 +6,10 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/login.css";
 
-const Login = () => {
+export const Login = () => {
   return (
-    <Row className='text-center'>
+    
+    <Row className='text-center'>holaaaaaaa
       <div className="container loginWrap">
        
         <form className="form-control loginForm">
@@ -36,5 +37,3 @@ const Login = () => {
     </Row>
   );
 };
-
-export default Login;
