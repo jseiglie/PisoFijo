@@ -1,0 +1,32 @@
+.signInWrap {
+    width: 80vw;
+    background: #080709;
+}
+
+.signInForm{
+    background:#4F4A4B;
+    padding-top: 1vw;
+    
+}
+
+.signInText{
+    font-size: 3vw;
+    color:#DFA32E !important;
+    text-align: center;
+}
+
+.signInInput {
+    margin-top: 1vw;
+    margin-bottom: 3vw;
+    background-color: #DFDFDF;
+}
+.spSignIn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #DFA32E;
+}
+.signInText{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    color: #DFDFDF;
+}

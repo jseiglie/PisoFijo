@@ -3,13 +3,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Details } from "./pages/details.js";
-import  Filter from "./pages/filter.js";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import {Navbar} from "./component/Navbar";
-import {Footer} from "./component/Footer";
+import Register from "./pages/register.js";
+import { Navbar } from "./component/Navbar";
+import { Footer } from "./component/Footer";
 import bg from "../img/bg.png"
 //create your first component
 const Layout = () => {
@@ -31,21 +30,8 @@ const Layout = () => {
 						<Route exact path="/demo">
 							<Demo />
 						</Route>
-						<Route exact path="/filter">
-							<Filter />
-						</Route>
-						<Route exact path="/details">
-							<Details name="Piso luminoso Alcobendas" type="Flat" location="Madrid" value="200.000" area="200" numRooms="2" floor="2" 
-							description=
-								{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nec leo
-							 	rhoncus, sodales nisi et, faucibus nunc. Ut tempor dolor arcu, nec malesuada lorem
-							 	pretium vel. Vivamus iaculis, diam at lacinia sodales, enim ante posuere velit, a 
-							  	aliquam ligula velit nec ante. Proin tempor luctus tortor, ut ultricies erat bibendum
-							   	vel. Phasellus in turpis aliquam, consectetur dolor eu, dapibus dolor. Aliquam diam
-							    massa, consectetur in placerat id, pellentesque ac urna. Duis ut rutrum ipsum. Sed
-								elementum purus id purus aliquet, non vehicula ante posuere. Etiam rhoncus mollis
-								eros ac elementum. Phasellus efficitur porttitor ligula, sed commodo lectus
-								scelerisque a. Quisque vel mi turpis.`} />
+						<Route exact path="/register">
+							<Register />
 						</Route>
 						<Route exact path="/single/:theid">
 							<Single />
