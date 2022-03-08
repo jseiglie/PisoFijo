@@ -17,12 +17,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				distanceRequest: 15000,
 				centerRequest: {lat:40.430, lng:-3.702},
 				propertiesSearch: exampleRequestIdealista.elementList,
+				selected: [],
 				listFavorites: []
 			},
 			actions: {
 
 			addElementListArr: (inputValue) => {
 				setStore({list:[...getStore().list, inputValue]})
+			},
+
+			getSelectedProperty: (selectedProperty) =>{
+				setStore({selected: selectedProperty})
 			},
 
 			getFilterUrl: url =>{

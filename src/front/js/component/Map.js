@@ -8,65 +8,27 @@ import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api
 
 import DetailsCard  from './DetailsCard';
 
-const Map = () => {
+const Map = (props) => {
 
   const { store, actions } = useContext(Context);
-  const [ selected, setSelected ] = useState({});
   
   const onSelect = item => {
-    setSelected(item);
-    console.log("Selected: ", selected);
-    console.log("Selected lat", selected.latitude);
-    console.log("Selected lon", selected.longitude);
+    actions.getSelectedProperty(item);
+    console.log("Selected: ", store.selected);
+    console.log("Selected lat", store.selected.latitude);
+    console.log("Selected lon", store.selected.longitude);
   }
   
   const mapStyles = {        
     height: "90vh",
     width: "90vh"};
   
-  const defaultCenter = store.centerRequest
+  const center = props.centerRequest
   
   
-  const locations = store.propertiesSearch
-  //[
-  //   {
-  //     name: "Location 1",
-  //     location: { 
-  //       lat: 41.3954,
-  //       lng: 2.162 
-  //     },
-  //   },
-  //   {
-  //     name: "Location 2",
-  //     location: { 
-  //       lat: 41.3917,
-  //       lng: 2.1649
-  //     },
-  //   },
-  //   {
-  //     name: "Location 3",
-  //     location: { 
-  //       lat: 41.3773,
-  //       lng: 2.1585
-  //     },
-  //   },
-  //   {
-  //     name: "Location 4",
-  //     location: { 
-  //       lat: 41.3797,
-  //       lng: 2.1682
-  //     },
-  //   },
-  //   {
-  //     name: "Location 5",
-  //     location: { 
-  //       lat: 41.4055,
-  //       lng: 2.1915
-  //     },
-  //   }
-  // ];
+  const locations = props.propertiesSearch;
 
-   console.log("Property datas", locations);
+  console.log("Property locations", locations);
 
   return (
      <LoadScript
@@ -74,7 +36,7 @@ const Map = () => {
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}
-          center={defaultCenter}>
+          center={center}>
           {
             locations.map(item => {
               return (
@@ -86,22 +48,21 @@ const Map = () => {
           }
 
           {
-            selected.propertyCode && 
+            props.viewInfoWindow && store.selected.propertyCode && 
             (
               <InfoWindow
-              // position={selected.location}
-              position={{lat: selected.latitude, lng: selected.longitude}}
+              position={{lat: store.selected.latitude, lng: store.selected.longitude}}
               clickable={true}
-              onCloseClick={() => setSelected({})}
+              onCloseClick={() => actions.getSelectedProperty({})}
             >
               <DetailsCard
-                urlImg={selected.thumbnail}
-                type={selected.propertyType}
-                location={`${selected.district}, ${selected.municipality}`}
-                value={selected.price}
-                area={selected.size}
-                numRooms={selected.rooms}
-                floor={selected.bathrooms}
+                urlImg={store.selected.thumbnail}
+                type={store.selected.propertyType}
+                location={`${store.selected.district}, ${store.selected.municipality}`}
+                value={store.selected.price}
+                area={store.selected.size}
+                numRooms={store.selected.rooms}
+                floor={store.selected.bathrooms}
                 fav={true}
               
               />
@@ -114,64 +75,3 @@ const Map = () => {
 }
 
 export default Map;
-
-
-
-
-
-
-
-
-
-
-// const containerStyle = {
-//   width: '90vh',
-//   height: '90vh'
-// };
-
-// const center = {
-//   lat: 41.3851, 
-//   lng: 2.1734
-// };
-
-
-
-// const Map = () => {
-
-//   const { isLoaded } = useJsApiLoader({
-//     id: 'google-map-script',
-//     googleMapsApiKey: "AIzaSyDFE3td5eQXBdOJxSBikBJARyvj4VMc-6Q"
-//   })
-
-//   const [map, setMap] = React.useState(null)
-
-//   const onLoad = React.useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds();
-//     map.fitBounds(bounds);
-//     setMap(map)
-//   }, [])
-
-//   const onUnmount = React.useCallback(function callback(map) {
-//     setMap(null)
-//   }, [])
-
-//   return isLoaded ? (
-//       <GoogleMap
-//         mapContainerStyle={containerStyle}
-//         center={center}
-//         zoom={13}
-//         onLoad={onLoad}
-//         onUnmount={onUnmount}
-//       >
-//       {
-//         locations.map(item => {
-//           return (
-//           <Marker key={item.name} position={item.location}/>
-//           )
-//         })
-//       }
-//       </GoogleMap>
-//   ) : <></>
-// }
-
-// export default React.memo(Map)
