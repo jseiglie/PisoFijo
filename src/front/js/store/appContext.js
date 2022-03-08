@@ -27,6 +27,7 @@ const injectContext = PassedComponent => {
 
 		useEffect(() => {
 			// state.actions.getAccessToken();
+			state.actions.syncTokenFromSessionStore();
 		}, [])
 
 

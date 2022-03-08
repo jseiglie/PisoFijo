@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 import "../../styles/Navbar.css";
 import Button from "./Button";
+const {store, actions} = useContext(Context);
 
 export const Navbar = () => {
   return (
@@ -28,7 +30,14 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="ml-auto">
-            <Button title="Log In"></Button>
+            {
+              !store.token ? 
+              <Link to="/login">
+              <Button title="Log In"></Button>
+              </Link>
+              :
+              <Button title="Menu"></Button> //hacer hamburguessa
+            }
           </div>
         </div>
       </nav>

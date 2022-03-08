@@ -1,44 +1,65 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/login.css";
-import { useForm } from "react-hooks-useform";
+import { useHistory } from "react-router-dom";
+
 
 
 export const Login = () => {
-  const {handleSubmit} = useForm();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {store, actions} = useContext(Context);
   const onSubmit = (data, e) => console.log(data, e);
   const onError = (errors, e) => console.log(errors, e);
+  const token = sessionStorage.getItem('token');
+  const history = useHistory();
+
+  const handleClick = () => {
+    actions.login(email, password).then(()=>{
+      history.push('/')
+    })
+  }
 
   return (
     
     <Row className='text-center'>
       <div className="container loginWrap">
        
-        <form className="form-control loginForm" 
-        onSubmit={handleSubmit(onSubmit, onError)}>
+        <div className="form-control loginForm" 
+        // onSubmit={handleSubmit(onSubmit, onError)}
+        >
+        
         <p className="logInP">Log In</p>
+        {(token && token !="" && token != undefined) ? "You're logged in with this token" + token : 
+        <div>
           <input
-            className="form-control loginInput"
-            id="email"
-            type={"text"}
-            placeholder={"Email"}
-            {...register("email", { required: true })}
-          ></input>
-          <input
-            className="form-control loginInput"
-            id="password"
-            type={"password"}
-            placeholder={"Password"}
-            {...register("password", { required: true })}
-          ></input>
-          <button className='loginBtn' type="submit">Log In</button>
+          className="form-control loginInput"
+          id="email"
+          type={"text"}
+          placeholder={"Email"}
+          value = {email}
+          onChange={(e)=>{setEmail(e.target.value)}}
+          // {...register("email", { required: true })}
+        ></input>
+        <input
+          className="form-control loginInput"
+          id="password"
+          type={"password"}
+          placeholder={"Password"}
+          value={password}
+          onChange={(e)=>{setPassword(e.target.value)}}
+          // {...register("password", { required: true })}
+        ></input>
+        <button className='loginBtn' onClick={handleClick}>Log In</button>
+        </div>
+      }
           <p className="loginText">
             Not a member? <span className="spSignIn">Sign In</span>{" "}
           </p>
-        </form>
+        </div>
       </div>
     </Row>
   );

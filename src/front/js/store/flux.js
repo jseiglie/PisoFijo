@@ -5,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	return {
 			store: {
+				token: null,
 				country: "es", //(string) - values: es, it, pt (requiered)
 				filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
 				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyNzMyMywiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiZmQzZmM1NGYtYmFjMy00OThhLTg0NmEtNmU5NzZhM2Y1ZGE0IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.5xgoYhdSRE7AVkoQu93BZTJYdkudftos3qz0QxA4dZE",
@@ -96,24 +97,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 			 	// })
 				 },
 
-			// getPlanetDetail:  (id) => {
-			// 	fetch(getStore().urlAPI.concat("/planets/",id)).then(response=>{
-			// 		if(response.ok){
-			// 			return response.json()
-			// 		}
-			// 		throw new Error("fail to get planet details")
-			// 	}).then(responseAddJSON =>{
-			// 		console.log("Response add json", responseAddJSON)
-			// 		setStore({planetDetail:[responseAddJSON.result.properties]})
-			// 		console.log("Store planet detail", getStore().planetDetail)
-			// 	}).catch(err =>{
-			// 		console.error(err.message)
-			// 	})
-			// 	},
-
+			login: async (email, password) => {
+				const opts = {
+					method: 'POST',
+					headers: {
+					  'Content-Type' : 'application/json'
+					},
+					body:JSON.stringify({
+					  'email': email,
+					  'password': password
+					})
+				  }
+				  try {
+					  const resp = await fetch('https://3001-programisto1011-4geekaca-3hc9mdyzizy.ws-eu34xl.gitpod.io/api/login', opts)
+						 if (response.status !== 200) {
+							 alert('There has been some error');
+							 return false;
+						 }
+						 const data = await resp.json();
+						 sessionStorage.setItem('token', data.access_token);
+						 setStore({token: data.access_token})
+						 return true;
+					   }
+					catch(error) {
+						console.error("There's has been an error login in");
+					}
+				  },
+				
+			logOut: () => {
+				sessionStorage.removeItem('token');
+				setStore({token: null});
+			},
+			syncTokenFromSessionStore: () => {
+				const token = sessionStorage.getItem('token');
+				if (token && token !="" && token!=undefined) setStore({token: token});
+			},
+			}
 		}
 	};
-};
 
 export default getState;
 
