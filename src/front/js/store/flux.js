@@ -1,4 +1,5 @@
 import exampleRequestIdealista from "./exampleRequestIdealista.js"
+import credentials from "./credentialsAPIIdealista.js";
 
 const urlRequestTokenAPI = "https://api.idealista.com/oauth/token?grant_type=client_credentials&scope=read";
 const urlBaseAPI = "https://api.idealista.com/3.5/"; /* {country} + "/search"*/
@@ -57,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyODQwNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiNmZlNWIwNzAtMjRjMi00OTdjLWJhYWMtZWE1NzNkYzlhOTU4IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.sG0bG1suzOjfWxc3986SxCUuR4fLzLGHzqHXHXK_EGo");
+				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
 
 				var requestOptions = {
 				method: 'POST',

@@ -1,3 +1,7 @@
+//Problems to fix
+//1- Cuando seleccionas otra cosa en el mapa que no sean los marcadores ya no funcionan las ventanas de visualizacion
+//de nuestros marcadores
+
 import React, { useState, useContext } from 'react'
 import { Context } from "../store/appContext.js";
 import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
@@ -90,7 +94,17 @@ const Map = () => {
               clickable={true}
               onCloseClick={() => setSelected({})}
             >
-              <DetailsCard/>
+              <DetailsCard
+                urlImg={selected.thumbnail}
+                type={selected.propertyType}
+                location={`${selected.district}, ${selected.municipality}`}
+                value={selected.price}
+                area={selected.size}
+                numRooms={selected.rooms}
+                floor={selected.bathrooms}
+                fav={true}
+              
+              />
             </InfoWindow>
             )
           }
