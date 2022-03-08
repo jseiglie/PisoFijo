@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
-import { Details } from "./pages/details.js";
-import  Filter from "./pages/filter.js";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
-import {Navbar} from "./component/Navbar";
-import {Footer} from "./component/Footer";
+import Register from "./pages/register.js";
+import { Login } from "./pages/login";
+import { Navbar } from "./component/Navbar";
+import { Footer } from "./component/Footer";
 import bg from "../img/bg.png"
 //create your first component
 const Layout = () => {
@@ -28,8 +28,8 @@ const Layout = () => {
 						<Route exact path="/">
 							<Home />
 						</Route>
-						<Route exact path="/demo">
-							<Demo />
+						<Route exact path="/login">
+							<Login />
 						</Route>
 						<Route exact path="/filter">
 							<Filter />
