@@ -1,3 +1,6 @@
+import exampleRequestIdealista from "./exampleRequestIdealista.js"
+import credentials from "./credentialsAPIIdealista.js";
+
 const urlRequestTokenAPI = "https://api.idealista.com/oauth/token?grant_type=client_credentials&scope=read";
 const urlBaseAPI = "https://api.idealista.com/3.5/"; /* {country} + "/search"*/
 
@@ -11,13 +14,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&
 					//order=publicationDate&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&
 					//locationId=0-EU-ES-28
-				propertiesSearch: [],
+				distanceRequest: 15000,
+				centerRequest: {lat:40.430, lng:-3.702},
+				propertiesSearch: exampleRequestIdealista.elementList,
+				selected: [],
 				listFavorites: []
 			},
 			actions: {
 
 			addElementListArr: (inputValue) => {
 				setStore({list:[...getStore().list, inputValue]})
+			},
+
+			getSelectedProperty: (selectedProperty) =>{
+				setStore({selected: selectedProperty})
 			},
 
 			getFilterUrl: url =>{
@@ -53,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyODQwNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiNmZlNWIwNzAtMjRjMi00OTdjLWJhYWMtZWE1NzNkYzlhOTU4IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.sG0bG1suzOjfWxc3986SxCUuR4fLzLGHzqHXHXK_EGo");
+				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
 
 				var requestOptions = {
 				method: 'POST',
