@@ -26,7 +26,7 @@ const Filter = () => {
                         <Map />
                         {/* <img src={MapExample} alt="Map example" /> */}
                         <div className="container-DetailsCard">
-                            <DetailsCard className="container-DetailsCard" />
+                            {/* <DetailsCard className="container-DetailsCard" /> */}
                         </div>
                     </div>
 
