@@ -69,3 +69,11 @@ class Property(db.Model):
             "telephone": self.telephone,
             # do not serialize the password, its a security breach
         }
+    def create_member(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def validate_password(self, password):
+        is_valid = check_password_hash(self._password, password)
+        return is_valid

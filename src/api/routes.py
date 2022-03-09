@@ -42,3 +42,5 @@ def register():
             firstName = request.json.get("firstName", None)
             lastName  = request.json.get("lastName", None)
         )
+
+ 
