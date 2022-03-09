@@ -23,18 +23,17 @@
     margin-bottom: 3vw;
     background-color: #DFDFDF;
 }
-.spSignIn:hover {
-    text-decoration: underline;
-    cursor: pointer;
-    color: #DFA32E;
+
+.spSignIn a{
+    color: #DFDFDF;
 }
 .loginText{
     margin-top: 1vw;
     margin-bottom: 1vw;
-    color: #DFDFDF;
+    color: #DFA32E;
 }
-
-.eye {
-    margin-left: -30px; 
+.spSignIn a:hover {
+    text-decoration: none;
     cursor: pointer;
+    color: #DFA32E;
 }

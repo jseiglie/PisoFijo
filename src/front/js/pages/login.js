@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import "../../styles/login.css";
 import { useHistory } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+ import Button from "../component/Button";
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -15,6 +15,7 @@ export const Login = () => {
   const onError = (errors, e) => console.log(errors, e);
   const token = sessionStorage.getItem('token');
   const history = useHistory();
+ 
 
   const handleClick = () => {
     actions.login(email, password).then(()=>{
@@ -48,11 +49,16 @@ export const Login = () => {
           value={password}
           onChange={(e)=>{setPassword(e.target.value)}}
         ></input>
-        <button className='loginBtn' onClick={handleClick}>Log In</button>
+        <Button title="Log In" className='loginBtn' onClick={handleClick}></Button>
         </div>
       }
           <p className="loginText">
-            Not a member? <span className="spSignIn">Sign In</span>{" "}
+            Not a member?  
+             <span className="spSignIn">
+              <Link to='/register'> 
+               Sign In
+              </Link>
+              </span>
           </p>
         </div>
       </div>
