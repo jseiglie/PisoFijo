@@ -55,7 +55,7 @@ export const Home = () => {
                   <img className="imgCard px-3" src={`${Idealista_favorites_screenshot_with_logo}`}/>
                 </div>
                 <p className="mt-2">
-                  Link with the Idealista database
+                  Link Idealista database
                 </p>
                 <a href="#idealista_information">
                   <ButtonOwn title={"More"} />

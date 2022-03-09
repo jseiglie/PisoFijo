@@ -16,6 +16,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//locationId=0-EU-ES-28
 				distanceRequest: 15000,
 				centerRequest: {lat:40.430, lng:-3.702},
+				filters:{
+					//generalFilters: 
+					operation: "sale", //(string) - values: sale, rent (requiered)
+					propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
+					center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
+					locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
+					distance: 3500, //(double) - distance to center, in metres (ratio)
+					locationId: "", //(string) - idealista location code
+					maxPrice: 200000, //(double) - maximun price in response
+					minPrice: 50000, //(double) - minimun price in response
+					sinceDate: "W", //property age - W:last week, M: last month, T:last day (for rent except rooms), Y: last 2 days (sale and rooms) homeFilters: 
+					// homeFilters: 
+					minSize: 60, //double min size (from 60 m2 to 1000m2)
+					maxSize: 200,//double maxSize (from 60 m2 to 1000m2)
+					virtualTour: false,
+					flat: true, //boolean property is a flat
+					penthouse: false, //boolean
+					duplex: false, //boolean
+					studio: false, //boolean
+					chalet: false, //boolean
+					countryHouse: false, //boolean
+					bedrooms: "3", //(string) bedroom number (multivalued field) 0,1,2,3,4: bedroom number separated by commas. examples: "0", "1,4", "0,3", "0,2,4". 4 means "4 or more"
+					bathrooms: "3", //(string) bathroom number 0,1,2,3: , bedroom number separated by commas. examples: "0", "0,3", "0,2,3". 3 means "3 or more"
+					preservation: "good", //(string) - property preservation - values: good, renew
+					bankOffer: false, //owner is a bank - works for sale in spain
+					elevator: true //(boolean)
+				},
 				propertiesSearch: exampleRequestIdealista.elementList,
 				selected: [],
 				listFavorites: []
@@ -24,6 +51,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			addElementListArr: (inputValue) => {
 				setStore({list:[...getStore().list, inputValue]})
+			},
+
+			filterEntries: filters =>Object.entries(filters), // {country: "es", operation: "sale"} => [["country", "es"], ["operation","sale"]]
+			filteredArrElementsNotEmpty: arr =>{
+				return arr.filter(el => el[1] != '' || el[1] == true)
+			},
+			concatenateArr: (arr)=>{
+				return ((arr.map(el =>el.join("="))).join("&"))
+			},
+			UrlFilters: filters =>{
+				const url = getActions().concatenateArr(
+							getActions().filteredArrElementsNotEmpty(
+							getActions().filterEntries(filters)));
+				console.log("UrlFilters: ",url)
+				return (url)
+			//Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
 			},
 
 			getSelectedProperty: (selectedProperty) =>{

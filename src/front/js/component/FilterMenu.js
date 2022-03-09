@@ -2,15 +2,12 @@
 //2- en action de flux se define una solicitud que acepte como parametro la url que hemos calculado
 //3- Cuando el usuario haga click en filtrar se llama a esa función
 
-import React, { Component, ImageBackground,useState, useContext, useEffect } from "react";
+import React, {useState, useContext} from "react";
 import { Context } from "../store/appContext";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import * as PropTypes from "prop-types";
 import "../../styles/FilterMenu.css"
@@ -66,8 +63,28 @@ const FilterMenu = () => {
             console.log("filters: ",filters);
         }
     };
+    
+    // VICTOR - Esta funcion no funciona y necesita estar incluida en los select para modificar los filtros 
+    // El item seleccionado debera guardarse como true y el resto de items tienen que pasar a false
 
+    const handleChangeSelect = e => {
+        const {value, selected} = e.target;
+        if(e.target.checked){
+            setFilters(prevState => ({
+                ...prevState,
+                [value]: true
+            }));
+        }
+        else{
+            setFilters(prevState => ({
+                ...prevState,
+                [name]: false
+            }));
+        }
+            console.log("filters: ",filters);
+        };
 
+    //-------------------------------------------------------------------------------------------------------
     const [filters, setFilters] = useState(
         {//generalFilters: 
         	operation: "sale", //(string) - values: sale, rent (requiered)
@@ -96,33 +113,37 @@ const FilterMenu = () => {
         	elevator: true //(boolean)
         });
 
-    const filterObject = filters;
-	const filterEntries = filterObject =>Object.entries(filterObject) // [[country, "es"], [operation,"sale"] ]
-	    console.log("filterEntries: ",filterEntries(filterObject));
+
+	const filterEntries = filters =>Object.entries(filters) // {country: "es", operation: "sale"} => [["country", "es"], ["operation","sale"]]
 	const filteredArrElementsNotEmpty = arr =>{
 	    return arr.filter(el => el[1] != '' || el[1] == true)
     }
 	const concatenateArr =(arr)=>{
 	    return ((arr.map(el =>el.join("="))).join("&"))
     };
-	const UrlFilters = filterObject =>{
-	    return (concatenateArr(filteredArrElementsNotEmpty(filterEntries(filterObject))))
+	const UrlFilters = filters =>{
+        const url = concatenateArr(filteredArrElementsNotEmpty(filterEntries(filters)));
+        console.log("UrlFilters: ",url)
+	    return (url)
+    //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
     };
 
-	console.log(UrlFilters(filterObject)); //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
-
-    
-
+	console.log(actions.UrlFilters(filters)); 
 
     return (
         <div className="container-FilterMenu">
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>
+                            {/* VICTOR - Falta implementar la función para que devuelva true para el item seleccionado y
+                            transforme el resto en false */}
                             <Form.Select>
                                 <option disabled hidden>Properties type</option>
-                                <option>Flat</option>
-                                <option>Detached</option>
+                                <option value="flat">Flat</option>
+                                <option value="penthouse">Penthouse</option>
+                                <option value="duplex">Duplex</option>
+                                <option value="studio">Studio</option>
+                                <option value="chalet">Chalet</option>
                             </Form.Select>
                         </Form.Label>
                     </Form.Group>
