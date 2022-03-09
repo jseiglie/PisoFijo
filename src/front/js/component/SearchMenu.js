@@ -34,7 +34,7 @@ const SearchMenu = () => (
                 </div>
                 <div className="button buttonSelect">
                     <input type="radio" id="a50" name="check-substitution-2" />
-                    <label className="btn btn-default" htmlFor="a50">Sell</label>
+                    <label className="btn btn-default" htmlFor="a50">Rent</label>
                 </div>
             </Row>
             <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
