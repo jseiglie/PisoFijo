@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/Navbar.css";
 import Button from "./Button";
-const {store, actions} = useContext(Context);
+import {UserMenu} from "./UserMenu.js";
+
 
 export const Navbar = () => {
+  const {store, actions} = useContext(Context);
   return (
     <div className="row">
       <div className="container">
@@ -36,7 +38,7 @@ export const Navbar = () => {
               <Button title="Log In"></Button>
               </Link>
               :
-              <Button title="Menu"></Button> //hacer hamburguessa
+              <UserMenu/>
             }
           </div>
         </div>

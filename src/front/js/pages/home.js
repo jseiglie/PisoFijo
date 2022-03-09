@@ -19,7 +19,6 @@ export const Home = () => {
 
   return (
     <>
-    <UserMenu></UserMenu>
       <div className="searchSection text-center mt-5">
         <SearchMenu />
       </div>

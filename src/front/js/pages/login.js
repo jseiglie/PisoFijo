@@ -7,7 +7,6 @@ import "../../styles/login.css";
 import { useHistory } from "react-router-dom";
 
 
-
 export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,9 +27,7 @@ export const Login = () => {
     <Row className='text-center'>
       <div className="container loginWrap">
        
-        <div className="form-control loginForm" 
-        // onSubmit={handleSubmit(onSubmit, onError)}
-        >
+        <div className="form-control loginForm">
         
         <p className="logInP">Log In</p>
         {(token && token !="" && token != undefined) ? "You're logged in with this token" + token : 
@@ -42,7 +39,6 @@ export const Login = () => {
           placeholder={"Email"}
           value = {email}
           onChange={(e)=>{setEmail(e.target.value)}}
-          // {...register("email", { required: true })}
         ></input>
         <input
           className="form-control loginInput"
@@ -51,7 +47,6 @@ export const Login = () => {
           placeholder={"Password"}
           value={password}
           onChange={(e)=>{setPassword(e.target.value)}}
-          // {...register("password", { required: true })}
         ></input>
         <button className='loginBtn' onClick={handleClick}>Log In</button>
         </div>
