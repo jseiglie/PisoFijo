@@ -21,10 +21,10 @@ export const ContactUs = () => {
               </div>
               <div className="text_container_contacUs">
                 <p>
-                Full Stack Programmer in development. Multi-faceted profile that has worked from sales to 
-                a software development company as a structural engineer. I like challenges and to improve
-                 every day. In my spare time I like to do sports: Brazilian Jiu-Jitsu and CrossFit practitioner.
-                   Looking for opportunities to develop myself as a professional and as a person.{" "}
+                  Full Stack Programmer in development. Multi-faceted profile that has worked from sales to 
+                  a software development company as a structural engineer. I like challenges and to improve
+                  every day. In my spare time I like to do sports: Brazilian Jiu-Jitsu and CrossFit practitioner.
+                  Looking for opportunities to develop myself as a professional and as a person.{" "}
                 </p>
               </div>
             </Col>
@@ -34,20 +34,18 @@ export const ContactUs = () => {
             </div>
               <div className="text_container_contacUs">
                 <p className="text-justify">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum
-                    dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                    cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit anim id est laborum{" "}
+                Full Stack Programmer Junior always looking for a job opportunity. I'm about to finish my full stack
+                web development boot camp in 4 Geeks and ready to give my all to keep learning and growing as a developer.
+                I'm motivated and open to new languages and not afraid to get out of my confort zone.
+                #webdevelopment #developer #learning 
                 </p>
               </div>
             </Col>
         </Row>
         <Row>
-            <ContactForm/>
+            <div className="container_ContactForm">
+              <ContactForm/>
+            </div>
         </Row>
             
       </div>
