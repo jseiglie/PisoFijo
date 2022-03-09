@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			store: {
 				country: "es", //(string) - values: es, it, pt (requiered)
 				filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
-				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NjQyNzMyMywiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiZmQzZmM1NGYtYmFjMy00OThhLTg0NmEtNmU5NzZhM2Y1ZGE0IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.5xgoYhdSRE7AVkoQu93BZTJYdkudftos3qz0QxA4dZE",
+				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0Njg4NzE4OSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiMzcwM2Q3MmEtZjZjNi00N2U2LWIyZDQtNzEzNzMwZjAyOTc2IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.IX-s6zVpi5aq_bxRPNONnfgz-NAFzDUnKpbs0-R-mjo",
 					//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&
 					//order=publicationDate&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&
 					//locationId=0-EU-ES-28
@@ -119,51 +119,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(response => response.text())
 				.then(result => console.log(result))
 				.catch(error => console.log('error', error));
-				// // var url = urlBaseAPI.concat(getStore().country,"/search?",getStore().filterUrl);
+			},
+
+			getDetailsOfPropertiesTest: (filterUrl) => {
+			 	var url = urlBaseAPI.concat(getStore().country,"/search?",filterUrl);
 				// var url = "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
-				// console.log("URL fetch: ",url);
-			 	// fetch(url,{
-				// 		method: "POST",
-				// 		mode: "no-cors",
-				// 		headers:{
-				// 			"Content-Type": "application/json",
-				// 			"Authorization": `Bearer ${getStore().accessToken}`
-				// 			//Token valido durante 12 horas
-				// 		},
-				// 		// credentials: "include",
-				// 		// body: JSON.stringify(entry),
-				// 		// cache: "no-cache",
-				// 		// headers: new Headers({
-				// 		//   "content-type": "application/json"
-				// }).then(response=>{
-			 	// 	if(response.ok){
-			 	// 		return response.json()
-				// 	}
-			 	// 	throw new Error("fail to get properties details")
-			 	// }).then(responseAddJSON =>{
-			 	// 	console.log("Response add json", responseAddJSON)
-			 	// 	setStore({propertiesSearch: responseAddJSON.elementList})
-			 	// 	console.log("Store properties details", getStore().propertiesSearch)
-			 	// }).catch(err =>{
-			 	// 	console.error(err.message)
-			 	// })
-				 },
+				console.log("URL fetch: ",url);
 
-			// getPlanetDetail:  (id) => {
-			// 	fetch(getStore().urlAPI.concat("/planets/",id)).then(response=>{
-			// 		if(response.ok){
-			// 			return response.json()
-			// 		}
-			// 		throw new Error("fail to get planet details")
-			// 	}).then(responseAddJSON =>{
-			// 		console.log("Response add json", responseAddJSON)
-			// 		setStore({planetDetail:[responseAddJSON.result.properties]})
-			// 		console.log("Store planet detail", getStore().planetDetail)
-			// 	}).catch(err =>{
-			// 		console.error(err.message)
-			// 	})
-			// 	},
+				var myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
 
+				var requestOptions = {
+				method: 'POST',
+				mode: "no-cors",
+				headers: myHeaders,
+				redirect: 'follow'
+				};
+
+				fetch(url, requestOptions)
+				.then(response => response.text())
+				.then(result => console.log(result))
+				.catch(error => console.log('error', error));		
+			}
 		}
 	};
 };

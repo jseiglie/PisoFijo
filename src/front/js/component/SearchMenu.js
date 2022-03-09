@@ -30,6 +30,7 @@ const SearchMenu = () => {
             operation: "sale", //(string) - values: sale, rent (requiered)
             propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
             center: "40.123,-3.242", 
+            distance: 3500,
         })
 
     const handleChange = e => {
@@ -60,6 +61,8 @@ const SearchMenu = () => {
             console.log("filters: ",filters);
         }
     };
+
+    const urlFilters = actions.UrlFilters(filters);
     
     return (
 
@@ -107,8 +110,10 @@ const SearchMenu = () => {
                         </InputGroup>
                     </Col>
                     <Col xs={12} md={2} lg={2} className="mt-2">
+                        {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
                         <Link to="/filter">
-                            <Button variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1">Search</Button>
+                            <Button variant="primary justify-content-left buttonSearchMenu" 
+                            onClick={(e) => {e.preventDefault();actions.getDetailsOfPropertiesTest(urlFilters)}} className="buttonSearch mb-1" >Search</Button>
                         </Link>
                     </Col>
                 </Row>
