@@ -121,7 +121,7 @@ export const Home = () => {
                     in our searches are real properties hosted in the idealista database.
                   </p>
                   <div className="text-center">
-                    <img className="imgAR" src={`${Idealista_favorites_screenshot_with_logo}`}></img>
+                    <img className="idealista_favorites_img px-3" src={`${Idealista_favorites_screenshot_with_logo}`}></img>
                   </div>
                 </div>
               </div>

@@ -61,6 +61,10 @@ body {
     height: 40vh;
 }
 
+.idealista_favorites_img{
+    width: 100%;
+}
+
 .pTextDetails {
     padding: 10vw;
 }
