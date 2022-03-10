@@ -47,8 +47,8 @@ def register():
     try:
         db.session.add(user)
         db.session.commit()
-        token = create_access_token(identity=user.email)
-        return jsonify({'token': token}), 201
+        access_token = create_access_token(identity=user.serialize())
+        return jsonify(access_token= access_token), 201
     except Exception as err:
         print(str(err))
         return jsonify({'message': str(err)}), 500
