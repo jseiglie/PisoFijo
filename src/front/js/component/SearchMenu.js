@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -29,9 +29,16 @@ const SearchMenu = () => {
         {//generalFilters: 
             operation: "sale", //(string) - values: sale, rent (requiered)
             propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-            center: "40.123,-3.242", 
+            center: store.filters.center, 
             distance: 3500,
+            flat: false,
+            penthouse: false,
+            duplex: false,
+            studio: false,
+            chalet: false,
+            countryHouse: false
         })
+    console.log("store filters center", store.filters.center);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -42,14 +49,14 @@ const SearchMenu = () => {
         console.log("filters: ",filters);
     };
 
-    const handleChangeCheckbox = e => {
-        const {name, checked} = e.target;
-        setFilters(prevState => ({
-            ...prevState,
-            [name]: checked
-        }));
-        console.log("filters: ",filters);
-    };
+    // const handleChangeTransformAddressToLanLong = e => {
+    //     const { name, value } = e.target;
+    //     setFilters(prevState => ({
+    //         ...prevState,
+    //         [name]: actions.getLatLonByAddress(value)
+    //     }));
+    //     console.log("filters: ",filters);
+    // };
 
     const handleChangeRadio = e => {
         const {name, value} = e.target;
@@ -61,6 +68,30 @@ const SearchMenu = () => {
             console.log("filters: ",filters);
         }
     };
+
+    const optionsArr = ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
+
+    const handleChangeSelected = (e, optionsArr) => {
+        const {value} = e.target;
+        optionsArr.map((option) => {
+            if(option == value){
+                setFilters(prevState => ({...prevState, [option]: true}));   
+                console.log("filters: ",filters);      
+            }
+            else{
+                setFilters(prevState => ({...prevState, [option]: false}));   
+                console.log("filters: ",filters); 
+            }        
+        })
+    }
+
+    const transformAddressToLanLong = (e) =>{
+        actions.handleChangeTransformAddressToLanLong(e)
+    }
+
+    // useEffect(()=>{
+    //     transformAddressToLanLong = (e)
+    // },[store.filters.center])
 
     const urlFilters = actions.UrlFilters(filters);
     
@@ -76,18 +107,18 @@ const SearchMenu = () => {
         <div className="container SearchMenu p-3">
             <Row xs={12} md={6} lg={2} className="containerButton m-3">  
                 <div className="button buttonSelect">
-                    <input type="radio" id="a25" name="check-substitution-2" value="sale" onChange={e=>handleChangeRadio(e)} required checked/>
+                    <input type="radio" id="a25" name="operation" value="sale" onChange={e=>handleChangeRadio(e)} required/>
                     <label className="btn btn-default " htmlFor="a25">Buy</label>
                 </div>
                 <div className="button buttonSelect">
-                    <input type="radio" id="a50" name="check-substitution-2" value="rent" onChange={e=>handleChangeRadio(e)}/>
+                    <input type="radio" id="a50" name="operation" value="rent" onChange={e=>handleChangeRadio(e)}/>
                     <label className="btn btn-default" htmlFor="a50">Rent</label>
                 </div>
             </Row>
             <Form method="GET" action="/filter">
                 <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                     <Col xs={12} md={5} lg={2} className="mt-2">
-                        <Form.Select aria-label="Default select example" className="styleSelect">
+                        <Form.Select aria-label="Default select example" className="styleSelect"  onChange={e=>handleChangeSelected(e, optionsArr)}>
                             <option disabled hidden>Properties type</option>
                             <option value="flat">Flat</option>
                             <option value="penthouse">Penthouse</option>
@@ -103,17 +134,17 @@ const SearchMenu = () => {
                                 <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon-SearchMenu"/>
                             </InputGroup.Text>
                             <FormControl className="inputTransparent"
-                            placeholder="Search by location"
+                            placeholder="Search by location: '40.123,-3.242'"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
-                            />
+                            onChange={e=>actions.handleChange(e)} name="center"/>
                         </InputGroup>
                     </Col>
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
                         <Link to="/filter">
                             <Button variant="primary justify-content-left buttonSearchMenu" 
-                            onClick={(e) => {e.preventDefault();actions.getDetailsOfPropertiesTest(urlFilters)}} className="buttonSearch mb-1" >Search</Button>
+                            onClick={(e) => {e.preventDefault();{/*transformAddressToLanLong(urlFilters)*/}}} className="buttonSearch mb-1" >Search</Button>
                         </Link>
                     </Col>
                 </Row>

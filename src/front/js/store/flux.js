@@ -1,5 +1,24 @@
 import exampleRequestIdealista from "./exampleRequestIdealista.js"
 import credentials from "./credentialsAPIIdealista.js";
+import Geocode from "react-geocode";
+import googleMapsApiKey from "./credentialsAPIGoogle.js";
+Geocode.setApiKey(googleMapsApiKey);
+
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+
+// set response region. Its optional.
+// A Geocoding request with region=es (Spain) will return the Spanish city.
+Geocode.setRegion("es");
+
+// set location_type filter . Its optional.
+// google geocoder returns more that one address for given lat/lng.
+// In some case we need one address as response for which google itself provides a location_type filter.
+// So we can easily parse the result for fetching address components
+// ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
+// And according to the below google docs in description, ROOFTOP param returns the most accurate result.
+Geocode.setLocationType("ROOFTOP");
+
 
 const urlRequestTokenAPI = "https://api.idealista.com/oauth/token?grant_type=client_credentials&scope=read";
 const urlBaseAPI = "https://api.idealista.com/3.5/"; /* {country} + "/search"*/
@@ -16,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//locationId=0-EU-ES-28
 				distanceRequest: 15000,
 				centerRequest: {lat:40.430, lng:-3.702},
-				filters:{
+				filters:[{
 					//generalFilters: 
 					operation: "sale", //(string) - values: sale, rent (requiered)
 					propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
@@ -42,18 +61,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 					preservation: "good", //(string) - property preservation - values: good, renew
 					bankOffer: false, //owner is a bank - works for sale in spain
 					elevator: true //(boolean)
-				},
+				}],
 				propertiesSearch: exampleRequestIdealista.elementList,
 				selected: [],
 				listFavorites: []
 			},
 			actions: {
 
+
 			addElementListArr: (inputValue) => {
 				setStore({list:[...getStore().list, inputValue]})
 			},
 
-			filterEntries: filters =>Object.entries(filters), // {country: "es", operation: "sale"} => [["country", "es"], ["operation","sale"]]
+			handleChange: e => {
+				const {name, value} = e.target;
+				setStore({filters:[...getStore().filters, {[name]: value}]})
+				console.log("filters: ", getStore().filters);
+			},
+
+			handleChangeTransformAddressToLanLong: (e) => {
+				const { name, value } = e.target;
+				setStore({filters:[...getStore().filters, {[name]: getActions().getLatLonByAddress(value)}]})
+				// setFilters(prevState => ({
+				// 	...prevState,
+				// 	[name]: actions.getLatLonByAddress(value)
+				// }));
+				console.log("filters: ", getStore().filters);
+			},
+
+			getLatLonByAddress: addressText =>{
+				Geocode.fromAddress(addressText).then(
+					(response) => {
+					  const { lat, lng } = response.results[0].geometry.location;
+					  console.log(lat, lng);
+					  return `${lat},${lng}`
+					},
+					(error) => {
+					  console.error(error);
+					}
+				  );	  
+			},
+
+			// Input:{country: "es", operation: "sale"} 
+			// Output: [["country", "es"], ["operation","sale"]]
+
+			filterEntries: filters =>Object.entries(filters), 
 			filteredArrElementsNotEmpty: arr =>{
 				return arr.filter(el => el[1] != '' || el[1] == true)
 			},
@@ -66,8 +118,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 							getActions().filterEntries(filters)));
 				console.log("UrlFilters: ",url)
 				return (url)
-			//Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
 			},
+			//Input: {operation: "sale", center: "40.123,-3.242", ...} 
+			//Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
 
 			getSelectedProperty: (selectedProperty) =>{
 				setStore({selected: selectedProperty})
@@ -84,7 +137,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					mode:"no-cors",
 					headers:{
 						"Content-Type": "application/x-www-form-urlencoded",
-						"Authorization": "Basic dnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWk6aEtLdkg4ZVNQM0Fi",
+						"Authorization": "Basic YWRyM2dycjgzMWFza3FtOTluYXB3Y2MwZTI5b3Y1eWY6aEtLdkg4ZVNQM0Fi",
 						//Token valido durante 12 horas
 					}
 					}).then(response=>{
@@ -122,17 +175,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getDetailsOfPropertiesTest: (filterUrl) => {
-			 	var url = urlBaseAPI.concat(getStore().country,"/search?",filterUrl);
-				// var url = "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
+			 	let url = urlBaseAPI.concat(getStore().country,"/search?",filterUrl);
+				// let url = "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
 				console.log("URL fetch: ",url);
 
-				var myHeaders = new Headers();
+				let myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
 				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
 
-				var requestOptions = {
+				let requestOptions = {
 				method: 'POST',
-				mode: "no-cors",
+				// mode: "no-cors",
 				headers: myHeaders,
 				redirect: 'follow'
 				};
