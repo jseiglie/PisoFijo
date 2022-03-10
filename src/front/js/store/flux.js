@@ -111,23 +111,22 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       login: async (email, password) => {
+		const resp = await fetch(
+            "https://3001-programisto1011-4geekaca-185g3ypksyq.ws-eu34.gitpod.io/api/login",
+            opts)
         const opts = {
           method: "POST",
           mode: "cors",
           headers: {
             "Content-Type": "application/json",
+			Accept: "application/json"
           },
           body: JSON.stringify({
             email: email,
             password: password,
           }),
         };
-        try {
-          const resp = await fetch(
-            "https://3001-programisto1011-4geekaca-185g3ypksyq.ws-eu34.gitpod.io/api/login",
-            opts
-          );
-          if (resp.status !== 200) {
+    	  if (resp.status !== 200) {
             alert("There has been some error");
             return false;
           }
@@ -135,9 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           sessionStorage.setItem("token", data.access_token);
           setStore({ token: data.access_token });
           return true;
-        } catch (error) {
-          console.error("There's has been an error login in");
-        }
+        
       },
 
       logOut: () => {

@@ -23,10 +23,14 @@ api = Blueprint('api', __name__)
 def login():
     email = request.json.get("email", None)
     password = request.json.get("password", None)
-    user = User.query.filter_by(email=email).one_or_none()    
-    if user:
-        access_token = create_access_token(identity=user.serialize())
-        return jsonify(access_token= access_token), 200
+    user = User.query.filter_by(email=email).one_or_none() 
+
+    if not user:
+        return jsonify({'message': "User doesn't exist"}), 404   
+    if not check_password_hash(user.password, password):
+        return jsonify({'message': 'Your pass doesn"t match'}), 500    
+    access_token = create_access_token(identity=user.serialize())
+    return jsonify(access_token= access_token), 200
     else :
         jsonify({"msg": "Bad username or password"}), 401
 

@@ -5,25 +5,13 @@ import "../../styles/home.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/register.css";
-import ButtonOwn from "../component/Button"
+import "../../styles/Button.css";
 
 
 const Register = () => {
 
   const {store, actions} = useContext(Context)
   const [registerForm, setRegisterForm] = useState({});
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   getValues,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const onSubmit = (data) => {
-  //   console.log("onsubmit triggered", data);
-  //   actions.register(data);
-  // };
 
   console.log("register en componen",registerForm)
 
@@ -42,14 +30,6 @@ const Register = () => {
         <Row md={5}>
           <Col md={1}></Col>
           <Col md={5}>
-            {/* {errors.name &&
-              errors.name.type &&
-              errors.email &&
-              errors.email.type &&
-              errors.password &&
-              errors.password.type === "required" && (
-                <span>Invalid e-mail or missing information</span>
-              )} */}
             <input
               className="form-control signInInput"
               id="email"
@@ -107,19 +87,8 @@ const Register = () => {
           </Col>
         </Row>
         <div className="text-center">
-        {/* <ButtonOwn
-        onSubmit={(e) => {
-               e.preventDefault();
-                actions.register(registerForm);
-            }}
-            className="signInBtn"
-            title="Sign In"
-          /> */}
-          <input type="submit"
-            value="dejame en paz javier"/>
-          
-          {/* <ButtonOwn className="signInBtn" title="Sign In"></ButtonOwn> */}
-          {/* <input value="registrate" type="submit" /> */}
+          <input type="submit" className="signInSubmit"
+            value="Sign Up"/>
         </div>
       </form>
     </div>
