@@ -23,7 +23,8 @@ const Register = () => {
         className="form-control signInForm"
         onSubmit={ e =>{ 
           e.preventDefault();
-          actions.register(registerForm)
+          actions.register(registerForm);
+          history.push('/')
         }}
       >
         <p className="signInText">Sign In</p>
