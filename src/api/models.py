@@ -11,7 +11,7 @@ class User(db.Model):
     lastName = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
-    password = db.Column(db.String(80), unique=False, nullable=False)
+    password = db.Column(db.String(240), unique=False, nullable=False)
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -48,11 +48,9 @@ class Property(db.Model):
     rooms = db.Column(db.Integer(), unique=False, nullable=True)
     size = db.Column(db.Integer(), unique=False, nullable=True)
     bathrooms = db.Column(db.Integer(), unique=False, nullable=True)
-
     elevator = db.Column(db.Boolean, unique=False, nullable=True)
     bankOffer = db.Column(db.String(20), unique=False, nullable=True)
     preservation = db.Column(db.String(20), unique=False, nullable=True)
-
     contact_Name = db.Column(db.String(20), unique=False, nullable=True)
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
 
@@ -61,19 +59,19 @@ class Property(db.Model):
 
     def serialize(self):
         return {
+            #Serialize this correctly, match idealista
             "id": self.id,
-            "userName": self.userName,
             "firstName": self.firstName,
             "lastName": self.lastName,
             "email": self.email,
             "telephone": self.telephone,
             # do not serialize the password, its a security breach
         }
-    def create_member(self):
-        db.session.add(self)
-        db.session.commit()
-        return self
+    # def create_member(self):
+    #     db.session.add(self)
+    #     db.session.commit()
+    #     return self
 
-    def validate_password(self, password):
-        is_valid = check_password_hash(self._password, password)
-        return is_valid
+    # def validate_password(self, password):
+    #     is_valid = check_password_hash(self._password, password)
+    #     return is_valid

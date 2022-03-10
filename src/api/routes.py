@@ -10,11 +10,14 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Property
+from flask_cors import CORS
 from api.utils import generate_sitemap, APIException
-from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, JWTManager
 from werkzeug.security import check_password_hash, generate_password_hash
+from sqlalchemy import exc
 
 api = Blueprint('api', __name__)
+
 
 @api.route("/login", methods=["POST"])
 def login():
@@ -29,18 +32,23 @@ def login():
 
 @api.route("/register", methods=["POST"])
 def register():
-    if request.method == 'POST' and 'password' in request.form and 'email' in request.form :
-        email = request.form['email']
-        password = request.form['password']
-        user = User.query.filter_by(email=email).one_or_none()
-        if user:
-            print('user already exist')
-    else:
-        new_user = User(
-            email= request.json.get("email", None)
-            password = generate_pass_hash(password, method='pbkdf2:sha256', salt_length=8),
-            firstName = request.json.get("firstName", None)
-            lastName  = request.json.get("lastName", None)
-        )
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+    firstName = request.json.get('firstName', None)
+    lastName = request.json.get('lastName', None)
+    
+    if not (firstName and lastName and email and password):
+        return jsonify({'message': 'Missing data'}), 400
 
- 
+    hash_password = generate_password_hash(password)
+
+    user = User(email=email, password = hash_password,  firstName=firstName, lastName = lastName )
+    
+    try:
+        db.session.add(user)
+        db.session.commit()
+        token = create_access_token(identity=user.email)
+        return jsonify({'token': token}), 201
+    except Exception as err:
+        print(str(err))
+        return jsonify({'message': str(err)}), 500
