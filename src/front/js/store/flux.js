@@ -35,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					//locationId=0-EU-ES-28
 				distanceRequest: 15000,
 				centerRequest: {lat:40.430, lng:-3.702},
-				filters:[{
+				filters:{
 					//generalFilters: 
 					operation: "sale", //(string) - values: sale, rent (requiered)
 					propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
@@ -61,7 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					preservation: "good", //(string) - property preservation - values: good, renew
 					bankOffer: false, //owner is a bank - works for sale in spain
 					elevator: true //(boolean)
-				}],
+				},
 				propertiesSearch: exampleRequestIdealista.elementList,
 				selected: [],
 				listFavorites: []
@@ -72,21 +72,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addElementListArr: (inputValue) => {
 				setStore({list:[...getStore().list, inputValue]})
 			},
-
+			//---------------------------------------------------------------------------------------------
 			handleChange: e => {
 				const {name, value} = e.target;
-				setStore({filters:[...getStore().filters, {[name]: value}]})
-				console.log("filters: ", getStore().filters);
+				console.log(`name: ${name}`, `value: ${value}`)
+				setStore({filters:{...getStore().filters, [name]: value}})
+				console.log("filters flux: ", getStore().filters);
 			},
+			//----------------------------------------------------------------------------------------------
 
 			handleChangeTransformAddressToLanLong: (e) => {
 				const { name, value } = e.target;
-				setStore({filters:[...getStore().filters, {[name]: getActions().getLatLonByAddress(value)}]})
+				setStore({filters:{...getStore().filters, [name]: getActions().getLatLonByAddress(value)}})
 				// setFilters(prevState => ({
 				// 	...prevState,
 				// 	[name]: actions.getLatLonByAddress(value)
 				// }));
-				console.log("filters: ", getStore().filters);
+				console.log("filters flux: ", getStore().filters);
 			},
 
 			getLatLonByAddress: addressText =>{

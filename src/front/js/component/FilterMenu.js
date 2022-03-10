@@ -2,7 +2,7 @@
 //2- en action de flux se define una solicitud que acepte como parametro la url que hemos calculado
 //3- Cuando el usuario haga click en filtrar se llama a esa función
 
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import { Context } from "../store/appContext";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -89,7 +89,7 @@ const FilterMenu = () => {
         {//generalFilters: 
         	operation: "sale", //(string) - values: sale, rent (requiered)
         	propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-        	center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
+        	center: store.filters.center, //(string) - geographic coordinates (WGS84) (latitude,longitude)
         	locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
         	distance: 3500, //(double) - distance to center, in metres (ratio)
         	locationId: "", //(string) - idealista location code
@@ -121,14 +121,27 @@ const FilterMenu = () => {
 	const concatenateArr =(arr)=>{
 	    return ((arr.map(el =>el.join("="))).join("&"))
     };
-	const UrlFilters = filters =>{
+
+    const UrlFilters = () =>{
         const url = concatenateArr(filteredArrElementsNotEmpty(filterEntries(filters)));
         console.log("UrlFilters: ",url)
-	    return (url)
-    //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
-    };
+        return (url)
+        //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"    
+    }
 
-	console.log(actions.UrlFilters(filters)); 
+    useEffect(() => {
+        UrlFilters 
+ 
+      }, [filters.center]);
+
+	// const UrlFilters = () =>{
+    //     const url = concatenateArr(filteredArrElementsNotEmpty(filterEntries(filters)));
+    //     console.log("UrlFilters: ",url)
+	//     return (url)
+    // //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
+    // };
+
+	console.log(actions.UrlFilters()); 
 
     return (
         <div className="container-FilterMenu">

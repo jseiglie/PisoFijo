@@ -25,11 +25,15 @@ const SearchMenu = () => {
     
     const {store,actions} = useContext(Context);
 
+    const [inputFilterValues, setInputFilterValues] = useState("")
+
+    
+
     const [filters, setFilters] = useState(
         {//generalFilters: 
             operation: "sale", //(string) - values: sale, rent (requiered)
             propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-            center: store.filters.center, 
+            center: inputFilterValues, 
             distance: 3500,
             flat: false,
             penthouse: false,
@@ -38,16 +42,20 @@ const SearchMenu = () => {
             chalet: false,
             countryHouse: false
         })
-    console.log("store filters center", store.filters.center);
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setFilters(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-        console.log("filters: ",filters);
-    };
+    useEffect(()=>{
+        setInputFilterValues(store.filters.center)
+        console.log("input filter values",inputFilterValues);
+    },[store.filters.center, filters])
+
+    // const handleChange = e => {
+    //     const { name, value } = e.target;
+    //     setFilters(prevState => ({
+    //         ...prevState,
+    //         [name]: value
+    //     }));
+    //     console.log("filters: ",filters);
+    // };
 
     // const handleChangeTransformAddressToLanLong = e => {
     //     const { name, value } = e.target;
@@ -85,15 +93,18 @@ const SearchMenu = () => {
         })
     }
 
-    const transformAddressToLanLong = (e) =>{
-        actions.handleChangeTransformAddressToLanLong(e)
+    const transformAddressToLanLong = (event) =>{
+        actions.handleChangeTransformAddressToLanLong(event)
     }
 
     // useEffect(()=>{
     //     transformAddressToLanLong = (e)
     // },[store.filters.center])
 
-    const urlFilters = actions.UrlFilters(filters);
+
+    useEffect(() => {
+        actions.UrlFilters(filters);
+    }, [store.filters.center]);
     
     return (
 
@@ -142,6 +153,9 @@ const SearchMenu = () => {
                     </Col>
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
+                        {/* <form action="/filter">
+                            <Button type="submit" />
+                        </form> */}
                         <Link to="/filter">
                             <Button variant="primary justify-content-left buttonSearchMenu" 
                             onClick={(e) => {e.preventDefault();{/*transformAddressToLanLong(urlFilters)*/}}} className="buttonSearch mb-1" >Search</Button>
