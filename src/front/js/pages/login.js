@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import "../../styles/login.css";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
- import Button from "../component/Button";
+import "../../styles/register.css";
 
 export const Login = () => {
   const [email, setEmail] = useState('');
@@ -49,7 +49,7 @@ export const Login = () => {
           value={password}
           onChange={(e)=>{setPassword(e.target.value)}}
         ></input>
-        <input type="submit" className="LogInSubmit" onClick={handleClick}
+        <input type="submit" className="SignInSubmit" onClick={handleClick}
             value="Log In"/>
         </div>
       }
