@@ -333,11 +333,11 @@ const FilterMenu = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        {/* <Col>
                             <button className="button-FilterMenu" variant="primary" type="submit" onClick={(e) => {e.preventDefault();RequestToken()}}>
                                 Request Token
                             </button>
-                        </Col>
+                        </Col> */}
                     </Row>
                 </Form>
         </div>

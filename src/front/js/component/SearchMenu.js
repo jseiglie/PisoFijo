@@ -151,7 +151,8 @@ const SearchMenu = () => {
                         </form> */}
                         <Link to="/filter">
                             <Button variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
-                                onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}>  
+                                // onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}
+                                >  
                                 Search
                             </Button>
                         </Link>

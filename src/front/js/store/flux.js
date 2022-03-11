@@ -110,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//-------------------------------------------------------------------------------------------------
 
 			transformAddressToLanLong: (address) => {
-				setStore({filters:{...getStore().filters, ["center"]: getActions().getLatLonByAddress(address)}})
+				setStore({filters:{...getStore().filters, "center": getActions().getLatLonByAddress(address)}})
 				// setFilters(prevState => ({
 				// 	...prevState,
 				// 	[name]: actions.getLatLonByAddress(value)
@@ -122,7 +122,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				Geocode.fromAddress(addressText).then(
 					(response) => {
 					  const { lat, lng } = response.results[0].geometry.location;
-					  console.log(lat, lng);
+					  console.log(`${lat},${lng}`);
 					  return `${lat},${lng}`
 					},
 					(error) => {
