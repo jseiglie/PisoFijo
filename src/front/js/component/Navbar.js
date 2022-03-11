@@ -22,12 +22,12 @@ export const Navbar = () => {
             </Link>
           </div>
           <div className="ml-auto">
-            <Link to="/services">
-              <span className="navItem">Services</span>
+            <Link to="/filter">
+              <span className="navItem">Search</span>
             </Link>
           </div>
           <div className="ml-auto">
-            <Link to="/contact">
+            <Link to="/contactus">
               <span className="navItem">Contact us</span>
             </Link>
           </div>
