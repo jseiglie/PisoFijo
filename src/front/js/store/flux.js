@@ -81,6 +81,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			//----------------------------------------------------------------------------------------------
 
+			handleChangeRadio: e => {
+				const {name, value} = e.target;
+				if(e.target.checked){
+					setStore({filters:{...getStore().filters, [name]: value}});
+					console.log("filters radio: ",filters);
+				}
+			},
+			//----------------------------------------------------------------------------------------------
+
 			handleChangeTransformAddressToLanLong: (e) => {
 				const { name, value } = e.target;
 				setStore({filters:{...getStore().filters, [name]: getActions().getLatLonByAddress(value)}})
