@@ -1,0 +1,64 @@
+
+.mySVG{
+    position: relative;
+    padding: 0;
+    background-image: linear-gradient(180deg, rgba(251, 149, 4, 0) 0%, rgba(252, 151, 0, 0.5) 100%);
+    margin-bottom: 0;
+}
+footer {
+    background: #080709;
+    padding: 0;
+}
+.container-footer{
+    height: 20vh;
+}
+.myfooter{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding: 0;
+    margin: 0;
+}
+
+.pfFooter {
+    font-family: 'Snippet', sans-serif;
+    color: #FC9700;
+    font-size: 2rem;
+}
+
+.RRSS {
+    font-size: 3rem;
+    padding: 0.5rem;
+    color: #080709;
+    display: inline-flex;
+}
+
+i:hover {
+    /* box-shadow: #dfdfdf 1px 1px 10px; */
+    color: white;
+}
+
+.ftList {
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+}
+
+.ftList ul {
+    list-style-type: none;
+    text-decoration: none;
+    color: #dfdfdf;
+    font-size: 1rem;    
+}
+
+li {
+    margin-top: 0.2rem;
+}
+
+li:hover{
+    color: #FC9700;
+    cursor: pointer;
+}

@@ -1,0 +1,90 @@
+
+.pfLogo {
+  font-family: 'Snippet', sans-serif;
+    font-size: 7rem;
+    color: #FB9504;
+    height: 100%;
+    vertical-align: bottom;
+    line-height: 14vh;
+}
+
+.container.SearchMenu{
+    background-color: #34343470;
+}
+
+.rowContainer{
+    background-color: #DFDFDF80;
+}
+.inputTransparent{
+    background : inherit ;
+    border: 1px solid #FB9504 ;
+}
+.inputTransparent:focus{
+    background :  #FFFFFF50;
+}
+
+.styleSelect {
+    background-color: #FB950400;
+      border: none;
+      border-radius: 0;
+      border: 1px solid #FB9504;
+ }
+.icon-SearchMenu{
+    color: #FB9504;
+}
+.buttonSearch{
+    background-color: black;
+    border-radius: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.buttonSelect{
+    color: white;
+    background-color: #4F4A4B;
+    border: none;
+    border-radius: 1;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin-right: 1em;
+}
+/*------------------------------------------------------------------------------*/
+.button {
+    float: left;
+    margin: 0 5px 0 0;
+    width: 100px;
+    height: 40px;
+    position: relative;
+  }
+  
+  .button label,
+  .button input {
+    color: white;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .button input[type="radio"] {
+    opacity: 0.011;
+    z-index: 100;
+  }
+  
+  .button input[type="radio"]:checked + label {
+    color: white;
+    background-image: linear-gradient(to right, #FFD37C , #FC9700);
+    border-radius: 4px;
+  }
+  
+  .button label {
+    cursor: pointer;
+    z-index: 90;
+    line-height: 1.8em;
+  }
+  
+
+
+

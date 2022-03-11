@@ -1,0 +1,35 @@
+.container-FilterMenu{
+    background-color: #00000090;
+    color: #DFDFDF;
+    height: auto;
+    margin:auto;
+    padding: 2em;
+    font-family: Roboto;
+}
+.text-left-FilterMenu{
+
+    display: inline-flex;
+    float: left;
+}
+.underlined{
+    border-bottom: 1px solid rgb(172, 165, 165);
+}
+.button-FilterMenu{
+    background-color: #DFDFDF;
+    color: black;
+    border-radius: 0;
+    border: 1px solid black;
+    padding: 0.5em 1em 0.5em 1em;
+}
+.button-FilterMenu:focus{
+    background-color: #DFDFDF;
+    color: black;
+    border-radius: 0;
+    border: 1px solid black;
+
+}
+.button-FilterMenu:active{
+    cursor: pointer;
+    transform: scale(1.25);
+}
+

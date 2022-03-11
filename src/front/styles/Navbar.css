@@ -1,0 +1,29 @@
+.logo {
+    font-family: 'Snippet', sans-serif;
+    color: #FC9700 !important;
+    font-size: 35px;
+    font-weight: normal;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.navItem {
+    color: #FC9700;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+
+.navbar {
+    background: #343434 !important;
+}
+
+.navItem:hover{
+    text-shadow: 1px 0px;
+}
+
+.myBtn:hover{
+    text-shadow: 1px 0px;
+}

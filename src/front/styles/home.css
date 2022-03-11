@@ -1,7 +1,90 @@
 /*
     home.css: This website contains selectors only used in home.css
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
+    All pages share the styles on index.css but you should create
+    one more css for each page that will contain the selected used
     on that page only (the ones not reused in other pages).
 */
+body {
+    background: #080709;
+}
+
+.searchSection {
+    margin-top: 20vw !important;
+}
+
+.bgInfo {
+    border-radius: 1rem;
+}
+
+.imgCard{
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .imgCard{
+        height: 15vw;
+    } 
+}
+
+
+.smDetails {
+    text-align: justify;
+    color: #DFDFDF;
+    font-size: 1rem;
+}
+.smDetailsV {
+    text-align: justify;
+    padding: 2em;
+    color: #DFDFDF;
+    font-size: 1rem;
+}
+.smDetailsV img{
+    margin-bottom: 1em;
+
+}
+.section-margin {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.servSection {
+    margin-top: 5vw;
+    background-color: #080709;
+    padding-top: 1vw;
+}
+
+.imgMap {
+    height: 22vh;
+}
+.imgAR {
+    height: 40vh;
+}
+
+.idealista_favorites_img{
+    width: 100%;
+}
+
+.pTextDetails {
+    padding: 10vw;
+}
+
+.moreDetailHead {
+    margin-top: 1rem;
+    height: 100%;
+    
+}
+.container_img_idealista_API{
+    height: 100%;
+}
+
+.infoCard{
+    border: solid 2px #F7BE53;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+}
+
+.dialogue_text_home{
+    background-color: #DFDFDF60;
+}
+
