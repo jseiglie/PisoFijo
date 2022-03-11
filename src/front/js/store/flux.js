@@ -62,9 +62,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					bankOffer: false, //owner is a bank - works for sale in spain
 					elevator: true //(boolean)
 				},
+				inputLocation: {address: "barcelona"},
 				propertiesSearch: exampleRequestIdealista.elementList,
 				selected: [],
-				listFavorites: []
+				listFavorites: [],
+				optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
 			},
 			actions: {
 
@@ -73,11 +75,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({list:[...getStore().list, inputValue]})
 			},
 			//---------------------------------------------------------------------------------------------
-			handleChange: e => {
+			handleChange: (e, sectionStore) => {
 				const {name, value} = e.target;
 				console.log(`name: ${name}`, `value: ${value}`)
-				setStore({filters:{...getStore().filters, [name]: value}})
-				console.log("filters flux: ", getStore().filters);
+				setStore({sectionStore:{...getStore().sectionStore, [name]: value}})
+				console.log(`${sectionStore} change input: `, getStore().sectionStore);
+				console.log("filters change input: ", getStore().filters);
 			},
 			//----------------------------------------------------------------------------------------------
 
@@ -85,19 +88,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const {name, value} = e.target;
 				if(e.target.checked){
 					setStore({filters:{...getStore().filters, [name]: value}});
-					console.log("filters radio: ",filters);
+					console.log("filters change radio: ", getStore().filters);
 				}
 			},
 			//----------------------------------------------------------------------------------------------
 
-			handleChangeTransformAddressToLanLong: (e) => {
-				const { name, value } = e.target;
-				setStore({filters:{...getStore().filters, [name]: getActions().getLatLonByAddress(value)}})
+			//VICTOR - Habría que refactorizar para que no haya que introducir las opciones
+
+			handleChangeSelected: (e, optionsArr) => {
+				const {value} = e.target;
+				optionsArr.map((option) => {
+					if(option == value){
+						setStore({filters:{...getStore().filters, [option]: true}});						 
+					}
+					else{
+						setStore({filters:{...getStore().filters, [option]: false}});
+					}       	     
+				})
+				console.log("filters change selected: ", getStore().filters); 
+			},
+			//-------------------------------------------------------------------------------------------------
+
+			transformAddressToLanLong: (address) => {
+				setStore({filters:{...getStore().filters, ["center"]: getActions().getLatLonByAddress(address)}})
 				// setFilters(prevState => ({
 				// 	...prevState,
 				// 	[name]: actions.getLatLonByAddress(value)
 				// }));
-				console.log("filters flux: ", getStore().filters);
+				console.log("filters after transform center: ", getStore().filters);
 			},
 
 			getLatLonByAddress: addressText =>{
