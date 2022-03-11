@@ -17,7 +17,7 @@ export const Navbar = () => {
             <span className="navbar-brand logo mb-0 h1">Piso Fijo</span>
           </Link>
           <div className="ml-auto">
-            <Link to="/home">
+            <Link to="/">
               <span className="navItem">Home</span>
             </Link>
           </div>

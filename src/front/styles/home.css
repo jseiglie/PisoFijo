@@ -17,6 +17,17 @@ body {
     border-radius: 1rem;
 }
 
+.imgCard{
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .imgCard{
+        height: 15vw;
+    } 
+}
+
+
 .smDetails {
     text-align: justify;
     color: #DFDFDF;
@@ -50,12 +61,21 @@ body {
     height: 40vh;
 }
 
+.idealista_favorites_img{
+    width: 100%;
+}
+
 .pTextDetails {
     padding: 10vw;
 }
 
 .moreDetailHead {
     margin-top: 1rem;
+    height: 100%;
+    
+}
+.container_img_idealista_API{
+    height: 100%;
 }
 
 .infoCard{
@@ -63,3 +83,8 @@ body {
     padding-top: 1vw;
     padding-bottom: 1vw;
 }
+
+.dialogue_text_home{
+    background-color: #DFDFDF60;
+}
+
