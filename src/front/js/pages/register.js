@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { useForm } from "react-hook-form";
 import "../../styles/home.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -25,7 +24,6 @@ const Register = () => {
           e.preventDefault();
           actions.register(registerForm).then(() => {
             history.push('/')})
-
         }}
       >
         <p className="signInText">Sign In</p>
