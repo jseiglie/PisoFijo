@@ -242,8 +242,8 @@ const getState = ({ getStore, getActions, setStore }) => {
           }),
         };
         try {
-          const resp = await fetch(
-			"https://3001-programisto1011-4geekaca-2yaky4omvpf.ws-eu34.gitpod.io/api/login",
+          const resp = await 
+			fetch(getStore().baseUrlLogin,
             opts
           );
           if (resp.status !== 200) {
