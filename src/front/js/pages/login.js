@@ -49,9 +49,8 @@ export const Login = () => {
           value={password}
           onChange={(e)=>{setPassword(e.target.value)}}
         ></input>
-        {/* <input value="Log In" className='loginBtn' onClick={handleClick}/> */}
         <input type="submit" className="LogInSubmit" onClick={handleClick}
-            value="Sign In"/>
+            value="Log In"/>
         </div>
       }
           <p className="loginText">

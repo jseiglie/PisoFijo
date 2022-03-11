@@ -5,20 +5,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "../../styles/register.css";
 import "../../styles/Button.css";
-
+import { useHistory } from "react-router-dom";
 
 const Register = () => {
 
   const {store, actions} = useContext(Context)
   const [registerForm, setRegisterForm] = useState({});
+  const history = useHistory();
 
   console.log("register en componen",registerForm)
 
   return (
     <div className="container signInWrap">
       <form
-        // action="https://3001-programisto1011-4geekaca-185g3ypksyq.ws-eu34.gitpod.io/api/register"
-        // method="POST"
         className="form-control signInForm"
         onSubmit={ e =>{ 
           e.preventDefault();
