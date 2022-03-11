@@ -25,15 +25,18 @@ const SearchMenu = () => {
     
     const {store,actions} = useContext(Context);
 
-    const [inputFilterValues, setInputFilterValues] = useState("")
+    // const [inputFilterValues, setInputFilterValues] = useState("")
 
-    
+    // useEffect(()=>{
+    //     setInputFilterValues(store.filters.center)
+    //     console.log("input filter values",inputFilterValues);
+    // },[store.filters.center, filters])
 
     const [filters, setFilters] = useState(
         {//generalFilters: 
             operation: "sale", //(string) - values: sale, rent (requiered)
             propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-            center: inputFilterValues, 
+            center: store.filters.center, 
             distance: 3500,
             flat: false,
             penthouse: false,
@@ -42,11 +45,6 @@ const SearchMenu = () => {
             chalet: false,
             countryHouse: false
         })
-
-    useEffect(()=>{
-        setInputFilterValues(store.filters.center)
-        console.log("input filter values",inputFilterValues);
-    },[store.filters.center, filters])
 
     // const handleChange = e => {
     //     const { name, value } = e.target;
@@ -73,7 +71,7 @@ const SearchMenu = () => {
                 ...prevState,
                 [name]: value
             }));
-            console.log("filters: ",filters);
+            console.log("filters radio: ",filters);
         }
     };
 
@@ -96,11 +94,6 @@ const SearchMenu = () => {
     const transformAddressToLanLong = (event) =>{
         actions.handleChangeTransformAddressToLanLong(event)
     }
-
-    // useEffect(()=>{
-    //     transformAddressToLanLong = (e)
-    // },[store.filters.center])
-
 
     useEffect(() => {
         actions.UrlFilters(filters);
@@ -157,8 +150,9 @@ const SearchMenu = () => {
                             <Button type="submit" />
                         </form> */}
                         <Link to="/filter">
-                            <Button variant="primary justify-content-left buttonSearchMenu" 
-                            onClick={(e) => {e.preventDefault();{/*transformAddressToLanLong(urlFilters)*/}}} className="buttonSearch mb-1" >Search</Button>
+                            <Button variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" >
+                            {/*onClick={(e) => {e.preventDefault(); transformAddressToLanLong(urlFilters)}} */} 
+                            Search</Button>
                         </Link>
                     </Col>
                 </Row>

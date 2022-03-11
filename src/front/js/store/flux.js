@@ -114,10 +114,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			concatenateArr: (arr)=>{
 				return ((arr.map(el =>el.join("="))).join("&"))
 			},
-			UrlFilters: filters =>{
+			UrlFilters: filtersObj =>{
 				const url = getActions().concatenateArr(
 							getActions().filteredArrElementsNotEmpty(
-							getActions().filterEntries(filters)));
+							getActions().filterEntries(filtersObj)));
 				console.log("UrlFilters: ",url)
 				return (url)
 			},

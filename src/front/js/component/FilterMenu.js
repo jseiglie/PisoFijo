@@ -84,12 +84,14 @@ const FilterMenu = () => {
             console.log("filters: ",filters);
         };
 
+    const [inputFilterValues, setInputFilterValues] = useState("40.123,-3.242")
+
     //-------------------------------------------------------------------------------------------------------
     const [filters, setFilters] = useState(
         {//generalFilters: 
         	operation: "sale", //(string) - values: sale, rent (requiered)
         	propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-        	center: store.filters.center, //(string) - geographic coordinates (WGS84) (latitude,longitude)
+        	center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
         	locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
         	distance: 3500, //(double) - distance to center, in metres (ratio)
         	locationId: "", //(string) - idealista location code
@@ -113,6 +115,10 @@ const FilterMenu = () => {
         	elevator: true //(boolean)
         });
 
+    useEffect(()=>{
+        setInputFilterValues(store.filters.center)
+        console.log("input filter values",inputFilterValues);
+    },[store.filters.center, filters])
 
 	const filterEntries = filters =>Object.entries(filters) // {country: "es", operation: "sale"} => [["country", "es"], ["operation","sale"]]
 	const filteredArrElementsNotEmpty = arr =>{
@@ -141,7 +147,7 @@ const FilterMenu = () => {
     // //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
     // };
 
-	console.log(actions.UrlFilters()); 
+	console.log(actions.UrlFilters(filters)); 
 
     return (
         <div className="container-FilterMenu">
