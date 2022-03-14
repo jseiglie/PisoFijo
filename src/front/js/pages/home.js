@@ -22,7 +22,7 @@ export const Home = () => {
 
   return (
     <>
-    <ModelViewer></ModelViewer>
+    {/* <ModelViewer></ModelViewer> este es el componente por si quieres verlo  */}
       <div className="searchSection text-center mt-5">
         <SearchMenu />
       </div>
