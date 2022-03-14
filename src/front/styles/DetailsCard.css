@@ -31,10 +31,12 @@
     @media (max-width: 600px) {
         .DetailsCard-view-button,.DetailsCard-heart-button {
             font-size: 2em;
+            border-radius: 0.5rem;
         }
     }
 .DetailsCard-view-button{
     color: #DFA32E;
+    border-radius: 0.5rem;
 }
 .DetailsCard-heart-button{
     color: #DFA32E;
@@ -46,10 +48,12 @@
     color: #000000;
     background-color: #C4C4C4;
     font-size: medium;
+    border-radius: 0.5rem;
 }
 
 .DetailsCard-view-button-container{
     display: inline-block;
+    border-radius: 0.5rem;
 
 }
 
