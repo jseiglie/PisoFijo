@@ -15,12 +15,14 @@ import Col from "react-bootstrap/Col";
 import UserMenu from "../component/UserMenu";
 import Register from "./register.js";
 import Login from "./login.js";
+import { ModelViewer } from "../component/ModelViewer";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
     <>
+    <ModelViewer></ModelViewer>
       <div className="searchSection text-center mt-5">
         <SearchMenu />
       </div>
