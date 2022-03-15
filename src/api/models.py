@@ -4,6 +4,11 @@ from datetime import timedelta
 
 db = SQLAlchemy()
 
+association_table = Table('association', Base.metadata,
+    db.Column('User', db.String, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('Property', db.String, db.ForeignKey('property.propertyCode'), primary_key=True)
+)
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer(), primary_key=True)
