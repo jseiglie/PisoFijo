@@ -52,3 +52,9 @@ def register():
     except Exception as err:
         print(str(err))
         return jsonify({'message': str(err)}), 500
+
+
+@api.route("/user", methods=["GET"])
+def get_user():
+        user = {"name": "Matias", "age": 28}
+        return jsonify({'results':user}), 201

@@ -1,12 +1,18 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Table
 from datetime import timedelta
+import os
+import sys
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
+from sqlalchemy import create_engine
 
-
+Base = declarative_base()
 db = SQLAlchemy()
 
-association_table = Table('association', Base.metadata,
-    db.Column('User', db.String, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('Property', db.String, db.ForeignKey('property.propertyCode'), primary_key=True)
+association_table = Table('association', db.Model.metadata,
+    db.Column('user_id', db.String, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('property_id', db.String, db.ForeignKey('property.propertyCode'), primary_key=True)
 )
 
 class User(db.Model):
@@ -17,6 +23,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
+    children = db.relationship('Property', secondary=association_table, backref=db.backref('User'))
 
     def __repr__(self):
         return '<User %r>' % self.email
