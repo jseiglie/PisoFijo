@@ -1,3 +1,3 @@
-const googleMapsApiKey='AIzaSyDFE3td5eQXBdOJxSBikBJARyvj4VMc-6Q'
+const googleMapsApiKey='AIzaSyC3pSnyQxP8uNI_SX743TF3BMoEtmYexYQ'
 
 export default googleMapsApiKey;
