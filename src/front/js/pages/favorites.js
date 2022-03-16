@@ -12,16 +12,19 @@ export const Favorites = (props) => {
     },[])
 
     const getFavorites = async()=>{
-        const response = await fetch("https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu34.gitpod.io/api/user");
-        const data = await response.json();
-        setFavorites(data.results);
+        const response = await fetch("https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu34.gitpod.io/api/test");
+        const data = await response;
+        console.log(response);
+        // setFavorites(data);
+        setFavorites(data);
     }
 
     return (
     <>
       <div className="container container-details mt-2 mb-2 pt-2">
 
-        <h1>{favorites.name}</h1>
+        {/* <h1>{favorites.elementList}</h1> */}
+        <h1>{favorites.elementList}</h1>
       {/* <DetailsCard
                 urlImg={store.selected.thumbnail}
                 type={store.selected.propertyType}

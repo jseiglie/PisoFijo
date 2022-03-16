@@ -9,7 +9,7 @@ from sqlalchemy import create_engine
 
 db = SQLAlchemy()
 
-association_table = Table('association', db.Model.metadata,
+association_table_favorites = Table('association', db.Model.metadata,
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('property_id', db.Integer, db.ForeignKey('property.propertyCode'), primary_key=True)
 )
@@ -22,7 +22,8 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
-    children = db.relationship('Property', secondary=association_table, lazy="subquery", backref=db.backref('User', lazy=True))
+    favorites_properties = db.relationship('Property', secondary=association_table_favorites, lazy="subquery", backref=db.backref('User', lazy=True))
+    user_properties = relationship("Property")
 
     def __repr__(self):
         return '<User %r>' % self.email
