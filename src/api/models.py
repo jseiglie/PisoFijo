@@ -7,12 +7,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
-Base = declarative_base()
 db = SQLAlchemy()
 
 association_table = Table('association', db.Model.metadata,
-    db.Column('user_id', db.String, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('property_id', db.String, db.ForeignKey('property.propertyCode'), primary_key=True)
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('property_id', db.Integer, db.ForeignKey('property.propertyCode'), primary_key=True)
 )
 
 class User(db.Model):
@@ -23,7 +22,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
-    children = db.relationship('Property', secondary=association_table, backref=db.backref('User'))
+    children = db.relationship('Property', secondary=association_table, lazy="subquery", backref=db.backref('User', lazy=True))
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -67,16 +66,19 @@ class Property(db.Model):
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
 
     def __repr__(self):
-        return '<User %r>' % self.userName
+        return '<Property %r>' % self.propertyCode
 
     def serialize(self):
         return {
             #Serialize this correctly, match idealista
-            "id": self.id,
-            "firstName": self.firstName,
-            "lastName": self.lastName,
+            "propertyCode": self.propertyCode,
+            "ownerId": self.ownerId,
+            "address": self.address,
             "email": self.email,
-            "telephone": self.telephone,
+            "agency": self.agency,
+            "bathrooms": self.bathrooms,
+            "condition": self.condition,
+            "description": self.description,
             # do not serialize the password, its a security breach
         }
     # def create_member(self):
