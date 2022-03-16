@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Table
+from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Table, Boolean
 from datetime import timedelta
 import os
 import sys
@@ -23,7 +23,7 @@ class User(db.Model):
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
     favorites_properties = db.relationship('Property', secondary=association_table_favorites, lazy="subquery", backref=db.backref('User', lazy=True))
-    user_properties = relationship("Property")
+    user_properties = db.relationship("Property", back_populates="user")
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -41,7 +41,6 @@ class User(db.Model):
 class Property(db.Model):
     __tablename__ = 'property'
     propertyCode = db.Column(db.Integer(), primary_key=True)
-    ownerId = db.Column(db.Integer(), db.ForeignKey('user.id'))
     address = db.Column(db.String(120), unique=False, nullable=True)
     agency = db.Column(db.Boolean, unique=False, nullable=True)
     bathrooms = db.Column(db.Integer(), unique=False, nullable=True)
@@ -65,6 +64,8 @@ class Property(db.Model):
     preservation = db.Column(db.String(20), unique=False, nullable=True)
     contact_Name = db.Column(db.String(20), unique=False, nullable=True)
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
+    owner_user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    owner_user = db.relationship("User", back_populates="user_properties")
 
     def __repr__(self):
         return '<Property %r>' % self.propertyCode
