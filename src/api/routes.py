@@ -8,6 +8,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import requests
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, User, Property
 from flask_cors import CORS
@@ -68,10 +69,33 @@ def test():
 
     payload={}
     headers = {
+    'Authorization': 'Bearer aaa'
+    }
+
+    # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzQ2NjU4NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGIzYjAyMWEtZjkxYS00MDM5LWJlMGYtMjdiZDcyMmRlZGE5IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.87VHaK4d2wF681X6zh7ZHgBqZHovUCZTlb6Di459T9E
+    
+    response = requests.request("POST", url, headers=headers, data=payload)
+    print("------------------------------------>", response.text,"<------------------------------------------")
+
+    return response.json()
+
+@api.route('/search')
+def search():
+    url = "https://api.idealista.com/3.5/es/search?"
+    filtersUrl = request.json.get('url', None)
+    finalUrl = url + filtersUrl
+    print("-------------------------->",finalUrl,"<----------------------------------------")
+
+    payload={}
+    headers = {
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzQ2NjU4NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGIzYjAyMWEtZjkxYS00MDM5LWJlMGYtMjdiZDcyMmRlZGE5IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.87VHaK4d2wF681X6zh7ZHgBqZHovUCZTlb6Di459T9E'
     }
     
-    response = requests.request("POST", url, headers=headers, data=payload)
-    print("------------------------------------>", response,"<------------------------------------------")
+    response = requests.request("POST", finalUrl, headers=headers, data=payload)
+    print("------------------------------------>", response.text,"<------------------------------------------")
 
     return response.json()
+
+    # filters_url = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
+
+# https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000

@@ -26,11 +26,14 @@ const urlBaseAPI = "https://api.idealista.com/3.5/"; /* {country} + "/search"*/
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      baseUrlRegister:
-        "https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/register",
-		  baseUrlLogin:
-        "https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/login",
+      	baseUrlRegister:
+        	"https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/register",
+		baseUrlLogin:
+        	"https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/login",
+		baseUrlSearch:
+			"https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu34.gitpod.io/api/search",
       token: null,
+	  response: {},
       country: "es", //(string) - values: es, it, pt (requiered)
 				filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
 				accessToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0Njg4NzE4OSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiMzcwM2Q3MmEtZjZjNi00N2U2LWIyZDQtNzEzNzMwZjAyOTc2IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.IX-s6zVpi5aq_bxRPNONnfgz-NAFzDUnKpbs0-R-mjo",
@@ -114,10 +117,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			transformAddressToLanLong: (address) => {
 				setStore({filters:{...getStore().filters, "center": getActions().getLatLonByAddress(address)}})
-				// setFilters(prevState => ({
-				// 	...prevState,
-				// 	[name]: actions.getLatLonByAddress(value)
-				// }));
 				console.log("filters after transform center: ", getStore().filters);
 			},
 
@@ -125,8 +124,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				Geocode.fromAddress(addressText).then(
 					(response) => {
 					  const { lat, lng } = response.results[0].geometry.location;
-					  console.log(`${lat},${lng}`);
-					  return `${lat},${lng}`
+					  const address = `${lat}, ${lng}`;
+					  console.log("Resultado trans direccion a coordenadas", address);
+					  return address
 					},
 					(error) => {
 					  console.error(error);
@@ -227,6 +227,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(result => console.log(result))
 				.catch(error => console.log('error', error));		
 			},
+			search: async (data) => { //<-----------------------------------------------------------------------
+				console.log("data en flux", data);
+				const resp = await fetch(getStore().baseUrlSearch, {
+				  method: "POST",
+				  headers: {
+					"Content-Type": "application/json",
+					Accept: "application'json",
+				  },
+				  body: JSON.stringify(data),
+				});
+				if (resp.status == 201) {
+				  const data = await resp.json();
+				 	setStore({response: data}); //<-----------------------------------------------------------------------
+				} else {
+				  alert("User already exist, try logging in");
+				}
+			  },
 
       login: async (email, password) => {
         const opts = {
