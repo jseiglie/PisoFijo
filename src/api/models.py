@@ -1,15 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, ForeignKey, Integer, String, Enum, Table, Boolean
-from datetime import timedelta
-import os
-import sys
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
-from sqlalchemy import create_engine
 
 db = SQLAlchemy()
 
-association_table_favorites = Table('association', db.Model.metadata,
+favorites = db.Table('association',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
     db.Column('property_id', db.Integer, db.ForeignKey('property.propertyCode'), primary_key=True)
 )
@@ -22,8 +15,8 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
-    favorites_properties = db.relationship('Property', secondary=association_table_favorites, lazy="subquery", backref=db.backref('User', lazy=True))
-    user_properties = db.relationship("Property", back_populates="user")
+    favorites_properties = db.relationship('Property', secondary=favorites, lazy="subquery", backref=db.backref('User favorites', lazy=True))
+    His_properties = db.relationship("Property", backref="Owner", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -65,7 +58,6 @@ class Property(db.Model):
     contact_Name = db.Column(db.String(20), unique=False, nullable=True)
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
     owner_user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
-    owner_user = db.relationship("User", back_populates="user_properties")
 
     def __repr__(self):
         return '<Property %r>' % self.propertyCode
