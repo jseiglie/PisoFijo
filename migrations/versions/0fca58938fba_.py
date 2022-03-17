@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5000e9b7cdc1
+Revision ID: 0fca58938fba
 Revises: 
-Create Date: 2022-03-16 11:21:59.259534
+Create Date: 2022-03-17 16:20:53.090784
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5000e9b7cdc1'
+revision = '0fca58938fba'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,7 +31,6 @@ def upgrade():
     )
     op.create_table('property',
     sa.Column('propertyCode', sa.Integer(), nullable=False),
-    sa.Column('ownerId', sa.Integer(), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('agency', sa.Boolean(), nullable=True),
     sa.Column('condition', sa.String(length=10), nullable=True),
@@ -54,7 +53,8 @@ def upgrade():
     sa.Column('preservation', sa.String(length=20), nullable=True),
     sa.Column('contact_Name', sa.String(length=20), nullable=True),
     sa.Column('contact_Phone', sa.String(length=20), nullable=True),
-    sa.ForeignKeyConstraint(['ownerId'], ['user.id'], ),
+    sa.Column('owner_user_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['owner_user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('propertyCode')
     )
     op.create_table('association',

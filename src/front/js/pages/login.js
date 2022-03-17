@@ -11,8 +11,8 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {store, actions} = useContext(Context);
-  const onSubmit = (data, e) => console.log(data, e);
-  const onError = (errors, e) => console.log(errors, e);
+  const onSubmit = (data, e) => {};
+  const onError = (errors, e) => {};
   const token = sessionStorage.getItem('token');
   const history = useHistory();
  

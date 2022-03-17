@@ -13,7 +13,7 @@ const Register = () => {
   const [registerForm, setRegisterForm] = useState({});
   const history = useHistory();
 
-  console.log("register en componen",registerForm)
+  // console.log("register en componen",registerForm)
 
   return (
     <div className="container signInWrap">

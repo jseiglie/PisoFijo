@@ -202,7 +202,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000", requestOptions)
 				.then(response => response.text())
-				.then(result => console.log(result))
+				.then()
 				.catch(error => console.log('error', error));
 			},
 
