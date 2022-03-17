@@ -97,7 +97,7 @@ def test():
 
     return response.json()
 
-@api.route('/search')
+@api.route('/search' , methods=["POST"])
 def search():
     url = "https://api.idealista.com/3.5/es/search?"
     filtersUrl = request.json.get('url', None)
@@ -105,17 +105,17 @@ def search():
     print("--->URL FILTROS: <----",filtersUrl)
     # filtersUrl = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
     finalUrl = url + filtersUrl
-    print("-------------------------->",finalUrl,"<----------------------------------------")
+    print("-------------------------->final url ",finalUrl,"<----------------------------------------")
 
     payload={}
     headers = {
     'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzU2MDg0NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGYxZDBjNGMtZWRlMC00NWU4LWI3MWMtN2I4ZmEyZmZhMWFkIiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.k0q2k8eHDlSV-32__W_9J51kNdCU4VFkUrWiKXG5fRs'
     }
     
-    response = requests.request("POST", finalUrl, headers=headers, data=payload)
-    print("RESPUESTA------------------------------------>", response.text,"<------------------------------------------")
+    respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)
+    print("RESPUESTA------------------------------------>", respuesta.text,"<------------------------------------------")
 
-    return response.json()
+    return  jsonify(respuesta.text), 200
 
     # filters_url = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
 

@@ -27,11 +27,11 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       	baseUrlRegister:
-        	"https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/register",
+        	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/register",
 		baseUrlLogin:
-        	"https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/login",
+        	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/login",
 		baseUrlSearch:
-			"https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu38.gitpod.io/api/search",
+			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/search",
       token: null,
 	  response: {},
       country: "es", //(string) - values: es, it, pt (requiered)
@@ -228,20 +228,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.log('error', error));		
 			},
 			search: async (data) => { //<-----------------------------------------------------------------------
-				// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
+				const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 				// const dato = getStore().filters
 				console.log("data en flux", data);
 				const resp = await fetch(getStore().baseUrlSearch, {
-				  method: "GET",
+				  method: "POST",
 				  headers: {
 					"Content-Type": "application/json",
 					Accept: "application'json",
 				  },
-				  body: JSON.stringify(data),
+				  body: JSON.stringify(dato),
 				});
-				if (resp.status == 201) {
-				  const data = await resp.json();
-				 	setStore({response: data}); //<-----------------------------------------------------------------------
+				if (resp.ok) {
+					console.log("resp", resp)
+					
+				  const dataSearch = await resp.json();
+				  console.log("respues en el flux", dataSearch)
+				 	setStore({response: dataSearch}); //<-----------------------------------------------------------------------
 					console.log("Output API: ", getStore().response);
 				} else {
 				  alert("ALGO FALLO");
