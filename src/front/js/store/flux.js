@@ -31,7 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		baseUrlLogin:
         	"https://3001-programisto1011-4geekaca-8affixwmdig.ws-eu34.gitpod.io/api/login",
 		baseUrlSearch:
-			"https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu34.gitpod.io/api/search",
+			"https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu38.gitpod.io/api/search",
       token: null,
 	  response: {},
       country: "es", //(string) - values: es, it, pt (requiered)
@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
 					center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
 					locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
-					distance: 3500, //(double) - distance to center, in metres (ratio)
+					distance: 10500, //(double) - distance to center, in metres (ratio)
 					locationId: "", //(string) - idealista location code
 					maxPrice: 200000, //(double) - maximun price in response
 					minPrice: 50000, //(double) - minimun price in response
@@ -228,9 +228,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.catch(error => console.log('error', error));		
 			},
 			search: async (data) => { //<-----------------------------------------------------------------------
+				// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
+				// const dato = getStore().filters
 				console.log("data en flux", data);
 				const resp = await fetch(getStore().baseUrlSearch, {
-				  method: "POST",
+				  method: "GET",
 				  headers: {
 					"Content-Type": "application/json",
 					Accept: "application'json",
@@ -240,8 +242,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (resp.status == 201) {
 				  const data = await resp.json();
 				 	setStore({response: data}); //<-----------------------------------------------------------------------
+					console.log("Output API: ", getStore().response);
 				} else {
-				  alert("User already exist, try logging in");
+				  alert("ALGO FALLO");
 				}
 			  },
 

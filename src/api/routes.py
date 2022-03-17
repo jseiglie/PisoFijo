@@ -20,6 +20,24 @@ import sys
 
 api = Blueprint('api', __name__)
 
+# filterEntries: filters =>Object.entries(filters), 
+# 			filteredArrElementsNotEmpty: arr =>{
+# 				return arr.filter(el => el[1] != '' || el[1] == true)
+# 			},
+# 			concatenateArr: (arr)=>{
+# 				return ((arr.map(el =>el.join("="))).join("&"))
+# 			},
+# 			UrlFilters: filtersObj =>{
+# 				const url = getActions().concatenateArr(
+# 							getActions().filteredArrElementsNotEmpty(
+# 							getActions().filterEntries(filtersObj)));
+# 				console.log("UrlFilters: ",url)
+# 				return (url)
+# 			},
+
+# def filterEntries(filters) 
+#     return
+
 
 @api.route("/login", methods=["POST"])
 def login():
@@ -83,16 +101,19 @@ def test():
 def search():
     url = "https://api.idealista.com/3.5/es/search?"
     filtersUrl = request.json.get('url', None)
+    # filters = request.json
+    print("--->URL FILTROS: <----",filtersUrl)
+    # filtersUrl = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
     finalUrl = url + filtersUrl
     print("-------------------------->",finalUrl,"<----------------------------------------")
 
     payload={}
     headers = {
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzQ2NjU4NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGIzYjAyMWEtZjkxYS00MDM5LWJlMGYtMjdiZDcyMmRlZGE5IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.87VHaK4d2wF681X6zh7ZHgBqZHovUCZTlb6Di459T9E'
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzU2MDg0NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGYxZDBjNGMtZWRlMC00NWU4LWI3MWMtN2I4ZmEyZmZhMWFkIiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.k0q2k8eHDlSV-32__W_9J51kNdCU4VFkUrWiKXG5fRs'
     }
     
     response = requests.request("POST", finalUrl, headers=headers, data=payload)
-    print("------------------------------------>", response.text,"<------------------------------------------")
+    print("RESPUESTA------------------------------------>", response.text,"<------------------------------------------")
 
     return response.json()
 
