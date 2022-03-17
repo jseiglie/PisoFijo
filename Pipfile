@@ -18,6 +18,8 @@ gunicorn = "*"
 cloudinary = "*"
 flask-admin = "*"
 flask_jwt_extended = "*"
+requests = "*"
+
 [requires]
 python_version = "3.8"
 

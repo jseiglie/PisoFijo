@@ -91,13 +91,8 @@ const SearchMenu = () => {
     //     })
     // }
 
-    const transformAddressToLanLong = (event) =>{
-        actions.handleChangeTransformAddressToLanLong(event)
-    }
 
-    useEffect(() => {
-        actions.UrlFilters(filters);
-    }, [store.filters.center]);
+    console.log("Direccion Madrid", actions.getLatLonByAddress("Madrid"))
     
     return (
 
@@ -119,7 +114,10 @@ const SearchMenu = () => {
                     <label className="btn btn-default" htmlFor="a50">Rent</label>
                 </div>
             </Row>
-            <Form method="GET" action="/filter">
+            <Form onSubmit={ e =>{ 
+                e.preventDefault();
+                actions.search({"url":actions.UrlFilters(store.filters)})
+            }}>
                 <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                     <Col xs={12} md={5} lg={2} className="mt-2">
                         <Form.Select aria-label="Default select example" className="styleSelect"  onChange={e=>actions.handleChangeSelected(e, optionsArr)}>
@@ -141,21 +139,28 @@ const SearchMenu = () => {
                             placeholder="Search by location: '40.123,-3.242'"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
-                            onChange={e=>actions.handleChange(e, "inputLocation")} name="address"/>
+                            onChange={e=>actions.transformAddressToLanLong(e.target.value)} name="address"/>
                         </InputGroup>
                     </Col>
+
+                    <InputGroup >
+                        <FormControl className="url"
+                        placeholder="url"
+                        value={actions.UrlFilters(store.filters)}/>
+                    </InputGroup>
+
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
                         {/* <form action="/filter">
                             <Button type="submit" />
                         </form> */}
-                        <Link to="/filter">
-                            <Button variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
+                        {/* <Link to="/filter"> */}
+                            <Button type="submit" variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
                                 // onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}
                                 >  
                                 Search
                             </Button>
-                        </Link>
+                        {/* </Link> */}
                     </Col>
                 </Row>
             </Form>

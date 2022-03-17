@@ -2,9 +2,10 @@
 //1- Cuando seleccionas otra cosa en el mapa que no sean los marcadores ya no funcionan las ventanas de visualizacion
 //de nuestros marcadores
 
-import React, { useState, useContext } from 'react'
+import React, {useContext } from 'react'
 import { Context } from "../store/appContext.js";
 import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
+import googleMapsApiKey from "../store/credentialsAPIGoogle.js";
 
 import DetailsCard  from './DetailsCard';
 
@@ -32,7 +33,7 @@ const Map = (props) => {
 
   return (
      <LoadScript
-       googleMapsApiKey='AIzaSyDFE3td5eQXBdOJxSBikBJARyvj4VMc-6Q'>
+       googleMapsApiKey= {googleMapsApiKey}>
         <GoogleMap
           mapContainerStyle={mapStyles}
           zoom={13}

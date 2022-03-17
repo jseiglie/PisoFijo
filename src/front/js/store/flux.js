@@ -269,7 +269,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
       },
       register: async (data) => {
-        console.log("data en flux", data);
+        // console.log("data en flux", data);
         const resp = await fetch(getStore().baseUrlRegister, {
           method: "POST",
 		  

@@ -1,8 +1,11 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import timedelta
-
 
 db = SQLAlchemy()
+
+favorites = db.Table('association',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
+    db.Column('property_id', db.Integer, db.ForeignKey('property.propertyCode'), primary_key=True)
+)
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -12,6 +15,8 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     telephone = db.Column(db.Integer(), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
+    favorites_properties = db.relationship('Property', secondary=favorites, lazy="subquery", backref=db.backref('User favorites', lazy=True))
+    His_properties = db.relationship("Property", backref="Owner", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -29,7 +34,6 @@ class User(db.Model):
 class Property(db.Model):
     __tablename__ = 'property'
     propertyCode = db.Column(db.Integer(), primary_key=True)
-    ownerId = db.Column(db.Integer(), db.ForeignKey('user.id'))
     address = db.Column(db.String(120), unique=False, nullable=True)
     agency = db.Column(db.Boolean, unique=False, nullable=True)
     bathrooms = db.Column(db.Integer(), unique=False, nullable=True)
@@ -53,18 +57,22 @@ class Property(db.Model):
     preservation = db.Column(db.String(20), unique=False, nullable=True)
     contact_Name = db.Column(db.String(20), unique=False, nullable=True)
     contact_Phone = db.Column(db.String(20), unique=False, nullable=True)
+    owner_user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return '<User %r>' % self.userName
+        return '<Property %r>' % self.propertyCode
 
     def serialize(self):
         return {
             #Serialize this correctly, match idealista
-            "id": self.id,
-            "firstName": self.firstName,
-            "lastName": self.lastName,
+            "propertyCode": self.propertyCode,
+            "ownerId": self.ownerId,
+            "address": self.address,
             "email": self.email,
-            "telephone": self.telephone,
+            "agency": self.agency,
+            "bathrooms": self.bathrooms,
+            "condition": self.condition,
+            "description": self.description,
             # do not serialize the password, its a security breach
         }
     # def create_member(self):
