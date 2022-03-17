@@ -73,30 +73,6 @@ def register():
         print(str(err))
         return jsonify({'message': str(err)}), 500
 
-
-# @api.route("/user", methods=["GET"])
-# def get_user():
-#         user = {"name": "Matias", "age": 28}
-#         return jsonify({'results':user}), 201
-
-# requests={}
-
-@api.route('/test')
-def test():
-    url = "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
-
-    payload={}
-    headers = {
-    'Authorization': 'Bearer aaa'
-    }
-
-    # eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzQ2NjU4NiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGIzYjAyMWEtZjkxYS00MDM5LWJlMGYtMjdiZDcyMmRlZGE5IiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.87VHaK4d2wF681X6zh7ZHgBqZHovUCZTlb6Di459T9E
-    
-    response = requests.request("POST", url, headers=headers, data=payload)
-    print("------------------------------------>", response.text,"<------------------------------------------")
-
-    return response.json()
-
 @api.route('/search' , methods=["POST"])
 def search():
     url = "https://api.idealista.com/3.5/es/search?"
