@@ -112,13 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				console.log("filters change selected: ", getStore().filters); 
 		},
-		//-------------------------------------------------------------------------------------------------
-		transformAddressToLanLong: (address) => {
-				console.log("Direccion entrante: ", address)
-				console.log("Resultado: ", getActions().getLatLonByAddress(address))
-				setStore({filters:{...getStore().filters, "center": getActions().getLatLonByAddress(address)}})
-				console.log("filters after transform center: ", getStore().filters);
-		},
+
 		getLatLonByAddress: addressText =>{
 				Geocode.fromAddress(addressText).then(
 					(response) => {

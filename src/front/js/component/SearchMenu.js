@@ -144,24 +144,23 @@ const SearchMenu = () => {
                         </InputGroup>
                     </Col>
 
-                    <InputGroup >
-                        <FormControl className="url"
-                        placeholder="url"
-                        value={actions.UrlFilters(store.filters)}/>
-                    </InputGroup>
-
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
                         {/* <form action="/filter">
                             <Button type="submit" />
                         </form> */}
-                        {/* <Link to="/filter"> */}
+                        <Link to="/filter">
                             <Button type="submit" variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
                                 // onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}
                                 >  
                                 Search
                             </Button>
-                        {/* </Link> */}
+                        </Link> 
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <input className="w-100" value={actions.UrlFilters(store.filters)}/>
                     </Col>
                 </Row>
             </Form>
