@@ -14,11 +14,17 @@ import Map from "../component/Map";
 
 const Filter = () => {
 
+    
     const { store, actions } = useContext(Context);
+    const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
+        console.log("--->Arr values:", arrValues);
+    const arrKeys = ["lat","lng"];
+    const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
+        console.log("Center", center); //Output: {lat:40.430, lng:-3.702}
 
     return (
     <>
-        <div className="container mt-2 mb-2 p-2">
+        <div className="container-fluid mt-2 mb-2 p-2">
             <Row>
                 <Col xs={12} md={12} lg={4}>
                     <div className="container-Filter-filter">
@@ -27,23 +33,13 @@ const Filter = () => {
                 </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
-                        <Map centerRequest={store.centerRequest} 
+                        <Map centerRequest={center} 
                             propertiesSearch={store.propertiesSearch}
                             viewInfoWindow={true}
                         />
-                        {/* <img src={MapExample} alt="Map example" /> */}
                         <div className="container-DetailsCard">
-                            {/* <DetailsCard className="container-DetailsCard" /> */}
                         </div>
                     </div>
-
-
-                    {/* <Col className="d-flex justify-content-center">
-            <div className="d-none d-lg-block d-xl-block position-fixed mt-3">          
-                <ContactForm />
-            </div> */}
-
-
                 </Col>
             </Row>
         </div>

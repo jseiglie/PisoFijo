@@ -39,8 +39,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&
 			//order=publicationDate&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&
 			//locationId=0-EU-ES-28
-		distanceRequest: 15000,
-		centerRequest: {lat:40.430, lng:-3.702},
 		filters:{
 			//generalFilters: 
 			operation: "sale", //(string) - values: sale, rent (requiered)
@@ -68,6 +66,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			bankOffer: false, //owner is a bank - works for sale in spain
 			elevator: false //(boolean)
 		},
+		distanceRequest: 15000,
+		centerRequest: {lat:40.430, lng:-3.702},
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
 		selected: [],
@@ -75,6 +75,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
     actions: {
+
+		stringToFloat: (text) =>{
+			return parseFloat(text)
+		},
+
+		stringToArr: (text, delimiter) =>{
+			return text.split(delimiter);
+		},
+	
+		arrKeysAndValuesToObject: (arrKeys, arrValues) =>{
+			// input: arrKeys = [a,b]  arrValues = ["11","12"] -> output: obj ={a:11, b:12}
+			var obj = {};
+			for (var i = 0; i < arrKeys.length; i++) {
+				obj[arrKeys[i]] = arrValues[i];
+			} 
+			return obj
+		},
+
 		addElementListArr: (inputValue) => {
 			setStore({ list: [...getStore().list, inputValue] });
 		},

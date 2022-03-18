@@ -4,13 +4,8 @@
 }
 
 .Map-container-filter{
-    height: 90vh; /*<---*/
+    width: 100%; /*<---*/
     position: relative;
-}
-.Map-container-filter img{
-    height: 90vh;
-    width: 100%;
-    object-fit:cover;
 }
 
 @media (min-width: 700px) {

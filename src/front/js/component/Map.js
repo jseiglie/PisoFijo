@@ -25,8 +25,6 @@ const Map = (props) => {
     width: "90vh"};
   
   const center = props.centerRequest
-  
-  
   const locations = props.propertiesSearch;
 
   console.log("Property locations", locations);
