@@ -91,8 +91,6 @@ const SearchMenu = () => {
     //     })
     // }
 
-
-    console.log("Direccion Madrid", actions.getLatLonByAddress("Madrid"))
     
     return (
 
@@ -139,7 +137,7 @@ const SearchMenu = () => {
                             placeholder="Search by location: '40.123,-3.242'"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
-                            // onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
+                            onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
                             //Cuidado con el bucle infinito!!!!
                             name="address"
                             />
