@@ -114,6 +114,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		//-------------------------------------------------------------------------------------------------
 		transformAddressToLanLong: (address) => {
+				console.log("Direccion entrante: ", address)
+				console.log("Resultado: ", getActions().getLatLonByAddress(address))
 				setStore({filters:{...getStore().filters, "center": getActions().getLatLonByAddress(address)}})
 				console.log("filters after transform center: ", getStore().filters);
 		},
@@ -122,8 +124,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					(response) => {
 					  const { lat, lng } = response.results[0].geometry.location;
 					  const address = `${lat}, ${lng}`;
-					  console.log("Resultado trans direccion a coordenadas", address);
-					  return address
+					  console.log("latitud, longitud", address);
+					  setStore({filters:{...getStore().filters, "center": address}})
+					  console.log("Store filters: ", getStore().filters);
 					},
 					(error) => {
 					  console.error(error);
@@ -134,9 +137,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		// Output: [["country", "es"], ["operation","sale"]]
 		filterEntries: filters =>Object.entries(filters), 
 		filteredArrElementsNotEmpty: arr =>{
+			
 			return arr.filter(el => el[1] != '' || el[1] == true)
 		},
 		concatenateArr: (arr)=>{
+
 			return ((arr.map(el =>el.join("="))).join("&"))
 		},
 		UrlFilters: filtersObj =>{
@@ -144,6 +149,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							getActions().filteredArrElementsNotEmpty(
 							getActions().filterEntries(filtersObj)));
 				console.log("UrlFilters: ",url)
+
 				return (url)
 		},
 		//Input: {operation: "sale", center: "40.123,-3.242", ...} 

@@ -91,8 +91,6 @@ const SearchMenu = () => {
     //     })
     // }
 
-
-    console.log("Direccion Madrid", actions.getLatLonByAddress("Madrid"))
     
     return (
 
@@ -131,7 +129,7 @@ const SearchMenu = () => {
 
                     </Col>
                     <Col xs={12} md="auto" lg={8} className="mt-2 mb-2">
-                        <InputGroup >
+                        <InputGroup>
                             <InputGroup.Text className="inputTransparent" id="basic-addon1">
                                 <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon-SearchMenu"/>
                             </InputGroup.Text>
@@ -139,7 +137,10 @@ const SearchMenu = () => {
                             placeholder="Search by location: '40.123,-3.242'"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
-                            onChange={e=>actions.transformAddressToLanLong(e.target.value)} name="address"/>
+                            onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
+                            //Cuidado con el bucle infinito!!!!
+                            name="address"
+                            />
                         </InputGroup>
                     </Col>
 
