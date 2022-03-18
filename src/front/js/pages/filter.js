@@ -17,10 +17,10 @@ const Filter = () => {
     
     const { store, actions } = useContext(Context);
     const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
-        console.log("--->Arr values:", arrValues);
     const arrKeys = ["lat","lng"];
     const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
         console.log("Center", center); //Output: {lat:40.430, lng:-3.702}
+        console.log("Respuesta:",store.propertiesSearch.elementList)
 
     return (
     <>
@@ -34,7 +34,7 @@ const Filter = () => {
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
                         <Map centerRequest={center} 
-                            propertiesSearch={store.propertiesSearch}
+                            propertiesSearch={store.propertiesSearch.elementList}
                             viewInfoWindow={true}
                         />
                         <div className="container-DetailsCard">
