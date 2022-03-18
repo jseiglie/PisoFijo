@@ -215,7 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//   console.log("respues en el flux", dataSearch)
 			 	setStore({propertiesSearch: dataSearch}); //<-----------------------------------------------------------------------
 				console.log("Output API: ", getStore().propertiesSearch);
-				console.log("latitude",getStore().propertiesSearch.elementList)
+				console.log("latitude",getStore().propertiesSearch)
 			} else {
 			  alert("ALGO FALLO");
 			}
