@@ -98,12 +98,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 
      //---------------------------------------------------------------------------------------------
-		handleChange: (e, sectionStore) => {
+		handleChange: (e) => {
 				const {name, value} = e.target;
 				console.log(`name: ${name}`, `value: ${value}`)
-				setStore({sectionStore:{...getStore().sectionStore, [name]: value}})
-				console.log(`${sectionStore} change input: `, getStore().sectionStore);
-				console.log("filters change input: ", getStore().filters);
+				setStore({filters:{...getStore().filters, [name]: value}})
+				console.log(`filters change input: `, getStore().filters);
 		},
 		//----------------------------------------------------------------------------------------------
 
@@ -129,6 +128,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}       	     
 				})
 				console.log("filters change selected: ", getStore().filters); 
+		},
+
+		handleChangeCheckbox: (e) => {
+			const {name, checked} = e.target;
+			setStore({filters:{...getStore().filters, [name]: checked}});
+			console.log("filters Change Checkbox: ",getStore().filters);
 		},
 
 		getLatLonByAddress: addressText =>{
