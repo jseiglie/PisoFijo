@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { Context } from "../store/appContext.js";
 
 import "../../styles/filter.css";
@@ -14,11 +14,23 @@ import Map from "../component/Map";
 
 const Filter = () => {
 
+    
     const { store, actions } = useContext(Context);
+    const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
+    const arrKeys = ["lat","lng"];
+    const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
+    const [citySearched, setCitySearched] = useState("")
+        // console.warn("Respuesta en filter sin useEffect:",store.propertiesSearch)
+        //Tienes que ser .elementList pero no funciona cuando lo ponemos
+
+    useEffect(()=>{
+        setCitySearched(store.propertiesSearch)
+        // console.warn("Respuesta dentro del useEffect:",store.propertiesSearch)
+    },[store.propertiesSearch])
 
     return (
     <>
-        <div className="container mt-2 mb-2 p-2">
+        <div className="container-fluid mt-2 mb-2 p-2">
             <Row>
                 <Col xs={12} md={12} lg={4}>
                     <div className="container-Filter-filter">
@@ -27,23 +39,12 @@ const Filter = () => {
                 </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
-                        <Map centerRequest={store.centerRequest} 
-                            propertiesSearch={store.propertiesSearch}
+                        <Map centerRequest={center} 
                             viewInfoWindow={true}
                         />
-                        {/* <img src={MapExample} alt="Map example" /> */}
                         <div className="container-DetailsCard">
-                            {/* <DetailsCard className="container-DetailsCard" /> */}
                         </div>
                     </div>
-
-
-                    {/* <Col className="d-flex justify-content-center">
-            <div className="d-none d-lg-block d-xl-block position-fixed mt-3">          
-                <ContactForm />
-            </div> */}
-
-
                 </Col>
             </Row>
         </div>

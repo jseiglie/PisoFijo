@@ -2,16 +2,19 @@
 //1- Cuando seleccionas otra cosa en el mapa que no sean los marcadores ya no funcionan las ventanas de visualizacion
 //de nuestros marcadores
 
-import React, {useContext } from 'react'
+import React, {useContext, useEffect, useState } from 'react'
 import { Context } from "../store/appContext.js";
 import { GoogleMap, LoadScript, Marker, InfoWindow} from '@react-google-maps/api'
 import googleMapsApiKey from "../store/credentialsAPIGoogle.js";
+
 
 import DetailsCard  from './DetailsCard';
 
 const Map = (props) => {
 
   const { store, actions } = useContext(Context);
+
+  const [city, setCity] = useState([])
   
   const onSelect = item => {
     actions.getSelectedProperty(item);
@@ -25,11 +28,18 @@ const Map = (props) => {
     width: "90vh"};
   
   const center = props.centerRequest
-  
-  
-  const locations = props.propertiesSearch;
 
-  console.log("Property locations", locations);
+
+  useEffect(()=>{
+       setCity(store.propertiesSearch.map(item => {
+        return (
+        <Marker key={item.propertyCode} 
+        position={{lat:item.latitude, lng:item.longitude}}
+        onClick={() => onSelect(item)}/>
+        )
+      }))
+  },[store.propertiesSearch])
+
 
   return (
      <LoadScript
@@ -38,15 +48,8 @@ const Map = (props) => {
           mapContainerStyle={mapStyles}
           zoom={13}
           center={center}>
-          {
-            locations.map(item => {
-              return (
-              <Marker key={item.propertyCode} 
-              position={{lat:item.latitude, lng:item.longitude}}
-              onClick={() => onSelect(item)}/>
-              )
-            })
-          }
+
+          {city}
 
           {
             props.viewInfoWindow && store.selected.propertyCode && 
@@ -74,5 +77,7 @@ const Map = (props) => {
      </LoadScript>
   )
 }
+
+
 
 export default Map;

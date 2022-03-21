@@ -39,8 +39,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//Example: https://api.idealista.com/3/es/search?locale=es&maxItems=20&numPage=1&operation=sale&
 			//order=publicationDate&propertyType=garages&sort=desc&apikey={api_key}&t=1&language=es&bankOffer=true&
 			//locationId=0-EU-ES-28
-		distanceRequest: 15000,
-		centerRequest: {lat:40.430, lng:-3.702},
 		filters:{
 			//generalFilters: 
 			operation: "sale", //(string) - values: sale, rent (requiered)
@@ -68,13 +66,33 @@ const getState = ({ getStore, getActions, setStore }) => {
 			bankOffer: false, //owner is a bank - works for sale in spain
 			elevator: false //(boolean)
 		},
+		distanceRequest: 15000,
+		centerRequest: {lat:40.430, lng:-3.702},
 		inputLocation: {address: "barcelona"},
-		propertiesSearch: exampleRequestIdealista.elementList,
+		propertiesSearch: [],
 		selected: [],
 		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
     actions: {
+
+		stringToFloat: (text) =>{
+			return parseFloat(text)
+		},
+
+		stringToArr: (text, delimiter) =>{
+			return text.split(delimiter);
+		},
+	
+		arrKeysAndValuesToObject: (arrKeys, arrValues) =>{
+			// input: arrKeys = [a,b]  arrValues = ["11","12"] -> output: obj ={a:11, b:12}
+			var obj = {};
+			for (var i = 0; i < arrKeys.length; i++) {
+				obj[arrKeys[i]] = arrValues[i];
+			} 
+			return obj
+		},
+
 		addElementListArr: (inputValue) => {
 			setStore({ list: [...getStore().list, inputValue] });
 		},
@@ -117,10 +135,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				Geocode.fromAddress(addressText).then(
 					(response) => {
 					  const { lat, lng } = response.results[0].geometry.location;
-					  const address = `${lat}, ${lng}`;
+					  const address = `${lat},${lng}`;
 					  console.log("latitud, longitud", address);
 					  setStore({filters:{...getStore().filters, "center": address}})
-					  console.log("Store filters: ", getStore().filters);
+					//   console.log("Store filters: ", getStore().filters);
 					},
 					(error) => {
 					  console.error(error);
@@ -142,8 +160,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const url = getActions().concatenateArr(
 							getActions().filteredArrElementsNotEmpty(
 							getActions().filterEntries(filtersObj)));
-				console.log("UrlFilters: ",url)
-
 				return (url)
 		},
 		//Input: {operation: "sale", center: "40.123,-3.242", ...} 
@@ -178,47 +194,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(err.message)
 					})
 				},
-		getDetailsOfProperties: () => {
-
-				var myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
-
-				var requestOptions = {
-				method: 'POST',
-				mode: "no-cors",
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch("https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000", requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));
-		},
-		getDetailsOfPropertiesTest: (filterUrl) => {
-			 	let url = urlBaseAPI.concat(getStore().country,"/search?",filterUrl);
-				// let url = "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
-				console.log("URL fetch: ",url);
-
-				let myHeaders = new Headers();
-				myHeaders.append("Content-Type", "application/json");
-				myHeaders.append("Authorization", `Bearer ${credentials.access_token}`);
-
-				let requestOptions = {
-				method: 'POST',
-				// mode: "no-cors",
-				headers: myHeaders,
-				redirect: 'follow'
-				};
-
-				fetch(url, requestOptions)
-				.then(response => response.text())
-				.then(result => console.log(result))
-				.catch(error => console.log('error', error));		
-		},
 		search: async (data) => { //<-----------------------------------------------------------------------
-			const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
+			// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 			// const dato = getStore().filters
 			console.log("data en flux", data);
 			const resp = await fetch(getStore().baseUrlSearch, {
@@ -233,10 +210,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log("resp", resp)
 				
 			  const dataSearch = await resp.json();
-			//   console.log("respues en el flux", dataSearch)
-			 	setStore({response: dataSearch}); //<-----------------------------------------------------------------------
+			 	setStore({propertiesSearch: dataSearch.elementList}); //<-----------------------------------------------------------------------
 				console.log("Output API: ", getStore().propertiesSearch);
-				console.log("latitude",getStore().propertiesSearch.elementList)
 			} else {
 			  alert("ALGO FALLO");
 			}
