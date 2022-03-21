@@ -93,7 +93,7 @@ def search():
     respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)
     print("RESPUESTA------------------------------------>", respuesta.text,"<------------------------------------------")
 
-    return  jsonify(respuesta.text), 200
+    return  jsonify(respuesta.json()), 200
 
     # filters_url = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
 

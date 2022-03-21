@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		distanceRequest: 15000,
 		centerRequest: {lat:40.430, lng:-3.702},
 		inputLocation: {address: "barcelona"},
-		propertiesSearch: exampleRequestIdealista,
+		propertiesSearch: [],
 		selected: [],
 		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
@@ -138,7 +138,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					  const address = `${lat},${lng}`;
 					  console.log("latitud, longitud", address);
 					  setStore({filters:{...getStore().filters, "center": address}})
-					  console.log("Store filters: ", getStore().filters);
+					//   console.log("Store filters: ", getStore().filters);
 					},
 					(error) => {
 					  console.error(error);
@@ -160,8 +160,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const url = getActions().concatenateArr(
 							getActions().filteredArrElementsNotEmpty(
 							getActions().filterEntries(filtersObj)));
-				console.log("UrlFilters: ",url)
-
 				return (url)
 		},
 		//Input: {operation: "sale", center: "40.123,-3.242", ...} 
@@ -212,8 +210,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log("resp", resp)
 				
 			  const dataSearch = await resp.json();
-			//   console.log("respues en el flux", dataSearch)
-			 	setStore({propertiesSearch: dataSearch}); //<-----------------------------------------------------------------------
+			 	setStore({propertiesSearch: dataSearch.elementList}); //<-----------------------------------------------------------------------
 				console.log("Output API: ", getStore().propertiesSearch);
 			} else {
 			  alert("ALGO FALLO");

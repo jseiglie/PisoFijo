@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { Context } from "../store/appContext.js";
 
 import "../../styles/filter.css";
@@ -19,7 +19,14 @@ const Filter = () => {
     const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
     const arrKeys = ["lat","lng"];
     const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
-        console.log("Respuesta:",store.propertiesSearch)
+    const [citySearched, setCitySearched] = useState("")
+        // console.warn("Respuesta en filter sin useEffect:",store.propertiesSearch)
+        //Tienes que ser .elementList pero no funciona cuando lo ponemos
+
+    useEffect(()=>{
+        setCitySearched(store.propertiesSearch)
+        // console.warn("Respuesta dentro del useEffect:",store.propertiesSearch)
+    },[store.propertiesSearch])
 
     return (
     <>
@@ -33,7 +40,6 @@ const Filter = () => {
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
                         <Map centerRequest={center} 
-                            propertiesSearch={store.propertiesSearch.elementList}
                             viewInfoWindow={true}
                         />
                         <div className="container-DetailsCard">

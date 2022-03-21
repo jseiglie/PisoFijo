@@ -146,8 +146,6 @@ const FilterMenu = () => {
     // //Output: "operation=sale&center=40.123,-3.242&locale=es&distance=3500&maxPrice=200000&minPrice=50000&sinceDate=W"
     // };
 
-	console.log(actions.UrlFilters(filters)); 
-
     return (
         <div className="container-FilterMenu">
                 <Form>
