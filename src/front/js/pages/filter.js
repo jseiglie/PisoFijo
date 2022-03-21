@@ -19,7 +19,7 @@ const Filter = () => {
     const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
     const arrKeys = ["lat","lng"];
     const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
-        console.log("Respuesta:",store.propertiesSearch.elementList)
+        console.log("Respuesta:",store.propertiesSearch)
 
     return (
     <>

@@ -80,14 +80,14 @@ def search():
     url = "https://api.idealista.com/3.5/es/search?"
     filtersUrl = request.json.get('url', None)
     # filters = request.json
-    print("--->URL FILTROS: <----",filtersUrl)
     # filtersUrl = "operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"
+    print("--->URL FILTROS: <----",filtersUrl)
     finalUrl = url + filtersUrl
     print("-------------------------->final url ",finalUrl,"<----------------------------------------")
 
     payload={}
     headers = {
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzkwMDMyNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiMTg0MDgzZjMtNmI4OS00YTJmLWI2NzQtNTc5YmJiNjMxNzllIiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.mi87fDZZ-IOPK0Ev-A5KH0NP_1kAh5kIM0MLU93KegM'
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzkwNDY3MywiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiNDVhNWZlOGUtYzBiMC00MTdjLWEzZDMtNjBkY2YzYjFlNDM2IiwiY2xpZW50X2lkIjoiYWRyM2dycjgzMWFza3FtOTluYXB3Y2MwZTI5b3Y1eWYifQ.vZ_wlON1FIjmtRXchPfr6Box6IecSqWfay65dTtTOlg'
     }
     
     respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)

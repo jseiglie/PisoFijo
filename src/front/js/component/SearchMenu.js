@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useState, useContext, useEffect, Component} from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
@@ -10,6 +10,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import image from "../../img/Vector.png";
+import { useHistory } from "react-router-dom";
+// import { withRouter } from 'react-router-dom'; // <--- import `withRouter`. We will use this in the bottom of our file.
 
 import "../../styles/SearchMenu.css"
 
@@ -91,6 +93,14 @@ const SearchMenu = () => {
     //     })
     // }
 
+    let history = useHistory();
+
+    const submitForm  = (e) => {
+        e.preventDefault()
+        e.stopPropagation();
+        actions.search({"url":actions.UrlFilters(store.filters)});
+        history.push('/filter'); // <--- The page you want to redirect your user to.
+    }
     
     return (
 
@@ -112,10 +122,7 @@ const SearchMenu = () => {
                     <label className="btn btn-default" htmlFor="a50">Rent</label>
                 </div>
             </Row>
-            <Form onSubmit={ e =>{ 
-                e.preventDefault();
-                actions.search({"url":actions.UrlFilters(store.filters)})
-            }}>
+            <Form onSubmit={submitForm}>
                 <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                     <Col xs={12} md={5} lg={2} className="mt-2">
                         <Form.Select aria-label="Default select example" className="styleSelect"  onChange={e=>actions.handleChangeSelected(e, optionsArr)}>
@@ -138,6 +145,7 @@ const SearchMenu = () => {
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
+                            //Cuidado con el bucle infinito!!!!
                             name="address"
                             />
                         </InputGroup>
@@ -145,6 +153,7 @@ const SearchMenu = () => {
 
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
+                        {/* <Link to="/filter"> */}
                             <Button type="submit" variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
                                 // onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}
                                 >  

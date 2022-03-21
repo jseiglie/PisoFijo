@@ -135,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				Geocode.fromAddress(addressText).then(
 					(response) => {
 					  const { lat, lng } = response.results[0].geometry.location;
-					  const address = `${lat}, ${lng}`;
+					  const address = `${lat},${lng}`;
 					  console.log("latitud, longitud", address);
 					  setStore({filters:{...getStore().filters, "center": address}})
 					  console.log("Store filters: ", getStore().filters);
@@ -197,16 +197,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 				},
 		search: async (data) => { //<-----------------------------------------------------------------------
-			const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
+			// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 			// const dato = getStore().filters
-			console.log("data en flux", dato);
+			console.log("data en flux", data);
 			const resp = await fetch(getStore().baseUrlSearch, {
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
 				Accept: "application'json",
 			  },
-			  body: JSON.stringify(dato),
+			  body: JSON.stringify(data),
 			});
 			if (resp.ok) {
 				// console.log("resp", resp)
