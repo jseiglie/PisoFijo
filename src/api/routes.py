@@ -87,7 +87,7 @@ def search():
 
     payload={}
     headers = {
-    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzU2MDg0NCwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiOGYxZDBjNGMtZWRlMC00NWU4LWI3MWMtN2I4ZmEyZmZhMWFkIiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.k0q2k8eHDlSV-32__W_9J51kNdCU4VFkUrWiKXG5fRs'
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJyZWFkIl0sImV4cCI6MTY0NzkwMDMyNSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QVUJMSUMiXSwianRpIjoiMTg0MDgzZjMtNmI4OS00YTJmLWI2NzQtNTc5YmJiNjMxNzllIiwiY2xpZW50X2lkIjoidnI5ZHR0cGd2amZtaTVpazEyZGlvcDd1dXhrMDZlYWkifQ.mi87fDZZ-IOPK0Ev-A5KH0NP_1kAh5kIM0MLU93KegM'
     }
     
     respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)

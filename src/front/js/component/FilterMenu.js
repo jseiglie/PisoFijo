@@ -23,7 +23,7 @@ const FilterMenu = () => {
 
     const {store,actions} = useContext(Context);
 
-    console.log("Access token: ",store.accessToken);
+    // console.log("Access token: ",store.accessToken);
 
     const RequestToken = () =>{
         actions.getAccessToken();
@@ -117,7 +117,6 @@ const FilterMenu = () => {
 
     useEffect(()=>{
         setInputFilterValues(store.filters.center)
-        console.log("input filter values",inputFilterValues);
     },[store.filters.center, filters])
 
 	const filterEntries = filters =>Object.entries(filters) // {country: "es", operation: "sale"} => [["country", "es"], ["operation","sale"]]

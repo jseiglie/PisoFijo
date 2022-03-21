@@ -199,14 +199,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 		search: async (data) => { //<-----------------------------------------------------------------------
 			const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 			// const dato = getStore().filters
-			console.log("data en flux", data);
+			console.log("data en flux", dato);
 			const resp = await fetch(getStore().baseUrlSearch, {
 			  method: "POST",
 			  headers: {
 				"Content-Type": "application/json",
 				Accept: "application'json",
 			  },
-			  body: JSON.stringify(data),
+			  body: JSON.stringify(dato),
 			});
 			if (resp.ok) {
 				// console.log("resp", resp)
@@ -215,7 +215,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//   console.log("respues en el flux", dataSearch)
 			 	setStore({propertiesSearch: dataSearch}); //<-----------------------------------------------------------------------
 				console.log("Output API: ", getStore().propertiesSearch);
-				console.log("latitude",getStore().propertiesSearch)
 			} else {
 			  alert("ALGO FALLO");
 			}

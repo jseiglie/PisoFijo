@@ -138,7 +138,6 @@ const SearchMenu = () => {
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                             onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
-                            //Cuidado con el bucle infinito!!!!
                             name="address"
                             />
                         </InputGroup>
@@ -146,16 +145,12 @@ const SearchMenu = () => {
 
                     <Col xs={12} md={2} lg={2} className="mt-2">
                         {/* VICTOR - Falta la validación para asegurarse que todos los campos estan completos */}
-                        {/* <form action="/filter">
-                            <Button type="submit" />
-                        </form> */}
-                        <Link to="/filter">
                             <Button type="submit" variant="primary justify-content-left buttonSearchMenu" className="buttonSearch mb-1" 
                                 // onClick={(e) => {e.preventDefault(); actions.transformAddressToLanLong(store.inputLocation.address)}}
                                 >  
                                 Search
                             </Button>
-                        </Link> 
+                        {/* </Link>  */}
                     </Col>
                 </Row>
                 <Row>

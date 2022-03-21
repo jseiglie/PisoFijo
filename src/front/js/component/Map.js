@@ -27,7 +27,7 @@ const Map = (props) => {
   const center = props.centerRequest
   const locations = props.propertiesSearch;
 
-  console.log("Property locations", locations);
+  // console.log("Property locations", locations);
 
   return (
      <LoadScript
