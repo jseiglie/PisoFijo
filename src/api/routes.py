@@ -92,7 +92,8 @@ def search():
 @api.route('/favorites' , methods=["GET"])
 def getFavorites():
     favorites = Property.query.all()
-    favorites_serialized =[]
-    for property in favorites:
-        favorites_serialized.append(property.serialize())
-    return  jsonify({"results": favorites_serialized}), 200
+    # favorites_serialized =[]
+    # for property in favorites:
+    #     favorites_serialized.append(property.serialize())
+    # return  jsonify({"results": favorites_serialized}), 200
+    return  jsonify({"results": list(map(lambda properties: properties.serialize(), favorites))}), 200

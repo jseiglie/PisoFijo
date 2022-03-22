@@ -37,6 +37,7 @@ class Property(db.Model):
     __tablename__ = 'property'
     id = db.Column(db.Integer(), primary_key=True)
     propertyCode =  db.Column(db.Integer(), unique=False, nullable=True)
+    thumbnail = db.Column(db.String(1000), unique=False, nullable=True)
     address = db.Column(db.String(120), unique=False, nullable=True)
     agency = db.Column(db.Boolean, unique=False, nullable=True)
     bathrooms = db.Column(db.Integer(), unique=False, nullable=True)
@@ -69,13 +70,22 @@ class Property(db.Model):
         return {
             "id": self.id,
             "propertyCode": self.propertyCode,
+            "thumbnail": self.thumbnail,
             "ownerId": self.owner_user_id,
+            "propertyType": self.propertyType,
             "address": self.address,
+            "district": self.district,
+            "municipality": self.municipality,
+            "price": self.price,
+            "size": self.size,
             "agency": self.agency,
+            "rooms": self.rooms,
             "bathrooms": self.bathrooms,
+            "floor": self.floor,
             "condition": self.condition,
             "description": self.description,
         }
+
     # def create_member(self):
     #     db.session.add(self)
     #     db.session.commit()
