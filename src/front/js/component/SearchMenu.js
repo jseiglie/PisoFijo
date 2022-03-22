@@ -98,7 +98,7 @@ const SearchMenu = () => {
     const submitForm  = (e) => {
         e.preventDefault()
         e.stopPropagation();
-        actions.search({"url":actions.UrlFilters(store.filters)});
+        // actions.search({"url":actions.UrlFilters(store.filters)});
         history.push('/filter'); // <--- The page you want to redirect your user to.
     }
     

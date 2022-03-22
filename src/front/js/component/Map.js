@@ -67,8 +67,7 @@ const Map = (props) => {
                 area={store.selected.size}
                 numRooms={store.selected.rooms}
                 floor={store.selected.bathrooms}
-                fav={true}
-              
+                fav={true}      
               />
             </InfoWindow>
             )

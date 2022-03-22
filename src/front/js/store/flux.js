@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		distanceRequest: 15000,
 		centerRequest: {lat:40.430, lng:-3.702},
 		inputLocation: {address: "barcelona"},
-		propertiesSearch: [],
+		propertiesSearch: exampleRequestIdealista.elementList,
 		selected: [],
 		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
