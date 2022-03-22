@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 favorites = db.Table('association',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True),
-    db.Column('property_id', db.Integer, db.ForeignKey('property.propertyCode'), primary_key=True)
+    db.Column('property_id', db.Integer, db.ForeignKey('property.id'), primary_key=True)
 )
 
 class User(db.Model):
@@ -13,10 +13,10 @@ class User(db.Model):
     firstName = db.Column(db.String(120), unique=False, nullable=False)
     lastName = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    telephone = db.Column(db.Integer(), unique=True, nullable=True)
+    telephone = db.Column(db.String(20), unique=True, nullable=True)
     password = db.Column(db.String(240), unique=False, nullable=False)
     favorites_properties = db.relationship('Property', secondary=favorites, lazy="subquery", backref=db.backref('User favorites', lazy=True))
-    His_properties = db.relationship("Property", backref="Owner", lazy=True)
+    his_properties = db.relationship("Property", backref="Owner", lazy=True)
 
     def __repr__(self):
         return '<User %r>' % self.email
@@ -28,12 +28,15 @@ class User(db.Model):
             "lastName": self.lastName,
             "email": self.email,
             "telephone": self.telephone,
+            "favorites": list(map(lambda property: property.serialize(), self.favorites_properties)),
+            "his_properties": list(map(lambda property: property.serialize(), self.his_properties))
             # do not serialize the password, its a security breach
         }
 
 class Property(db.Model):
     __tablename__ = 'property'
-    propertyCode = db.Column(db.Integer(), primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
+    propertyCode =  db.Column(db.Integer(), unique=False, nullable=True)
     address = db.Column(db.String(120), unique=False, nullable=True)
     agency = db.Column(db.Boolean, unique=False, nullable=True)
     bathrooms = db.Column(db.Integer(), unique=False, nullable=True)
@@ -60,20 +63,18 @@ class Property(db.Model):
     owner_user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return '<Property %r>' % self.propertyCode
+        return '<Property %r>' % self.id
 
     def serialize(self):
         return {
-            #Serialize this correctly, match idealista
+            "id": self.id,
             "propertyCode": self.propertyCode,
-            "ownerId": self.ownerId,
+            "ownerId": self.owner_user_id,
             "address": self.address,
-            "email": self.email,
             "agency": self.agency,
             "bathrooms": self.bathrooms,
             "condition": self.condition,
             "description": self.description,
-            # do not serialize the password, its a security breach
         }
     # def create_member(self):
     #     db.session.add(self)

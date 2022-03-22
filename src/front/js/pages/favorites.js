@@ -12,32 +12,32 @@ export const Favorites = (props) => {
     },[])
 
     const getFavorites = async()=>{
-        const response = await fetch("https://3001-programisto1011-4geekaca-rg8q9408rbs.ws-eu34.gitpod.io/api/test");
-        const data = await response;
-        console.log(response);
-        // setFavorites(data);
-        setFavorites(data);
+        const response = await fetch("https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/favorites");
+        console.log("Respuesta:",response);
+        setFavorites(data.results);
     }
+
+    console.warn(typeof favorites);
 
     return (
     <>
-      <div className="container container-details mt-2 mb-2 pt-2">
-
-        {/* <h1>{favorites.elementList}</h1> */}
-        <h1>{favorites.elementList}</h1>
-      {/* <DetailsCard
-                urlImg={store.selected.thumbnail}
-                type={store.selected.propertyType}
-                location={`${store.selected.district}, ${store.selected.municipality}`}
-                value={store.selected.price}
-                area={store.selected.size}
-                numRooms={store.selected.rooms}
-                floor={store.selected.bathrooms}
-                fav={true}
-              
-              />
-         */}
-      </div>
+       <div className="container container-details mt-2 mb-2 pt-2">
+        {favorites.map((favorite)=>{
+          return (
+            <DetailsCard
+              key={favorite.id}
+              urlImg={favorite.thumbnail}
+              type={favorite.propertyType}
+              location={`${favorite.district}, ${favorite.municipality}`}
+              value={favorite.price}
+              area={favorite.size}
+              numRooms={favorite.rooms}
+              floor={favorite.bathrooms}
+              fav={true}/>
+          );
+        }) 
+        }
+      </div> 
     </>
   );
 };

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5000e9b7cdc1
+Revision ID: b91e53ba3b7e
 Revises: 
-Create Date: 2022-03-16 11:21:59.259534
+Create Date: 2022-03-22 14:02:45.987051
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5000e9b7cdc1'
+revision = 'b91e53ba3b7e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -23,15 +23,15 @@ def upgrade():
     sa.Column('firstName', sa.String(length=120), nullable=False),
     sa.Column('lastName', sa.String(length=120), nullable=False),
     sa.Column('email', sa.String(length=120), nullable=False),
-    sa.Column('telephone', sa.Integer(), nullable=True),
+    sa.Column('telephone', sa.String(length=20), nullable=True),
     sa.Column('password', sa.String(length=240), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('telephone')
     )
     op.create_table('property',
-    sa.Column('propertyCode', sa.Integer(), nullable=False),
-    sa.Column('ownerId', sa.Integer(), nullable=True),
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('propertyCode', sa.Integer(), nullable=True),
     sa.Column('address', sa.String(length=120), nullable=True),
     sa.Column('agency', sa.Boolean(), nullable=True),
     sa.Column('condition', sa.String(length=10), nullable=True),
@@ -54,13 +54,14 @@ def upgrade():
     sa.Column('preservation', sa.String(length=20), nullable=True),
     sa.Column('contact_Name', sa.String(length=20), nullable=True),
     sa.Column('contact_Phone', sa.String(length=20), nullable=True),
-    sa.ForeignKeyConstraint(['ownerId'], ['user.id'], ),
-    sa.PrimaryKeyConstraint('propertyCode')
+    sa.Column('owner_user_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['owner_user_id'], ['user.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('association',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('property_id', sa.Integer(), nullable=False),
-    sa.ForeignKeyConstraint(['property_id'], ['property.propertyCode'], ),
+    sa.ForeignKeyConstraint(['property_id'], ['property.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'property_id')
     )
