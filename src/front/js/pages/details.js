@@ -16,6 +16,7 @@ export const Details = (props) => {
 
   const { store, actions } = useContext(Context);
   console.log("Selected details: ",store.selected);
+  console.log("lat",store.selected.latitude)
 
   return (
     <>
@@ -47,9 +48,12 @@ export const Details = (props) => {
                   <p className="text-desciption-details">{store.selected.description}</p>
                 </Row>
                 <Row className="resume-row pb-2">
-                  <Map centerRequest={{lat:store.selected.latitude, lng:store.selected.longitude}} 
-                              propertiesSearch={[store.selected]}
-                              viewInfoWindow={false} 
+                  <Map  
+                        // centerRequest={{lat: 40.4292726, lng:-3.6839874}}
+                        centerRequest={{lat:parseFloat(store.selected.latitude), 
+                         lng:parseFloat(store.selected.longitude)}} 
+                        propertiesSearch={[store.selected]}
+                        viewInfoWindow={false} 
                   />
                 </Row>
                   <div className="d-lg-none d-xl-none container-buttons-details">

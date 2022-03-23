@@ -25,8 +25,9 @@ const Filter = () => {
 
     useEffect(()=>{
         setCitySearched(store.propertiesSearch)
-        // console.warn("Respuesta dentro del useEffect:",store.propertiesSearch)
     },[store.propertiesSearch])
+
+    console.log("--->citySearched",citySearched);
 
     return (
     <>
@@ -39,7 +40,9 @@ const Filter = () => {
                 </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
-                        <Map centerRequest={center} 
+                        <Map 
+                            propertiesSearch={[citySearched]}
+                            centerRequest={center} 
                             viewInfoWindow={true}
                         />
                         <div className="container-DetailsCard">

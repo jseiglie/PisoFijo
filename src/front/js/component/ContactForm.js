@@ -1,4 +1,4 @@
-import React, { Component, ImageBackground } from "react";
+import React from "react";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons'
@@ -12,7 +12,7 @@ import "../../styles/ContactForm.css";
 const ContactForm = () => (
   <div className="container-ContactForm p-2">   
       <h4 className="text-center">Contact us</h4> 
-      <Form className="m-3" action="mailto:programisto1011@gmail.com" method="post" enctype="text/plain">
+      <Form className="m-3">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Enter email" />

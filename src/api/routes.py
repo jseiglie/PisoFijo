@@ -90,12 +90,3 @@ def search():
     respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)
     print("RESPUESTA------------------------------------>", respuesta.text,"<------------------------------------------")
     return  jsonify(respuesta.json()), 200
-
-@api.route('/favorites' , methods=["GET"])
-def getFavorites():
-    favorites = Property.query.all()
-    # favorites_serialized =[]
-    # for property in favorites:
-    #     favorites_serialized.append(property.serialize())
-    # return  jsonify({"results": favorites_serialized}), 200
-    return  jsonify({"results": list(map(lambda properties: properties.serialize(), favorites))}), 200

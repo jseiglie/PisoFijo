@@ -71,9 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
 		selected: [],
-		favorites: [],
 		userLogin: [],
-		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
     actions: {
@@ -217,17 +215,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log("resp", resp)
 				
 			  const dataSearch = await resp.json();
-			 	setStore({propertiesSearch: dataSearch.elementList}); //<-----------------------------------------------------------------------
+			 	setStore({propertiesSearch: dataSearch.elementList}); 
 				console.log("Output API: ", getStore().propertiesSearch);
 			} else {
 			  alert("ALGO FALLO");
 			}
-		},
-
-		getFavorites: async()=>{
-			const response = await fetch("https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/favorites");
-			const data = await response.json();
-			setStore({favorites: data.results});
 		},
 
       	login: async (email, password) => {
@@ -254,10 +246,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			const data = await resp.json();
 			sessionStorage.setItem("token", data.access_token);
-			console.log("--------->",data.identity.favorites)
 			setStore({token: data.access_token});
 			setStore({userLogin: data.identity});
-			console.log("Registered user data: ", getStore().userLogin)
 			return true;
 			} catch (error) {
 			console.error("There's has been an error login in");

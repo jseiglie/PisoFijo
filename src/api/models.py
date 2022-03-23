@@ -84,6 +84,8 @@ class Property(db.Model):
             "floor": self.floor,
             "condition": self.condition,
             "description": self.description,
+            "latitude": self.latitude,
+            "longitude": self.longitude
         }
 
     # def create_member(self):
