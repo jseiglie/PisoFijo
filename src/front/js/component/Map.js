@@ -13,14 +13,10 @@ import DetailsCard  from './DetailsCard';
 const Map = (props) => {
 
   const { store, actions } = useContext(Context);
-
   const [city, setCity] = useState([])
   
   const onSelect = item => {
     actions.getSelectedProperty(item);
-    console.log("Selected: ", store.selected);
-    console.log("Selected lat", store.selected.latitude);
-    console.log("Selected lon", store.selected.longitude);
   }
   
   const mapStyles = {        
@@ -28,7 +24,6 @@ const Map = (props) => {
     width: "90vh"};
   
   const center = props.centerRequest
-
 
   useEffect(()=>{
        setCity(store.propertiesSearch.map(item => {
@@ -39,7 +34,6 @@ const Map = (props) => {
         )
       }))
   },[store.propertiesSearch])
-
 
   return (
      <LoadScript

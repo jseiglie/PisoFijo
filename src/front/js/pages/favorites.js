@@ -2,18 +2,19 @@ import React, {useContext, useEffect, useState } from 'react'
 import DetailsCard  from '../component/DetailsCard';
 import { Context } from "../store/appContext.js";
 
-export const Favorites = (props) => {
+export const Favorites = () => {
 
     const { store, actions } = useContext(Context);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(()=>{
-        actions.getFavorites();
-    },[store.favorites])
+        setFavorites(store.userLogin.favorites);
+    },[store.userLogin])
 
     return (
     <>
        <div className="container container-details mt-2 mb-2 pt-2">
-        {store.favorites.map((favorite)=>{
+        {favorites.map((favorite)=>{
           return (
             <div key={favorite.id}>
               <DetailsCard

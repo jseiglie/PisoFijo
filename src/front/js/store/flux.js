@@ -72,6 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		propertiesSearch: exampleRequestIdealista.elementList,
 		selected: [],
 		favorites: [],
+		userLogin: [],
 		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
@@ -253,9 +254,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			const data = await resp.json();
 			sessionStorage.setItem("token", data.access_token);
-			setStore({ token: data.access_token });
-			// setStore({favorites: data.identity.favorites});
-			// console.warn("User favorites: ", getStore(favorites))
+			console.log("--------->",data.identity.favorites)
+			setStore({token: data.access_token});
+			setStore({userLogin: data.identity});
+			console.log("Registered user data: ", getStore().userLogin)
 			return true;
 			} catch (error) {
 			console.error("There's has been an error login in");
