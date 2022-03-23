@@ -48,7 +48,9 @@ def login():
     user = User.query.filter_by(email=email).one_or_none()    
     if user:
         access_token = create_access_token(identity=user.serialize())
-        return jsonify(access_token= access_token), 200
+        print("------------------>",user.serialize())
+        return jsonify(access_token = access_token),
+        #return jsonify({"access_token": access_token, "identity": user.serialize()}), 200 
     else :
         jsonify({"msg": "Bad username or password"}), 401
 

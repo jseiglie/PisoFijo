@@ -58,9 +58,8 @@ DetailsCard.propTypes = {
  	value: PropTypes.number,
     area: PropTypes.number,
     numRooms: PropTypes.number,
-    floor: PropTypes.number,
+    floor: PropTypes.string,
     fav: PropTypes.bool
-
 };
 
 export default DetailsCard;

@@ -254,6 +254,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			const data = await resp.json();
 			sessionStorage.setItem("token", data.access_token);
 			setStore({ token: data.access_token });
+			// setStore({favorites: data.identity.favorites});
+			// console.warn("User favorites: ", getStore(favorites))
 			return true;
 			} catch (error) {
 			console.error("There's has been an error login in");
