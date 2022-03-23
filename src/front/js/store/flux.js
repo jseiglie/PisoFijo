@@ -71,6 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
 		selected: [],
+		favorites: [],
 		listFavorites: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
@@ -220,6 +221,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			} else {
 			  alert("ALGO FALLO");
 			}
+		},
+
+		getFavorites: async()=>{
+			const response = await fetch("https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/favorites");
+			const data = await response.json();
+			setStore({favorites: data.results});
 		},
 
       	login: async (email, password) => {
