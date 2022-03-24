@@ -20,23 +20,17 @@ const Map = (props) => {
   const onSelect = item => {
     actions.getSelectedProperty(item);
   }
+
+  useEffect(()=>{
+    setCity(props.propertiesSearch)
+  },[props.propertiesSearch])
   
   const mapStyles = {        
     height: "90vh",
     width: "90vh"};
   
   const center = props.centerRequest
-
-  useEffect(()=>{
-       setCity(props.propertiesSearch.map((item,index) => {
-        return (
-        <Marker key={index} 
-        position={{lat:parseFloat(item.latitude), lng:parseFloat(item.longitude)}}
-        // position={{lat: 40.4292726, lng:-3.6839874}}
-        onClick={() => onSelect(item)}/>
-        )
-      }))
-  },[store.propertiesSearch])
+  console.log("Map-properties:", props.propertiesSearch[0])
 
   return (
      <LoadScript
@@ -46,14 +40,18 @@ const Map = (props) => {
           zoom={13}
           center={center}>
 
-          {city}
+          {city.map((item,index) => { 
+          return (
+          <Marker key={index} 
+          position={{lat:parseFloat(item.latitude), lng:parseFloat(item.longitude)}}
+          onClick={() => onSelect(item)}/>
+          )})}
 
           {
             props.viewInfoWindow && store.selected.propertyCode && 
             (
               <InfoWindow
               position={{lat: parseFloat(store.selected.latitude), lng: parseFloat(store.selected.longitude)}}
-              // position={{lat: 40.4292726, lng:-3.6839874}}
               clickable={true}
               onCloseClick={() => actions.getSelectedProperty({})}
             >

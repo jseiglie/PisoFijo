@@ -15,8 +15,8 @@ import Map from "../component/Map";
 export const Details = (props) => {
 
   const { store, actions } = useContext(Context);
-  console.log("Selected details: ",store.selected);
-  console.log("lat",store.selected.latitude)
+  console.log("Selected details: ", typeof store.selected);
+  console.log("--->propertiesSearch: ", typeof store.propertiesSearch);
 
   return (
     <>
