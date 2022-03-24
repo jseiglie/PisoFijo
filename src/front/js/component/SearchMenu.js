@@ -72,10 +72,10 @@ const SearchMenu = () => {
                                     <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon-SearchMenu"/>
                                 </InputGroup.Text>
                                 <FormControl className="inputTransparent"
-                                placeholder="Search by location: '40.123,-3.242'"
-                                aria-label="Username"
+                                placeholder="Search by name or address: -Madrid- or -Calle Alcala 12 Madrid-"
+                                aria-label="address"
                                 aria-describedby="basic-addon1"
-                                onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
+                                onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value, "filters")}} 
                                 name="address"
                                 />
                             </InputGroup>

@@ -140,20 +140,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 			console.log(`${storeSection} Change Checkbox: `,getStore().storeSection);
 		},
 
-		getLatLonByAddress: addressText =>{
+		getLatLonByAddress: (addressText, storeSection) =>{
 				Geocode.fromAddress(addressText).then(
 					(response) => {
-					  const { lat, lng } = response.results[0].geometry.location;
-					  const address = `${lat},${lng}`;
-					  console.log("latitud, longitud", address);
-					  setStore({filters:{...getStore().filters, "center": address}})
-					//   console.log("Store filters: ", getStore().filters);
+						const { lat, lng } = response.results[0].geometry.location;
+						const address = `${lat},${lng}`;
+						setStore({storeSection:{...getStore().storeSection, "center": address}})
+						console.log(`${storeSection} Change Address: `, getStore().storeSection);
 					},
 					(error) => {
 					  console.error(error);
 					}
 				);	  
 		},
+		getNearPlaces: (typePlaces, location, radius) =>{
+
+			var config = {
+				method: 'get',
+				url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY',
+				headers: { }
+			  };
+			  
+			  axios(config)
+			  .then(function (response) {
+				console.log(JSON.stringify(response.data));
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  });
+		},
+
 		// Input:{country: "es", operation: "sale"} 
 		// Output: [["country", "es"], ["operation","sale"]]
 		filterEntries: filters =>Object.entries(filters), 
@@ -214,6 +230,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				},
 			);
+			console.log("input New Property: ", getStore().newProperty)
+			
 			const data = await response.json();
 			alert(data.response);
 		},

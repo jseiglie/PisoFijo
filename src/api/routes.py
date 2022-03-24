@@ -107,6 +107,6 @@ def search():
 @api.route('/newproperty', methods=['POST'])
 def add_new_property():
     body = request.get_json()
-    print(body)
+    print("----->",body)
     return jsonify({'response': 'ERROR'})
 #-----------------------------------------------------------------------------------------

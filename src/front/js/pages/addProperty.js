@@ -5,38 +5,40 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { useHistory } from "react-router-dom";
+import FormControl from "react-bootstrap/FormControl";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 const AddProperty = () => {
 
     const { store, actions } = useContext(Context);
-    const [favorites, setFavorites] = useState([]);
+    const [property, setProperty] = useState([]);
 
     const optionsArr = ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
 
     useEffect(()=>{
-        setFavorites(store.userLogin.favorites);
-    },[store.userLogin])
+        setProperty(store.newProperty);
+    },[store.newProperty])
 
     let history = useHistory();
 
-    const onSelect = item => {
-      actions.getSelectedProperty(item)
-      history.push('/details'); // <--- The page you want to redirect your user to.
+    const submitForm  = (e) => {
+        e.preventDefault()
+        e.stopPropagation();
+        actions.sendNewProperty(); 
+        // history.push('/favorites'); 
     }
-
-    const RequestbyFilters = () =>{
-        actions.search({"url":actions.UrlFilters(store.filters)})
-    };
+    console.warn("property: ", property);
 
     return (
     <>
         <div className="container container-details mt-2 mb-2 pt-2">
-            <Form>
+            <Form  onSubmit={submitForm}>
                 <Form.Group className="mb-3">
                     <Form.Label>
                         {/* VICTOR - Falta implementar la función para que devuelva true para el item seleccionado y
                         transforme el resto en false */}
-                        <Form.Select onChange={e=>actions.handleChangeSelected(e,arrOptions, "newProperty")}> 
+                        <Form.Select onChange={e=>actions.handleChangeSelected(e,"newProperty", optionsArr)}> 
                             <option disabled hidden>Properties type</option>
                             <option value="flat">Flat</option>
                             <option value="penthouse">Penthouse</option>
@@ -47,16 +49,23 @@ const AddProperty = () => {
                     </Form.Label>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formAddress">
-                    <Row>
-                        <Col>
-                            <h5 className="text-left-FilterMenu">Address</h5>
-                        </Col>
-                        <Col>
-                            <Form.Label>
-                                <Form.Control type="text" onChange={e=>actions.handleChange(e, "newProperty")} name="maxPrice"/>
-                            </Form.Label>
-                        </Col>
-                    </Row>
+                            <InputGroup>
+                                <InputGroup.Text className="inputTransparent" id="basic-addon1">
+                                    <FontAwesomeIcon icon={ faMagnifyingGlass } className="icon-SearchMenu"/>
+                                </InputGroup.Text>
+                                <FormControl className="inputTransparent"
+                                placeholder="Search by name or address: -Madrid- or -Calle Alcala 12 Madrid-"
+                                aria-label="address"
+                                aria-describedby="basic-addon1"
+                                onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value, "newProperty")}} 
+                                name="address"
+                                />
+                            </InputGroup>
+                            <InputGroup>
+                                <InputGroup.Text className="" id="basic-addon1">
+                                </InputGroup.Text>
+                                <FormControl value={property}/>
+                            </InputGroup>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formPrize">
                     <Row>
@@ -178,7 +187,7 @@ const AddProperty = () => {
                         </button>
                     </Col>
                     <Col>
-                        <button className="button-FilterMenu" variant="primary" type="submit" onClick={(e) => {e.preventDefault();RequestbyFilters()}}>
+                        <button className="button-FilterMenu" variant="primary" type="submit">
                             Submit
                         </button>
                     </Col>
