@@ -24,9 +24,6 @@ const Filter = () => {
         setCitySearched(store.propertiesSearch)
     },[])
 
-    console.log("--->citySearched",citySearched);
-    console.log("--->Store Searched",store.propertiesSearch);
-
     return (
     <>
         <div className="container-fluid mt-2 mb-2 p-2">

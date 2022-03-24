@@ -15,6 +15,7 @@ export const UserMenu = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu className='userMenu'>
                 <Dropdown.Item disabled >Settings</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/addproperty" disabled>Add property</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/favorites">Favorites</Dropdown.Item>
                 <Dropdown.Item onClick={()=> actions.logOut()}>SignOut</Dropdown.Item>
             </Dropdown.Menu>

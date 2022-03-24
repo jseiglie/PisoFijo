@@ -32,6 +32,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/login",
 		baseUrlSearch:
 			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/search",
+		baseUrlNewProperty:
+			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/newproperty",
       	token: null,
       	country: "es", //(string) - values: es, it, pt (requiered)
 		filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
@@ -70,6 +72,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		centerRequest: {lat:40.430, lng:-3.702},
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
+		// NO BORRAR !!!!!! DESCOMENTAR PARA NO TRUCADO propertiesSearch: [],
+		//SearchMenu  DESCOMENTAR DENTRO const submitForm:  actions.search({"url":actions.UrlFilters(store.filters)});
+		newProperty: [],
 		selected: [],
 		userLogin: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
@@ -98,42 +103,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 
      //---------------------------------------------------------------------------------------------
-		handleChange: (e) => {
+		handleChange: (e, storeSection) => {
 				const {name, value} = e.target;
-				console.log(`name: ${name}`, `value: ${value}`)
-				setStore({filters:{...getStore().filters, [name]: value}})
-				console.log(`filters change input: `, getStore().filters);
+				setStore({storeSection:{...getStore().storeSection, [name]: value}})
+				console.log(`${storeSection} change input: `, getStore().storeSection);
 		},
 		//----------------------------------------------------------------------------------------------
 
-		handleChangeRadio: e => {
+		handleChangeRadio: (e, storeSection) => {
 				const {name, value} = e.target;
 				if(e.target.checked){
-					setStore({filters:{...getStore().filters, [name]: value}});
-					console.log("filters change radio: ", getStore().filters);
+					setStore({storeSection:{...getStore().storeSection, [name]: value}});
+					console.log(`${storeSection} change radio: `, getStore().storeSection);
 				}
 		},
 		//----------------------------------------------------------------------------------------------
 
 		//VICTOR - Habría que refactorizar para que no haya que introducir las opciones
 
-		handleChangeSelected: (e, optionsArr) => {
+		handleChangeSelected: (e, storeSection, optionsArr) => {
 				const {value} = e.target;
 				optionsArr.map((option) => {
 					if(option == value){
-						setStore({filters:{...getStore().filters, [option]: true}});						 
+						setStore({storeSection:{...getStore().storeSection, [option]: true}});						 
 					}
 					else{
-						setStore({filters:{...getStore().filters, [option]: false}});
+						setStore({storeSection:{...getStore().storeSection, [option]: false}});
 					}       	     
 				})
-				console.log("filters change selected: ", getStore().filters); 
+				console.log(`${storeSection} change selected: `, getStore().storeSection); 
 		},
 
-		handleChangeCheckbox: (e) => {
+		handleChangeCheckbox: (e, storeSection) => {
 			const {name, checked} = e.target;
-			setStore({filters:{...getStore().filters, [name]: checked}});
-			console.log("filters Change Checkbox: ",getStore().filters);
+			setStore({storeSection:{...getStore().storeSection, [name]: checked}});
+			console.log(`${storeSection} Change Checkbox: `,getStore().storeSection);
 		},
 
 		getLatLonByAddress: addressText =>{
@@ -199,6 +203,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(err.message)
 					})
 				},
+
+		sendNewProperty: async() =>{
+			const response = await fetch(getStore().baseUrlNewProperty, 
+				{
+					method: 'POST',
+					body: JSON.stringify(getStore().newProperty),
+					headers:{
+						'Content-Type': 'application/json'
+					}
+				},
+			);
+			const data = await response.json();
+			alert(data.response);
+		},
+
 		search: async (data) => { //<-----------------------------------------------------------------------
 			// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 			// const dato = getStore().filters

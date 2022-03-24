@@ -30,6 +30,7 @@ const SearchMenu = () => {
     const submitForm  = (e) => {
         e.preventDefault()
         e.stopPropagation();
+        // actions.search({"url":actions.UrlFilters(store.filters)}); NO BORRAR!!!!!!!!<----------------------
         history.push('/filter'); 
     }
     
@@ -44,18 +45,18 @@ const SearchMenu = () => {
             <div className="container SearchMenu p-3">
                 <Row xs={12} md={6} lg={2} className="containerButton m-3">  
                     <div className="button buttonSelect">
-                        <input type="radio" id="a25" name="operation" value="sale" onChange={e=>actions.handleChangeRadio(e)} required/>
+                        <input type="radio" id="a25" name="operation" value="sale" onChange={e=>actions.handleChangeRadio(e, "filters")} required/>
                         <label className="btn btn-default " htmlFor="a25">Buy</label>
                     </div>
                     <div className="button buttonSelect">
-                        <input type="radio" id="a50" name="operation" value="rent" onChange={e=>actions.handleChangeRadio(e)}/>
+                        <input type="radio" id="a50" name="operation" value="rent" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                         <label className="btn btn-default" htmlFor="a50">Rent</label>
                     </div>
                 </Row>
                 <Form onSubmit={submitForm}>
                     <Row xs={1} md={6} lg={6} className="justify-content-left m-3 rowContainer">
                         <Col xs={12} md={5} lg={2} className="mt-2">
-                            <Form.Select aria-label="Default select example" className="styleSelect"  onChange={e=>actions.handleChangeSelected(e, optionsArr)}>
+                            <Form.Select aria-label="Default select example" className="styleSelect"  onChange={e=>actions.handleChangeSelected(e,"filters", optionsArr)}>
                                 <option disabled hidden>Properties type</option>
                                 <option value="flat">Flat</option>
                                 <option value="penthouse">Penthouse</option>
@@ -75,7 +76,6 @@ const SearchMenu = () => {
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
                                 onChange={e=>{e.preventDefault();actions.getLatLonByAddress(e.target.value)}} 
-                                //Cuidado con el bucle infinito!!!!
                                 name="address"
                                 />
                             </InputGroup>
@@ -88,11 +88,6 @@ const SearchMenu = () => {
                             </Button>
                         </Col>
                     </Row>
-                    {/* <Row>
-                        <Col>
-                            <input className="w-100" value={actions.UrlFilters(store.filters)}/>
-                        </Col>
-                    </Row> */}
                 </Form>
             </div>
         </div>

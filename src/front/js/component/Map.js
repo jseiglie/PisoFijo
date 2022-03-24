@@ -30,8 +30,7 @@ const Map = (props) => {
     width: "90vh"};
   
   const center = props.centerRequest
-  console.log("Map-properties:", props.propertiesSearch[0])
-
+  
   return (
      <LoadScript
        googleMapsApiKey= {googleMapsApiKey}>

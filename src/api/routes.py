@@ -90,3 +90,23 @@ def search():
     respuesta = requests.request("POST", finalUrl, headers=headers, data=payload)
     print("RESPUESTA------------------------------------>", respuesta.text,"<------------------------------------------")
     return  jsonify(respuesta.json()), 200
+
+#Ejemplo de consulta filtrada a base de datos 
+#-----------------------------------------------------------------------------------------
+# @api.route('/filter-properties', method=['GET'])
+# def get_filter_properties():
+#     properties = Property.query.filter(and_(
+#         size > 100,
+#         rooms > 2,
+#         propertyType == "flat"
+#     ))
+#     return jsonify({'results': properties.serialize()})
+#-----------------------------------------------------------------------------------------
+#Ejemplo de añadir nuevas entradas a la base de datos
+#-----------------------------------------------------------------------------------------
+@api.route('/newproperty', methods=['POST'])
+def add_new_property():
+    body = request.get_json()
+    print(body)
+    return jsonify({'response': 'ERROR'})
+#-----------------------------------------------------------------------------------------
