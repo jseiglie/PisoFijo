@@ -29,6 +29,7 @@ const AddProperty = () => {
         // history.push('/favorites'); 
     }
     console.warn("property: ", property);
+    console.warn("store.newProperty: ", store.newProperty);
 
     return (
     <>

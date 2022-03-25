@@ -76,6 +76,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		//SearchMenu  DESCOMENTAR DENTRO const submitForm:  actions.search({"url":actions.UrlFilters(store.filters)});
 		newProperty: [],
 		selected: [],
+		nearbyPlaces: [],
 		userLogin: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
@@ -153,7 +154,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				);	  
 		},
-		getNearPlaces: (typePlaces, location, radius) =>{
+		getNearbyPlaces: (typePlaces, location, radius) =>{
 
 			var config = {
 				method: 'get',
