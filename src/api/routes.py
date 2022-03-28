@@ -48,7 +48,9 @@ def login():
     user = User.query.filter_by(email=email).one_or_none()    
     if user:
         access_token = create_access_token(identity=user.serialize())
-        return jsonify(access_token= access_token), 200
+        # print("------------------>",user.serialize())
+        # return jsonify(access_token = access_token), 200
+        return jsonify({"access_token": access_token, "identity": user.serialize()}), 200 
     else :
         jsonify({"msg": "Bad username or password"}), 401
 
@@ -89,11 +91,22 @@ def search():
     print("RESPUESTA------------------------------------>", respuesta.text,"<------------------------------------------")
     return  jsonify(respuesta.json()), 200
 
-@api.route('/favorites' , methods=["GET"])
-def getFavorites():
-    favorites = Property.query.all()
-    # favorites_serialized =[]
-    # for property in favorites:
-    #     favorites_serialized.append(property.serialize())
-    # return  jsonify({"results": favorites_serialized}), 200
-    return  jsonify({"results": list(map(lambda properties: properties.serialize(), favorites))}), 200
+#Ejemplo de consulta filtrada a base de datos 
+#-----------------------------------------------------------------------------------------
+# @api.route('/filter-properties', method=['GET'])
+# def get_filter_properties():
+#     properties = Property.query.filter(and_(
+#         size > 100,
+#         rooms > 2,
+#         propertyType == "flat"
+#     ))
+#     return jsonify({'results': properties.serialize()})
+#-----------------------------------------------------------------------------------------
+#Ejemplo de añadir nuevas entradas a la base de datos
+#-----------------------------------------------------------------------------------------
+@api.route('/newproperty', methods=['POST'])
+def add_new_property():
+    body = request.get_json()
+    print("----->",body)
+    return jsonify({'response': 'ERROR'})
+#-----------------------------------------------------------------------------------------

@@ -43,7 +43,7 @@ const FilterMenu = () => {
                         <Form.Label>
                             {/* VICTOR - Falta implementar la función para que devuelva true para el item seleccionado y
                             transforme el resto en false */}
-                            <Form.Select onChange={e=>actions.handleChangeSelected(e,arrOptions)}> 
+                            <Form.Select onChange={e=>actions.handleChangeSelected(e,"filters", arrOptions)}> 
                                 <option disabled hidden>Properties type</option>
                                 <option value="flat">Flat</option>
                                 <option value="penthouse">Penthouse</option>
@@ -67,7 +67,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number"  onChange={e=>actions.handleChange(e)} name="minPrice"/>
+                                    <Form.Control type="number"  onChange={e=>actions.handleChange(e, "filters")} name="minPrice"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -79,7 +79,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number" onChange={e=>actions.handleChange(e)} name="maxPrice"/>
+                                    <Form.Control type="number" onChange={e=>actions.handleChange(e, "filters")} name="maxPrice"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -98,7 +98,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number" onChange={e=>actions.handleChange(e)} name="minSize"/>
+                                    <Form.Control type="number" onChange={e=>actions.handleChange(e, "filters")} name="minSize"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -110,7 +110,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number" onChange={e=>actions.handleChange(e)} name="maxSize"/>
+                                    <Form.Control type="number" onChange={e=>actions.handleChange(e, "filters")} name="maxSize"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -122,7 +122,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number" onChange={e=>actions.handleChange(e)} name="bedrooms"/>
+                                    <Form.Control type="number" onChange={e=>actions.handleChange(e, "filters")} name="bedrooms"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -134,7 +134,7 @@ const FilterMenu = () => {
                             </Col>
                             <Col>
                                 <Form.Label>
-                                    <Form.Control type="number" onChange={e=>actions.handleChange(e)} name="bathrooms"/>
+                                    <Form.Control type="number" onChange={e=>actions.handleChange(e, "filters")} name="bathrooms"/>
                                 </Form.Label>
                             </Col>
                         </Row>
@@ -146,7 +146,7 @@ const FilterMenu = () => {
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="checkbox" id="haveElevator" label="Elevator" 
-                                    onChange={e=>actions.handleChangeCheckbox(e)} name="elevator"/>
+                                    onChange={e=>actions.handleChangeCheckbox(e, "filters")} name="elevator"/>
                             </Col>
                         </Row>
                     </Form.Group>
@@ -156,13 +156,13 @@ const FilterMenu = () => {
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="preservation" label="Good condition" value="good" onChange={e=>actions.handleChangeRadio(e)}/>
+                                    name="preservation" label="Good condition" value="good" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-2">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="preservation" label="To reform" value="renew" onChange={e=>actions.handleChangeRadio(e)}/>
+                                    name="preservation" label="To reform" value="renew" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                             </Col>
                         </Row>
                         <Row>
@@ -171,25 +171,25 @@ const FilterMenu = () => {
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="sinceDate" label="Last 24 hours" value="T" onChange={e=>actions.handleChangeRadio(e)}/>
+                                    name="sinceDate" label="Last 24 hours" value="T" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="sinceDate" label="Last week" value="W" onChange={e=>actions.handleChangeRadio(e)}/>
+                                    name="sinceDate" label="Last week" value="W" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="sinceDate" label="Last month" value="M" onChange={e=>actions.handleChangeRadio(e)}/>
+                                    name="sinceDate" label="Last month" value="M" onChange={e=>actions.handleChangeRadio(e, "filters")}/>
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-2">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="radio" aria-label="option 1" id="condition" 
-                                    name="sinceDate" label="Indiferent" value="" onChange={e=>actions.handleChangeRadio(e)} defaultChecked/>
+                                    name="sinceDate" label="Indiferent" value="" onChange={e=>actions.handleChangeRadio(e, "filters")} defaultChecked/>
                             </Col>
                         </Row>
                         <Row>
@@ -198,13 +198,13 @@ const FilterMenu = () => {
                         <Row className="justify-content-md-center">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="checkbox" aria-label="option 1" id="condition" 
-                                    name="bankOffer" label="Of bank/agency" onChange={e=>actions.handleChangeCheckbox(e)} />
+                                    name="bankOffer" label="Of bank/agency" onChange={e=>actions.handleChangeCheckbox(e, "filters")} />
                             </Col>
                         </Row>
                         <Row className="justify-content-md-center mb-4">
                             <Col xs={12} md={8} lg={8}>
                                 <Form.Check type="checkbox" aria-label="option 1" id="condition"
-                                    name="virtualTour" label="Virtual" onChange={e=>actions.handleChangeCheckbox(e)}/>
+                                    name="virtualTour" label="Virtual" onChange={e=>actions.handleChangeCheckbox(e, "filters")}/>
                             </Col>
                         </Row>
                     <Row>

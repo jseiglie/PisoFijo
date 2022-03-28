@@ -1,20 +1,22 @@
 import React, {useContext, useEffect, useState } from 'react'
 import DetailsCard  from '../component/DetailsCard';
 import { Context } from "../store/appContext.js";
+import { useHistory } from "react-router-dom";
 
-export const Favorites = (props) => {
+export const Favorites = () => {
 
     const { store, actions } = useContext(Context);
     const [favorites, setFavorites] = useState([]);
 
     useEffect(()=>{
-        getFavorites();
-    },[])
+        setFavorites(store.userLogin.favorites);
+    },[store.userLogin])
 
-    const getFavorites = async()=>{
-        const response = await fetch("https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/favorites");
-        const data = await response.json();
-        setFavorites(data.results);
+    let history = useHistory();
+
+    const onSelect = item => {
+      actions.getSelectedProperty(item)
+      history.push('/details'); // <--- The page you want to redirect your user to.
     }
 
     return (
@@ -22,7 +24,7 @@ export const Favorites = (props) => {
        <div className="container container-details mt-2 mb-2 pt-2">
         {favorites.map((favorite)=>{
           return (
-            <div key={favorite.id}>
+            <div key={favorite.id} onClick={() => onSelect(favorite)}>
               <DetailsCard
                 urlImg={favorite.thumbnail}
                 type={favorite.propertyType}

@@ -14,19 +14,19 @@ import Map from "../component/Map";
 
 const Filter = () => {
 
-    
     const { store, actions } = useContext(Context);
     const arrValues = actions.stringToArr(store.filters.center, ",").map(x => { return actions.stringToFloat(x); });
     const arrKeys = ["lat","lng"];
     const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
-    const [citySearched, setCitySearched] = useState("")
-        // console.warn("Respuesta en filter sin useEffect:",store.propertiesSearch)
-        //Tienes que ser .elementList pero no funciona cuando lo ponemos
+    const [citySearched, setCitySearched] = useState([])
+
+    console.log("Center filter:", center);
+    console.log("Center filter store:", store.filters.center);
+
 
     useEffect(()=>{
         setCitySearched(store.propertiesSearch)
-        // console.warn("Respuesta dentro del useEffect:",store.propertiesSearch)
-    },[store.propertiesSearch])
+    },[])
 
     return (
     <>
@@ -39,7 +39,9 @@ const Filter = () => {
                 </Col >
                 <Col xs={12} md={12} lg={8} className="d-flex justify-content-center">
                     <div className="Map-container-filter text-center ">
-                        <Map centerRequest={center} 
+                        <Map 
+                            propertiesSearch={citySearched}
+                            centerRequest={center} 
                             viewInfoWindow={true}
                         />
                         <div className="container-DetailsCard">

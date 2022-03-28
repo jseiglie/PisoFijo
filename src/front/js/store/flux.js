@@ -32,6 +32,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/login",
 		baseUrlSearch:
 			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/search",
+		baseUrlNewProperty:
+			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/newproperty",
       	token: null,
       	country: "es", //(string) - values: es, it, pt (requiered)
 		filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
@@ -43,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//generalFilters: 
 			operation: "sale", //(string) - values: sale, rent (requiered)
 			propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-			center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
+			center: "40.4167754,-3.7037902", //(string) - geographic coordinates (WGS84) (latitude,longitude)
 			locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
 			distance: 10500, //(double) - distance to center, in metres (ratio)
 			locationId: "", //(string) - idealista location code
@@ -67,11 +69,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			elevator: false //(boolean)
 		},
 		distanceRequest: 15000,
-		centerRequest: {lat:40.430, lng:-3.702},
+		centerRequest: {lat:"40.4167754", lng:"-3.7037902"},
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
+		// propertiesSearch: [],
+		//SearchMenu  DESCOMENTAR DENTRO const submitForm:  actions.search({"url":actions.UrlFilters(store.filters)});
+		newProperty: [],
 		selected: [],
-		listFavorites: [],
+		nearbyPlaces: [],
+		userLogin: [],
 		optionsArr: ["flat", "penthouse", "duplex", "studio", "chalet", "countryHouse"]
     },
     actions: {
@@ -98,58 +104,73 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 
      //---------------------------------------------------------------------------------------------
-		handleChange: (e) => {
+		handleChange: (e, storeSection) => {
 				const {name, value} = e.target;
-				console.log(`name: ${name}`, `value: ${value}`)
-				setStore({filters:{...getStore().filters, [name]: value}})
-				console.log(`filters change input: `, getStore().filters);
+				setStore({storeSection:{...getStore().storeSection, [name]: value}})
+				console.log(`${storeSection} change input: `, getStore().storeSection);
 		},
 		//----------------------------------------------------------------------------------------------
 
-		handleChangeRadio: e => {
+		handleChangeRadio: (e, storeSection) => {
 				const {name, value} = e.target;
 				if(e.target.checked){
-					setStore({filters:{...getStore().filters, [name]: value}});
-					console.log("filters change radio: ", getStore().filters);
+					setStore({storeSection:{...getStore().storeSection, [name]: value}});
+					console.log(`${storeSection} change radio: `, getStore().storeSection);
 				}
 		},
 		//----------------------------------------------------------------------------------------------
 
 		//VICTOR - Habría que refactorizar para que no haya que introducir las opciones
 
-		handleChangeSelected: (e, optionsArr) => {
+		handleChangeSelected: (e, storeSection, optionsArr) => {
 				const {value} = e.target;
 				optionsArr.map((option) => {
 					if(option == value){
-						setStore({filters:{...getStore().filters, [option]: true}});						 
+						setStore({storeSection:{...getStore().storeSection, [option]: true}});						 
 					}
 					else{
-						setStore({filters:{...getStore().filters, [option]: false}});
+						setStore({storeSection:{...getStore().storeSection, [option]: false}});
 					}       	     
 				})
-				console.log("filters change selected: ", getStore().filters); 
+				console.log(`${storeSection} change selected: `, getStore().storeSection); 
 		},
 
-		handleChangeCheckbox: (e) => {
+		handleChangeCheckbox: (e, storeSection) => {
 			const {name, checked} = e.target;
-			setStore({filters:{...getStore().filters, [name]: checked}});
-			console.log("filters Change Checkbox: ",getStore().filters);
+			setStore({storeSection:{...getStore().storeSection, [name]: checked}});
+			console.log(`${storeSection} Change Checkbox: `,getStore().storeSection);
 		},
 
-		getLatLonByAddress: addressText =>{
+		getLatLonByAddress: (addressText, storeSection) =>{
 				Geocode.fromAddress(addressText).then(
 					(response) => {
-					  const { lat, lng } = response.results[0].geometry.location;
-					  const address = `${lat},${lng}`;
-					  console.log("latitud, longitud", address);
-					  setStore({filters:{...getStore().filters, "center": address}})
-					//   console.log("Store filters: ", getStore().filters);
+						const { lat, lng } = response.results[0].geometry.location;
+						const address = `${lat},${lng}`;
+						setStore({storeSection:{...getStore().storeSection, "center": address}})
+						console.log(`${storeSection} Change Address: `, getStore().storeSection);
 					},
 					(error) => {
 					  console.error(error);
 					}
 				);	  
 		},
+		getNearbyPlaces: (typePlaces, location, radius) =>{
+
+			var config = {
+				method: 'get',
+				url: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&keyword=cruise&key=YOUR_API_KEY',
+				headers: { }
+			  };
+			  
+			  axios(config)
+			  .then(function (response) {
+				console.log(JSON.stringify(response.data));
+			  })
+			  .catch(function (error) {
+				console.log(error);
+			  });
+		},
+
 		// Input:{country: "es", operation: "sale"} 
 		// Output: [["country", "es"], ["operation","sale"]]
 		filterEntries: filters =>Object.entries(filters), 
@@ -199,6 +220,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(err.message)
 					})
 				},
+
+		sendNewProperty: async() =>{
+			const response = await fetch(getStore().baseUrlNewProperty, 
+				{
+					method: 'POST',
+					body: JSON.stringify(getStore().newProperty),
+					headers:{
+						'Content-Type': 'application/json'
+					}
+				},
+			);
+			console.log("input New Property: ", getStore().newProperty)
+			
+			const data = await response.json();
+			alert(data.response);
+		},
+
 		search: async (data) => { //<-----------------------------------------------------------------------
 			// const dato = {url:"operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000"}
 			// const dato = getStore().filters
@@ -215,7 +253,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log("resp", resp)
 				
 			  const dataSearch = await resp.json();
-			 	setStore({propertiesSearch: dataSearch.elementList}); //<-----------------------------------------------------------------------
+			 	setStore({propertiesSearch: dataSearch.elementList}); 
 				console.log("Output API: ", getStore().propertiesSearch);
 			} else {
 			  alert("ALGO FALLO");
@@ -246,7 +284,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			}
 			const data = await resp.json();
 			sessionStorage.setItem("token", data.access_token);
-			setStore({ token: data.access_token });
+			setStore({token: data.access_token});
+			setStore({userLogin: data.identity});
 			return true;
 			} catch (error) {
 			console.error("There's has been an error login in");
