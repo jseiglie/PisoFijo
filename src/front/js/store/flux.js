@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//generalFilters: 
 			operation: "sale", //(string) - values: sale, rent (requiered)
 			propertyType: "homes", //(string) - values: homes, offices, premises, garages, bedrooms (required)
-			center: "40.123,-3.242", //(string) - geographic coordinates (WGS84) (latitude,longitude)
+			center: "40.4167754,-3.7037902", //(string) - geographic coordinates (WGS84) (latitude,longitude)
 			locale: "es", //(string) - search language for summary - values: es, it, pt, en, ca
 			distance: 10500, //(double) - distance to center, in metres (ratio)
 			locationId: "", //(string) - idealista location code
@@ -69,10 +69,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			elevator: false //(boolean)
 		},
 		distanceRequest: 15000,
-		centerRequest: {lat:40.430, lng:-3.702},
+		centerRequest: {lat:"40.4167754", lng:"-3.7037902"},
 		inputLocation: {address: "barcelona"},
 		propertiesSearch: exampleRequestIdealista.elementList,
-		// NO BORRAR !!!!!! DESCOMENTAR PARA NO TRUCADO propertiesSearch: [],
+		// propertiesSearch: [],
 		//SearchMenu  DESCOMENTAR DENTRO const submitForm:  actions.search({"url":actions.UrlFilters(store.filters)});
 		newProperty: [],
 		selected: [],

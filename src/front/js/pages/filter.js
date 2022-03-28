@@ -20,6 +20,10 @@ const Filter = () => {
     const center = actions.arrKeysAndValuesToObject(arrKeys, arrValues);
     const [citySearched, setCitySearched] = useState([])
 
+    console.log("Center filter:", center);
+    console.log("Center filter store:", store.filters.center);
+
+
     useEffect(()=>{
         setCitySearched(store.propertiesSearch)
     },[])

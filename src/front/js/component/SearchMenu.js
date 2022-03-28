@@ -30,7 +30,7 @@ const SearchMenu = () => {
     const submitForm  = (e) => {
         e.preventDefault()
         e.stopPropagation();
-        // actions.search({"url":actions.UrlFilters(store.filters)}); NO BORRAR!!!!!!!!<----------------------
+        // actions.search({"url":actions.UrlFilters(store.filters)}); // QUITAR SI LA API KEY CON FUNCIONA<----------------------
         history.push('/filter'); 
     }
     
