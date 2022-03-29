@@ -1,3 +1,10 @@
+.show {
+    display: flexbox;
+}
+
+.hide {
+    display: none;
+}
 
 .img-container-Carousel{
     height: 300px;

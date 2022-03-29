@@ -2,7 +2,6 @@ import React, { Component, ImageBackground } from "react";
 import Col from "react-bootstrap/Col";
 import Carousel from "react-bootstrap/Carousel";
 import "./../../styles/ModelViewer.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapLocationDot,
@@ -10,10 +9,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faClone } from "@fortawesome/free-regular-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-
 import * as PropTypes from "prop-types";
 import "../../styles/Carousel.css";
 import { ModelViewer } from "./ModelViewer";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 //Install npm install react-bootstrap bootstrap@s5.1.3
 // npm i --save @fortawesome/fontawesome-svg-core
@@ -57,6 +61,11 @@ const OwnCarousel = (props) => {
         <button className="view-button-Carousel" onClick={showViewer}>
           <p className="icon-Carousel">3D</p>
         </button>
+        <Link to={{ pathname: "https://pisofijoar.000webhostapp.com" }} target="_blank">
+        <button className="view-button-Carousel">
+          <p className="icon-Carousel">AR</p>
+        </button>
+        </Link>
       </div>
       <div className="visible hide">
         <div className="row">
