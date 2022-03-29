@@ -91,7 +91,7 @@ export const Home = () => {
               It has never been easier to see if our future home has a supermarket nearby, or if it
               is very far from the nearest metro station.
               </p>
-              <p className="dialogue_text_home px-3 m-4">
+              <p className="smDetails dialogue_text_home px-3 m-4">
                   "Where the nearest gymn will be?
               </p>
               <p className="smDetails px-1 m-2" id="Nearby_places_information">
@@ -99,7 +99,7 @@ export const Home = () => {
               "commute time" to our place of work or studies. We can quickly search for a flat that allows
                us to get to work in less than 15 minutes by metro!
               </p>
-              <p className="dialogue_text_home px-3 m-4">
+              <p className="smDetails dialogue_text_home px-3 m-4">
                   "Will it take me too long to go to work?
               </p>
             </Col>
@@ -135,7 +135,7 @@ export const Home = () => {
                 <p id="3d_view">
                   Possibility to add a .3d file for real-time visualisation of a 3D model of the house.
                 </p>
-                <p className="dialogue_text_home">
+                <p className="smDetails dialogue_text_home">
                   "Will my spinning bike fit?"&#129300;
                 </p>
               </div>
