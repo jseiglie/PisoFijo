@@ -38,7 +38,7 @@ const OwnCarousel = (props) => {
         <div className="view-button-container-Carousel">
             <button className="view-button-Carousel"><FontAwesomeIcon icon={faClone} className="icon-Carousel"/></button>
             <button className="view-button-Carousel"><FontAwesomeIcon icon={faMapLocationDot} className="icon-Carousel"/></button>
-            <button className="view-button-Carousel"><p className="icon-Carousel">360º</p></button>
+            <button className="view-button-Carousel"><p className="icon-Carousel">3D</p></button>
         </div>
     </div>
 )};

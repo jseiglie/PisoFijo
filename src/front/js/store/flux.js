@@ -27,13 +27,13 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       	baseUrlRegister:
-        	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/register",
+        	"https://3001-programisto1011-4geekaca-kp00eclwlzs.ws-eu38.gitpod.io/api/register",
 		baseUrlLogin:
-        	"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/login",
+        	"https://3001-programisto1011-4geekaca-kp00eclwlzs.ws-eu38.gitpod.io/api/login",
 		baseUrlSearch:
-			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/search",
+			"https://3001-programisto1011-4geekaca-kp00eclwlzs.ws-eu38.gitpod.io/api/search",
 		baseUrlNewProperty:
-			"https://3001-programisto1011-4geekaca-u47m9x84lcr.ws-eu38.gitpod.io/api/newproperty",
+			"https://3001-programisto1011-4geekaca-kp00eclwlzs.ws-eu38.gitpod.io/api/newproperty",
       	token: null,
       	country: "es", //(string) - values: es, it, pt (requiered)
 		filterUrl: "https://api.idealista.com/3.5/es/search?operation=sale&propertyType=homes&center=40.430,-3.702&distance=15000",
