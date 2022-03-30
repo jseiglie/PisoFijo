@@ -37,6 +37,7 @@
     border-radius: 0;
     padding-left: 1em;
     padding-right: 1em;
+    border-radius: 0.5rem;
 }
 
 .buttonSelect{
@@ -47,6 +48,7 @@
     padding-left: 2em;
     padding-right: 2em;
     margin-right: 1em;
+    border-radius: 0.5rem;
 }
 /*------------------------------------------------------------------------------*/
 .button {
@@ -55,6 +57,7 @@
     width: 100px;
     height: 40px;
     position: relative;
+    border-radius: 0.5rem;
   }
   
   .button label,

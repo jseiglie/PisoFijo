@@ -10,9 +10,11 @@ import Register from "./pages/register.js";
 import { Login } from "./pages/login";
 import { Navbar } from "./component/Navbar";
 import { Footer } from "./component/Footer";
-import Filter from "./pages/filter";
-import Details from "./pages/details";
-import ContactUs from "./pages/contactUs";
+import Filter from "./pages/filter.js";
+import Details from "./pages/details.js";
+import ContactUs from "./pages/contactUs.js";
+import Favorites from "./pages/favorites.js";
+import AddProperty from "./pages/addProperty.js";
 import bg from "../img/bg.png"
 //create your first component
 const Layout = () => {
@@ -37,11 +39,17 @@ const Layout = () => {
 						<Route exact path="/register">
 							<Register />
 						</Route>
+						<Route exact path="/addProperty">
+							<AddProperty />
+						</Route>
 						<Route exact path="/filter">
 							<Filter />
 						</Route>
 						<Route exact path="/details">
 							<Details/>
+						</Route>
+						<Route exact path="/favorites">
+							<Favorites/>
 						</Route>
 						<Route exact path="/contactus">
 							<ContactUs />

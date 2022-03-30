@@ -55,7 +55,7 @@ body {
 }
 
 .imgMap {
-    height: 22vh;
+    height: 25vh;
 }
 .imgAR {
     height: 40vh;
@@ -63,6 +63,7 @@ body {
 
 .idealista_favorites_img{
     width: 100%;
+    opacity: 80%;
 }
 
 .pTextDetails {

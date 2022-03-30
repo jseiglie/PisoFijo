@@ -1,18 +1,6 @@
-import React, { Component, ImageBackground } from "react";
+import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMapLocationDot, faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons'
-import {faEnvelope, faHeart} from '@fortawesome/free-regular-svg-icons'
-
-
-
 import * as PropTypes from "prop-types";
 import "../../styles/DetailsCard.css"
 
@@ -23,9 +11,9 @@ import "../../styles/DetailsCard.css"
 // npm install --save @fortawesome/react-fontawesome
 // npm i --save @fortawesome/pro-solid-svg-icons
 
-const DetailsCard = (props) => (
+const DetailsCard = (props) => {
 
-    <Link to="/details">
+    return (
         <Row xs={12} md={12} lg={12}>
             <div className="container DetailsCard-container float-left">
                 <div className="DetailsCard-view "style={{backgroundImage: `url(${props.urlImg}`,
@@ -33,7 +21,6 @@ const DetailsCard = (props) => (
                                 backgroundSize: 'cover',
                                 backgroundRepeat: 'no-repeat' }}>
                 </div>  
-                
                 <div className="DetailsCard-details">
                         <Row>               
                             <Col>
@@ -44,13 +31,12 @@ const DetailsCard = (props) => (
                             <Col>
                                 <h6> {props.value} € | {props.area} m<sup>2</sup>| {props.numRooms} rooms| {props.floor} baths</h6>
                             </Col>
-                        </Row>
-                        
+                        </Row>                
                 </div>    
             </div>
         </Row>
-    </Link>
-);
+    )
+};
 
 DetailsCard.propTypes = {
  	type: PropTypes.string,
@@ -58,9 +44,8 @@ DetailsCard.propTypes = {
  	value: PropTypes.number,
     area: PropTypes.number,
     numRooms: PropTypes.number,
-    floor: PropTypes.number,
+    // floor: PropTypes.number,
     fav: PropTypes.bool
-
 };
 
 export default DetailsCard;
