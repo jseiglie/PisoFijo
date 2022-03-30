@@ -1,7 +1,7 @@
 ![4Geeks Logo](https://4geeksacademy.com//images/4geeks-logo.png)
 # Landing Page with React
 ## Owners:
-###     - Sofia 
+###     - Victor 
 ###     - Javier 
 
 ## Explicación del proceso
