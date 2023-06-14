@@ -1,5 +1,6 @@
 ![4Geeks Logo](https://4geeksacademy.com//images/4geeks-logo.png)
-# Landing Page with React
+# 4 Geeks Academy Full Stack Final Project
+
 ## Owners:
 ###     - Victor 
 ###     - Javier 
@@ -20,15 +21,14 @@ Icono de remote explorer y seleccionar ``open browser``en el puerto 3000.
 ##### and install the npm package:
 ```
 $ npm install
+$ pipenv install
 ```
 
 ## Start coding!
 
 For Windows, Mac, Linux or Gitpod, start the webpack server with live reload:
-- `$ npm run start`
-
-You can update the `styles/index.css` or `js/index.js` depending on your needs.
-Add more files into your, `./src/js/components` or styles folder as you need them.
+- `$ npm run start` --> Para el front
+- `$ pipenv run start` --> Para el back
 
 ## Autores
 Victor
